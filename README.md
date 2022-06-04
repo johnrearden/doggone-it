@@ -1,108 +1,135 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **Doggone It Website**
 
-Welcome USER_NAME,
+### A website that lets visitors play a simple sheepherding game.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[View the live project here]()
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+![screenshots of project]()
 
 ---
 
-Happy coding!
+# Features
+
+- ### Landing Page
+    
+
+
+- ### Features left to implement
+
+---
+
+# User Experience (UX)
+
+- ### User Stories
+
+    - #### First Time Visitor Goals
+
+    - #### Returning Visitor Goals
+
+- ### Design
+
+    - Colour Scheme
+
+    - Typography
+
+    - Imagery
+
+- ### Wireframes
+
+# Technologies Used
+
+## Languages used
+
+- HTML
+- CSS
+- JavaScript
+
+## Libraries and Programs Used
+1. [Google Fonts](https://fonts.google.com/) 
+    - Google Fonts were used to import the 'Quicksand' font which is used throughout the website.
+2. [Font Awesome](https://fontawesome.com/icons)
+    - Font Awesome was used throughout to add icons to enhance UX.
+3. [GIMP](https://www.gimp.org/)
+    - GNU Image Manipulation Program was used as an open source alternative to Photoshop to scale and alter all of the images on the site.
+4. [Balsamiq](https://balsamiq.cloud/)
+    - All wireframes were designed using Balsamiq.
+5. [Git](https://git-scm.com/)
+    - Version control was implemented using Git through the Github terminal.
+6. [Github](https://github.com/)
+    - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web.
+7. [Visual Studio Code](https://code.visualstudio.com/)
+    - VS Code was used temporarily after I had run out of Gitpod hours. The project was cloned to my local environment and changes pushed up to Github from there.
+
+
+# Testing
+
+## Testing User Stories from UX section
+- #### First Time Visitor Goals
+ 
+
+- #### Returning Visitor Goals
+
+---
+
+## Validator Testing
+
+- HTML Validation
+
+- CSS Validation
+    
+- Lighthouse report
+
+---
+
+## Manual Testing
+Feature | Expected | Action | Result
+--------|----------|--------|-------
+
+---
+
+## Further Testing
+
+
+
+### Comments on device testing:
+
+# Known Bugs
+
+# Deployment
+
+### GitHub Pages
+The website is deployed on Github Pages. The deployment procedure is as follows :
+- Navigate to the Github repository [www.github.com/johnrearden/doggone-it](https://www.github.com/johnrearden/less-is-more)
+- In the Github repository, navigate to the Settings tag.
+- From the source section drop-down menu, select the Master branch.
+- The page should be refreshed with a message to indicate successful deployment.
+
+### Forking the Github Repository
+You can make a copy of the original repository to view and/or make changes without affecting the original repository by using the following steps:
+- Log in to GitHub and locate the repository [www.github.com/johnrearden/doggone-it](https://www.github.com/johnrearden/less-is-more)
+- At the top of the Repository (not top of page) just above the "Settings" button on the menu, locate the "Fork" button.
+- You should now have a copy of the original repository in your GitHub account
+
+### Making a Local Clone
+- Log in to Github and locate the repository [www.github.com/johnrearden/doggone-it](https://www.github.com/johnrearden/less-is-more)
+- Under the repository name, click "Clone or download".
+- To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+- Open Git Bash
+- Change the current working directory to the location where you want the cloned directory to be made.
+- Type `git clone`, and then paste the URL you copied in Step 3.
+
+    `$ git clone https://github.com/johnrearden/doggone-it`
+
+- Press Enter. Your clone will be created.
+# Credits
+## Images:
+
+## Code:
+
+
+---
+
+## Acknowledgements
+- I would like to thank my tutor, Okwudiri Okoro, for his valuable assistance during the course of this project. 
+
+- I would also like to thank our course facilitator, Kenan Wright, for his help during the weekly stand-up meetings. 
