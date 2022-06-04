@@ -17,8 +17,36 @@ header {
 }
 
 #game-ui {
-    text-align: center;
+    margin: 0 auto;
+    max-width: 450px;
     width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#displays {
+    margin: 0 auto;
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#game-area {
+    width: 95%;
+    
+    height: auto;
+    aspect-ratio: 0.8;
+    background-color: lightgreen;
+    box-sizing: border-box;
+}
+
+#controls {
+    border: 1px solid blue;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #progress-display {
@@ -27,12 +55,12 @@ header {
 }
 
 #zero-sheep {
-    width: 10%;
+    width: 15%;
     background-color: lightblue;
 }
 
 #departed-sheep {
-    width: 80%;
+    width: 70%;
 }
 
 #total-sheep {
@@ -40,11 +68,7 @@ header {
     background-color: lightblue;
 }
 
-#game-area {
-    width: 100%;
-    margin-bottom: 10px;
-    background-color: lightgreen;
-}
+
 
 #time-display {
     width: 100%;
@@ -57,8 +81,9 @@ header {
 }
 
 #bark-button {
+    width: 80%;
     margin-bottom: 10px;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bolder;
 }
 

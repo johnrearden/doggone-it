@@ -136,7 +136,11 @@ You can make a copy of the original repository to view and/or make changes witho
 ## Images:
 
 ## Code:
+CSS aspect-ratio property:
+https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
 
+CSS flex-box:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 ---
 
