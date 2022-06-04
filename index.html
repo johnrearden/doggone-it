@@ -16,17 +16,23 @@
 
     <div id="game-ui">
         <div id="progress-display">
-
+            <span id="zero-sheep">0</span>
+            <progress id="departed-sheep" min="0" max="20" value="13"></progress>
+            <span id="total-sheep">20</span>
         </div>
         <canvas id="game-area"></canvas>
         <div id="time-display">
-
+            <progress id="time-remaining" min="0" max="60" value="56"></progress>
         </div>
-        <button id="bark-button"></button>
+        <button id="bark-button">BARK!</button>
         <div id="secondary-buttons">
-            <button id="info"></button>
-            <button id="play/pause"></button>
+            <button id="info">i</button>
+            <button id="play/pause">play/pause</button>
         </div>
     </div>
+
+    <footer>
+        <span>&copy; John Rearden 2022</span>
+    </footer>
 </body>
 </html>
