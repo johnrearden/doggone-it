@@ -142,6 +142,9 @@ https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-a
 CSS flex-box:
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
+How to code a JavaScript game loop
+https://spicyyoghurt.com/tutorials/html5-javascript-game-development/create-a-proper-game-loop-with-requestanimationframe
+
 ---
 
 ## Acknowledgements

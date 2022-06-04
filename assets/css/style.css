@@ -57,6 +57,7 @@ header {
     aspect-ratio: 0.8;
     background-color: green;
     box-sizing: border-box;
+    position: relative;
 }
 
 #controls {
