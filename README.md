@@ -42,6 +42,11 @@
 
 - ### Wireframes
 
+    - ![Game Page (mobile)](https://share.balsamiq.com/c/tK87Xtckk1UjeB3F6No4Ls.png)
+
+    - ![Game Page (desktop)](https://share.balsamiq.com/c/t1t3d6x7EahsxB5ArbEHde.png)
+
+    
 # Technologies Used
 
 ## Languages used
