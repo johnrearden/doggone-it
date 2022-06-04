@@ -5,10 +5,27 @@
 }
 
 body {
-    font-family: monospace;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    background-color: black;
+    color: red;
     width: 100vw;
     height: 100vh;
     position: relative;
+}
+
+button {
+    font-family: inherit;
+    background-color: orange;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+span {
+    background-color: black;
+    color: blue;
+    font-size: 1.5em;
 }
 
 header {
@@ -26,7 +43,7 @@ header {
 
 #displays {
     margin: 0 auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -36,15 +53,14 @@ header {
 
 #game-area {
     width: 95%;
-    
     height: auto;
     aspect-ratio: 0.8;
-    background-color: lightgreen;
+    background-color: green;
     box-sizing: border-box;
 }
 
 #controls {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     box-sizing: border-box;
 }
@@ -56,7 +72,6 @@ header {
 
 #zero-sheep {
     width: 15%;
-    background-color: lightblue;
 }
 
 #departed-sheep {
@@ -65,10 +80,7 @@ header {
 
 #total-sheep {
     width: 10%;
-    background-color: lightblue;
 }
-
-
 
 #time-display {
     width: 100%;
@@ -81,7 +93,7 @@ header {
 }
 
 #bark-button {
-    width: 80%;
+    width: 50%;
     margin-bottom: 10px;
     font-size: 2rem;
     font-weight: bolder;
