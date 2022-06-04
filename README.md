@@ -10,7 +10,13 @@
 
 # Features
 
-- ### Landing Page
+- ### Main Game Page
+    This page contains the game display and controls. The visitor controls their sheepdog by tapping/clicking where they want him to go, and pressing the bark button if they want him to scare the sheep. The sheep run away from the dog, especially if he is barking, and the aim of the game is to force the sheep out the gate.
+
+- ### Possible extra features
+    - The player can lay out a path for the dog by dragging their finger/mouse pointer across the game area.
+    - The player can watch a replay of the last game and move forwards and backwards through the replay at different speeds.
+    - Dynamic hazards can be added to the game to frighten the sheep, such as bees maybe?
     
 
 
