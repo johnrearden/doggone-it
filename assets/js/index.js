@@ -33,7 +33,28 @@ function gameLoop() {
 function drawFrame() {
     let gameCanvas = document.getElementById('game-area');
     let context = gameCanvas.getContext('2d');
+
+    // Redraw an empty field.
+    context.fillColor = 'green';
+    context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+
+    // Draw the dog.
+    drawSprite(context, dogImage, dog.xPos, dog.yPos, dog.direction);
     
 
     window.requestAnimationFrame(gameLoop);
+}
+
+function drawSprite(context, image, x, y, angle) {
+    context.translate(x, y);
+    context.rotate(angle);
+    context.drawImage(
+        image, 
+        x - image.width / 2, y - image.height / 2, 
+        image.width, image.height);
+    context.restore();
+}
+
+function loadAllImages(imageUrls) {
+
 }

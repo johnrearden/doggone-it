@@ -145,6 +145,12 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 How to code a JavaScript game loop
 https://spicyyoghurt.com/tutorials/html5-javascript-game-development/create-a-proper-game-loop-with-requestanimationframe
 
+Drawing a sprite with an arbitrary rotation and position
+https://stackoverflow.com/questions/32468969/rotating-a-sprite-in-a-canvas
+
+Use async/await to halt program until all images are loaded
+https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-in-javascript
+
 ---
 
 ## Acknowledgements
