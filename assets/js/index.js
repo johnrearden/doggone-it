@@ -8,17 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 function init() {
+    let CANVAS_WIDTH = 400;
+    let CANVAS_HEIGHT = 500;
     let gameCanvas = document.getElementById('game-area');
-    let context = gameCanvas.getContext('2d');
-    gameCanvas.width = 400;
-    gameCanvas.height= 500;
+    gameCanvas.width = CANVAS_WIDTH;
+    gameCanvas.height= CANVAS_HEIGHT;
 
     let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
 
     gameCanvas.addEventListener('click', function(event) {
         let rect = gameCanvas.getBoundingClientRect();
-        let xDest = event.clientX - rect.left;
-        let yDest = event.clientY - rect.top;
+
+        // The mouse coordinates must be converted to the internal canvas 
+        // coordinates.
+        let xDest = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
+        let yDest = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
         console.log(`click detected @ ${xDest},${yDest}`);
         dog.setDestination(xDest, yDest);
     });

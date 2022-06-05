@@ -34,6 +34,10 @@ function GameRunner(sprites, dog) {
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
             this.dog.direction);
+
+        // Draw the dog's destination
+        context.fillStyle = 'red';
+        context.fillRect(this.dog.xDest - 2, this.dog.yDest - 2, 5, 5);
     }
 
     this.drawSprite = function (context, image, x, y, angle) {
