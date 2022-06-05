@@ -23,7 +23,6 @@ function init() {
         // coordinates.
         let xDest = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
         let yDest = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
-        console.log(`click detected @ ${xDest},${yDest}`);
         dog.setDestination(xDest, yDest);
     });
 

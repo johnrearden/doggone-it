@@ -15,7 +15,7 @@ class Dog {
         this.barking = false;
         this.moving = false;
 
-        this.DISTANCE_PER_FRAME = 3;
+        this.DISTANCE_PER_FRAME = 2.5;
         this.ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
     }
 
