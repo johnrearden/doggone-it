@@ -19,6 +19,8 @@ class Dog {
      * 
      */
     update() {
+        console.log('updating dog');
+        this.xPos += 1;
         this.moveToDest();
     }
 

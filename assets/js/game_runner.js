@@ -7,13 +7,15 @@ function GameRunner(sprites, dog) {
     // and needs to be explicitly bound to the GameRunner object, 
     // otherwise 'this' will refer to the window object from the 
     // requestAnimationFrame() scope.
-    this.updateGame = (function() {
+    this.updateGame = (function () {
         this.dog.update();
         this.drawFrame();
-        console.log('Frame drawn');
+
+        // Request the next frame, passing the updageGame function as the callback.
+        window.requestAnimationFrame(this.updateGame);
     }).bind(this);
 
-    this.drawFrame = function() {
+    this.drawFrame = function () {
         let gameCanvas = document.getElementById('game-area');
         let context = gameCanvas.getContext('2d');
 
@@ -28,17 +30,15 @@ function GameRunner(sprites, dog) {
             this.dog.xPos,
             this.dog.yPos,
             this.dog.direction);
-
-        // Request the next frame, passing the gameloop function as the callback.
-        //window.requestAnimationFrame(this.updateGame());
     }
 
-    this.drawSprite = function(context, image, x, y, angle) {
+    this.drawSprite = function (context, image, x, y, angle) {
+        context.save();
         context.translate(x, y);
         context.rotate(angle);
         context.drawImage(
             image,
-            x - image.width / 2, y - image.height / 2,
+            -image.width / 2, -image.height / 2,
             image.width, image.height);
         context.restore();
     }
