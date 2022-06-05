@@ -151,6 +151,9 @@ https://stackoverflow.com/questions/32468969/rotating-a-sprite-in-a-canvas
 Use async/await to halt program until all images are loaded
 https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-in-javascript
 
+Value of this in callback functions from global scope
+https://www.w3docs.com/snippets/javascript/how-to-access-the-correct-this-inside-a-callback.html
+
 ---
 
 ## Acknowledgements

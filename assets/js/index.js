@@ -1,4 +1,5 @@
 import {Dog} from './dog.js';
+import {GameRunner} from './game_runner.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function init() {
     let gameCanvas = document.getElementById('game-area');
     let context = gameCanvas.getContext('2d');
-    let canvasWidth = context.width;
-    let canvasHeight = context.height;
+    gameCanvas.width = 400;
+    gameCanvas.height= 500;
 
-    let dog = new Dog(canvasWidth / 2, canvasHeight / 2);
+    let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
 
     gameCanvas.addEventListener('click', function(event) {
         let rect = gameCanvas.getBoundingClientRect();
@@ -24,7 +25,7 @@ function init() {
 
     let sprites = {
         dog: {
-            url: '../images/dog.png',
+            url: '../../assets/images/dog.png',
             image: null,
         },
         // sheep: {
@@ -36,7 +37,8 @@ function init() {
     let gameRunner = new GameRunner(sprites, dog);
 
     loadAllImages([sprites.dog,]);
-
+    console.log(gameRunner);
+    
     window.requestAnimationFrame(gameRunner.updateGame);
 }
 
@@ -55,10 +57,9 @@ async function loadAllImages(sprites) {
                 resolve();
             }
             img.src = sprite.url;
-            imageArray.push(img);
+            sprite.image = img;
         }));
     }
     await Promise.all(promiseArray);
     console.log('images loaded');
-    return imageArray;
 }

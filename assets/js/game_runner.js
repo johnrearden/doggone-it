@@ -1,36 +1,44 @@
-class GameRunner {
-    constructor(sprites, dog) {
-        this.sprites = sprites;
-        this.dog = dog;
-    }
+function GameRunner(sprites, dog) {
+    this.sprites = sprites;
+    this.dog = dog;
+    console.log(dog);
 
-    updateGame() {
-        dog.update();
-        drawFrame();
+    // This is the callback passed to window.requestAnimationFrame, 
+    // and needs to be explicitly bound to the GameRunner object, 
+    // otherwise 'this' will refer to the window object from the 
+    // requestAnimationFrame() scope.
+    this.updateGame = (function() {
+        this.dog.update();
+        this.drawFrame();
         console.log('Frame drawn');
-    }
+    }).bind(this);
 
-    drawFrame() {
+    this.drawFrame = function() {
         let gameCanvas = document.getElementById('game-area');
         let context = gameCanvas.getContext('2d');
-    
+
         // Redraw an empty field.
-        context.fillColor = 'green';
+        context.fillStyle = 'green';
         context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-    
+
         // Draw the dog.
-        drawSprite(context, dogImage, dog.xPos, dog.yPos, dog.direction);
-        
+        this.drawSprite(
+            context,
+            this.sprites.dog.image,
+            this.dog.xPos,
+            this.dog.yPos,
+            this.dog.direction);
+
         // Request the next frame, passing the gameloop function as the callback.
-        window.requestAnimationFrame(gameLoop);
+        //window.requestAnimationFrame(this.updateGame());
     }
 
-    drawSprite(context, image, x, y, angle) {
+    this.drawSprite = function(context, image, x, y, angle) {
         context.translate(x, y);
         context.rotate(angle);
         context.drawImage(
-            image, 
-            x - image.width / 2, y - image.height / 2, 
+            image,
+            x - image.width / 2, y - image.height / 2,
             image.width, image.height);
         context.restore();
     }
