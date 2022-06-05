@@ -1,6 +1,7 @@
 function GameRunner(sprites, dog) {
     this.sprites = sprites;
     this.dog = dog;
+    this.frameCount = 0;
     console.log(dog);
 
     // This is the callback passed to window.requestAnimationFrame, 
@@ -8,8 +9,11 @@ function GameRunner(sprites, dog) {
     // otherwise 'this' will refer to the window object from the 
     // requestAnimationFrame() scope.
     this.updateGame = (function () {
-        this.dog.update();
-        this.drawFrame();
+        if (++this.frameCount % 1 === 0) {
+            this.dog.update();
+            this.drawFrame();
+        }
+        
 
         // Request the next frame, passing the updageGame function as the callback.
         window.requestAnimationFrame(this.updateGame);
@@ -27,8 +31,8 @@ function GameRunner(sprites, dog) {
         this.drawSprite(
             context,
             this.sprites.dog.image,
-            this.dog.xPos,
-            this.dog.yPos,
+            Math.floor(this.dog.xPos),
+            Math.floor(this.dog.yPos),
             this.dog.direction);
     }
 

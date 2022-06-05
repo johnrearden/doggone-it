@@ -12,15 +12,13 @@ class Dog {
         this.direction = 0;
         this.barking = false;
 
-        this.DISTANCE_PER_FRAME = 1;
+        this.DISTANCE_PER_FRAME = 2;
     }
 
     /**
      * 
      */
     update() {
-        console.log('updating dog');
-        this.xPos += 1;
         this.moveToDest();
     }
 
@@ -30,8 +28,8 @@ class Dog {
      * @param {*} y 
      */
     setDestination(x, y) {
-        this.xDest = x;
-        this.yDest = y
+        this.xDest = Math.round(x);
+        this.yDest = Math.round(y);
     }
 
     /**
@@ -46,7 +44,14 @@ class Dog {
      * 
      */
     moveToDest() {
-        let direction = this.#getDirectionToDestination();
+        // Check to see if the dog is within one frame's travel of 
+        // reaching the destination (to avoid thrashing).
+        if (this.#getDistanceToDestination() <= this.DISTANCE_PER_FRAME) {
+            return;
+        }
+        this.direction = this.#getDirectionToDestination();
+        this.xPos += this.DISTANCE_PER_FRAME * Math.cos(this.direction);
+        this.yPos += this.DISTANCE_PER_FRAME * Math.sin(this.direction);
     }
 
     /**
@@ -57,6 +62,11 @@ class Dog {
         return Math.atan2(this.yDest - this.yPos, this.xDest - this.xPos);
     }
 
+    #getDistanceToDestination() {
+        return Math.sqrt(
+            Math.pow(this.xDest - this.xPos, 2) +
+            Math.pow(this.yDest - this.yPos, 2));
+    }
 }
 
 export {Dog};
