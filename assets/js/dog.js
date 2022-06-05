@@ -1,8 +1,8 @@
 class Dog {
     /**
-     * 
-     * @param {*} xPos 
-     * @param {*} yPos 
+     * A class representing a dog
+     * @param {Number} xPos The x-coordinate of the dog's position 
+     * @param {Number} yPos The y-coordinate of the dog's position 
      */
     constructor(xPos, yPos) {
         this.xPos = xPos;
@@ -12,39 +12,40 @@ class Dog {
         this.direction = 0;
         this.barking = false;
 
-        this.DISTANCE_PER_FRAME = 2;
+        this.DISTANCE_PER_FRAME = 3;
     }
 
     /**
-     * 
+     * Updates the dogs position, called before each repaint
      */
     update() {
         this.moveToDest();
     }
 
     /**
-     * 
-     * @param {*} x 
-     * @param {*} y 
+     * Sets the destination the dog is moving towards, based on where 
+     * on the game-area the player has tapped/clicked.
+     * @param {Number} x 
+     * @param {Number} y 
      */
     setDestination(x, y) {
-        this.xDest = Math.round(x);
-        this.yDest = Math.round(y);
+        this.xDest = x;
+        this.yDest = y;
     }
 
     /**
-     * 
-     * @param {*} bool 
+     * Sets a flag indicating whether the dog is barking or not.
+     * @param {Boolean} bool 
      */
     shouldBark(bool) {
         this.barking = bool;
     }
 
     /**
-     * 
+     * Moves the dog in the direction of its destination. 
      */
     moveToDest() {
-        // Check to see if the dog is within one frame's travel of 
+        // Don't move if the dog is within one frame's travel of 
         // reaching the destination (to avoid thrashing).
         if (this.#getDistanceToDestination() <= this.DISTANCE_PER_FRAME) {
             return;
@@ -55,13 +56,18 @@ class Dog {
     }
 
     /**
-     * 
-     * @returns 
+     * This private method calculates the direction the dog should point in to travel directly
+     * towards its destination.
+     * @returns a number representing the direction the dog is pointing, between -PI and PI.
      */
     #getDirectionToDestination() {
         return Math.atan2(this.yDest - this.yPos, this.xDest - this.xPos);
     }
 
+    /**
+     * This method calculates how far the dog is from its destination.
+     * @returns The absolute distance of the dog from its destination.
+     */
     #getDistanceToDestination() {
         return Math.sqrt(
             Math.pow(this.xDest - this.xPos, 2) +
