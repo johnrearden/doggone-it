@@ -1,13 +1,12 @@
+import {Dog} from './dog.js';
+
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function() {
-    let gameCanvas = document.getElementById('game-area');
-    gameCanvas.addEventListener('click', function(event) {
-
-    });
+    console.log('DOM content loaded triggered');
+    init();
 })
 
 function init() {
-    
     let gameCanvas = document.getElementById('game-area');
     let context = gameCanvas.getContext('2d');
     let canvasWidth = context.width;
@@ -19,6 +18,7 @@ function init() {
         let rect = gameCanvas.getBoundingClientRect();
         let xDest = event.clientX - rect.left;
         let yDest = event.clientY - rect.top;
+        console.log(`click detected @ ${xDest},${yDest}`);
         dog.setDestination(xDest, yDest);
     });
 
@@ -33,43 +33,14 @@ function init() {
         // }
     };
 
-    let imageUrls = ['../images/dog.png'];
-    imageArray = loadAllImages(sprites);
+    let gameRunner = new GameRunner(sprites, dog);
 
-    window.requestAnimationFrame(gameLoop);
+    loadAllImages([sprites.dog,]);
+
+    window.requestAnimationFrame(gameRunner.updateGame);
 }
 
-function gameLoop() {
-    dog.update();
-    drawFrame();
-}
-
-function drawFrame() {
-    let gameCanvas = document.getElementById('game-area');
-    let context = gameCanvas.getContext('2d');
-
-    // Redraw an empty field.
-    context.fillColor = 'green';
-    context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
-
-    // Draw the dog.
-    drawSprite(context, dogImage, dog.xPos, dog.yPos, dog.direction);
-    
-
-    window.requestAnimationFrame(gameLoop);
-}
-
-function drawSprite(context, image, x, y, angle) {
-    context.translate(x, y);
-    context.rotate(angle);
-    context.drawImage(
-        image, 
-        x - image.width / 2, y - image.height / 2, 
-        image.width, image.height);
-    context.restore();
-}
-
-function loadAllImages(sprites) {
+async function loadAllImages(sprites) {
     const promiseArray = [];
     const imageArray = [];
 
@@ -88,5 +59,6 @@ function loadAllImages(sprites) {
         }));
     }
     await Promise.all(promiseArray);
+    console.log('images loaded');
     return imageArray;
 }

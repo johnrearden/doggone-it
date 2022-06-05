@@ -17,6 +17,13 @@ class Dog {
 
     /**
      * 
+     */
+    update() {
+        this.moveToDest();
+    }
+
+    /**
+     * 
      * @param {*} x 
      * @param {*} y 
      */
