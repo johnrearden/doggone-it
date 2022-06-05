@@ -22,6 +22,20 @@ function init() {
         dog.setDestination(xDest, yDest);
     });
 
+    let sprites = {
+        dog: {
+            url: '../images/dog.png',
+            image: null,
+        },
+        // sheep: {
+        //     url: '../images/sheep.png',
+        //     image: null
+        // }
+    };
+
+    let imageUrls = ['../images/dog.png'];
+    imageArray = loadAllImages(sprites);
+
     window.requestAnimationFrame(gameLoop);
 }
 
@@ -55,6 +69,24 @@ function drawSprite(context, image, x, y, angle) {
     context.restore();
 }
 
-function loadAllImages(imageUrls) {
+function loadAllImages(sprites) {
+    const promiseArray = [];
+    const imageArray = [];
 
+    for (let sprite of sprites) {
+        promiseArray.push(new Promise(resolve => {
+            const img = new Image();
+            img.onload = function() {
+                
+                // Here the image will be scaled if the canvas
+                // size differs from the game model size
+
+                resolve();
+            }
+            img.src = sprite.url;
+            imageArray.push(img);
+        }));
+    }
+    await Promise.all(promiseArray);
+    return imageArray;
 }
