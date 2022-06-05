@@ -30,7 +30,7 @@ function GameRunner(sprites, dog) {
         // Draw the dog.
         this.drawSprite(
             context,
-            this.sprites.dog.image,
+            this.sprites.dog.images[0],
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
             this.dog.direction);

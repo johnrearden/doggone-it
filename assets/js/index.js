@@ -29,8 +29,11 @@ function init() {
 
     let sprites = {
         dog: {
-            url: '../../assets/images/dog.png',
-            image: null,
+            urls: ['../../assets/images/dog_right.png',
+                   '../../assets/images/dog_left.png',
+                   '../../assets/images/dog_center.png'
+                ],
+            images: null,
         },
         // sheep: {
         //     url: '../images/sheep.png',
@@ -48,21 +51,24 @@ function init() {
 
 async function loadAllImages(sprites) {
     const promiseArray = [];
-    const imageArray = [];
 
     for (let sprite of sprites) {
-        promiseArray.push(new Promise(resolve => {
-            const img = new Image();
-            img.onload = function() {
-                
-                // Here the image will be scaled if the canvas
-                // size differs from the game model size
-
-                resolve();
-            }
-            img.src = sprite.url;
-            sprite.image = img;
-        }));
+        sprite.images = [];
+        for (let url of sprite.urls) {
+            promiseArray.push(new Promise(resolve => {
+                const img = new Image();
+                img.onload = function() {
+                    
+                    // Here the image will be scaled if the canvas
+                    // size differs from the game model size
+    
+                    resolve();
+                }
+                img.src = sprite.url;
+                sprite.images.push(img);
+            }));
+        }
+        
     }
     await Promise.all(promiseArray);
     console.log('images loaded');

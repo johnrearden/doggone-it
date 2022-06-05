@@ -1,3 +1,5 @@
+import { getAngularDifference } from "./utilities.js";
+
 class Dog {
     /**
      * A class representing a dog
@@ -13,6 +15,7 @@ class Dog {
         this.barking = false;
 
         this.DISTANCE_PER_FRAME = 3;
+        this.ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
     }
 
     /**
@@ -50,7 +53,16 @@ class Dog {
         if (this.#getDistanceToDestination() <= this.DISTANCE_PER_FRAME) {
             return;
         }
-        this.direction = this.#getDirectionToDestination();
+        let correctDirection = this.#getDirectionToDestination();
+        let angularDifference = getAngularDifference(correctDirection, this.direction);
+
+        // Check first to ensure the dog does not turn past the correct direction
+        if (this.ANGULAR_CHANGE_PER_FRAME > Math.abs(angularDifference)) {
+            this.direction = correctDirection;
+        } else {
+            this.direction += this.ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
+        }
+
         this.xPos += this.DISTANCE_PER_FRAME * Math.cos(this.direction);
         this.yPos += this.DISTANCE_PER_FRAME * Math.sin(this.direction);
     }

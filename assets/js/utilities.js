@@ -7,7 +7,7 @@
  * @param {Number} angleTo in radians
  * @returns the difference between the parameters in radians
  */
-const getAngularDifference = (angleFrom, angleTo) => {
+const getAngularDifference = (angleTo, angleFrom) => {
     let difference = angleTo - angleFrom;
     if (difference > Math.PI) {
         difference -= 2 * Math.PI;
