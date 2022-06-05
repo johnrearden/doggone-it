@@ -27,10 +27,22 @@ function GameRunner(sprites, dog) {
         context.fillStyle = 'green';
         context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
 
+        // Pick the correct dog sprite based on the frame count
+        let correctSprite;
+        let mod60 = this.frameCount % 20;
+        if (!this.dog.moving) {
+            correctSprite = this.sprites.dog.images[2];
+        } else if (mod60 < 5) {
+            correctSprite = this.sprites.dog.images[0];
+        } else if (mod60 >= 10 && mod60 < 15) {
+            correctSprite = this.sprites.dog.images[1];
+        } else {
+            correctSprite = this.sprites.dog.images[2];
+        }
         // Draw the dog.
         this.drawSprite(
             context,
-            this.sprites.dog.images[0],
+            correctSprite,
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
             this.dog.direction);

@@ -64,7 +64,7 @@ async function loadAllImages(sprites) {
     
                     resolve();
                 }
-                img.src = sprite.url;
+                img.src = url;
                 sprite.images.push(img);
             }));
         }

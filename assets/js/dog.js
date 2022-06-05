@@ -13,6 +13,7 @@ class Dog {
         this.yDest = yPos;
         this.direction = 0;
         this.barking = false;
+        this.moving = false;
 
         this.DISTANCE_PER_FRAME = 3;
         this.ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
@@ -51,8 +52,10 @@ class Dog {
         // Don't move if the dog is within one frame's travel of 
         // reaching the destination (to avoid thrashing).
         if (this.#getDistanceToDestination() <= this.DISTANCE_PER_FRAME) {
+            this.moving = false;
             return;
         }
+        this.moving = true;
         let correctDirection = this.#getDirectionToDestination();
         let angularDifference = getAngularDifference(correctDirection, this.direction);
 
