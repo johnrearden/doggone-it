@@ -1,6 +1,7 @@
-function GameRunner(sprites, dog) {
+function GameRunner(sprites, dog, herd) {
     this.sprites = sprites;
     this.dog = dog;
+    this.herd = herd;
     this.frameCount = 0;
     console.log(dog);
 
@@ -50,6 +51,19 @@ function GameRunner(sprites, dog) {
         // Draw the dog's destination
         context.fillStyle = 'red';
         context.fillRect(this.dog.xDest - 2, this.dog.yDest - 2, 5, 5);
+
+        // Draw the herd
+        let correctSheepSprite = this.sprites.sheep.images[0];
+        for (let i = 0; i < herd.xArray.length; i++) {
+            this.drawSprite(
+                context, 
+                correctSheepSprite,
+                herd.xArray[i].xPos,
+                herd.xArray[i].yPos,
+                herd.xArray[i].direction
+            )
+        }
+        
     }
 
     this.drawSprite = function (context, image, x, y, angle) {

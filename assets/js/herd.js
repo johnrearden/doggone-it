@@ -44,9 +44,9 @@ class Herd {
     calculateHerdCenter(array) {
         let totalX;
         let totalY;
-        for (let sheep of array) {
-            totalX += sheep.xPos;
-            totalY += sheep.yPos;
+        for (let i = 0; i < this.xArray.length; i++) {
+            totalX += this.xArray[i].xPos;
+            totalY += this.xArray[i].yPos;
         }
         this.centerX = totalX / this.numSheep;
         this.centerY = totalY / this.numSheep;
@@ -61,3 +61,5 @@ class Herd {
         });
     }
 }
+
+export {Herd};

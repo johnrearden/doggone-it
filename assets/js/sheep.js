@@ -3,7 +3,13 @@ import {
 } from "./utilities.js";
 
 class Sheep {
-
+    /**
+     * Represents a sheep, with a velocity and direction. The sheep also
+     * has an anxiety field, which affects how the sheep reacts to the
+     * dog and the other members of its herd.
+     * @param {Number} xPos 
+     * @param {Number} yPos 
+     */
     constructor(xPos, yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
