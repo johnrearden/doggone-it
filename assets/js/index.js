@@ -6,7 +6,9 @@ import {
     GameRunner
 } from './game_runner.js';
 
-import {Herd} from './herd.js';
+import {
+    Herd
+} from './herd.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
@@ -36,50 +38,65 @@ function init() {
 
     let sprites = {
         dog: {
-            urls: ['../../assets/images/dog_right.png',
-                '../../assets/images/dog_left.png',
-                '../../assets/images/dog_center.png'
+            urls: [
+                'dog_south_left', 'dog_south_right', 'dog_south_center',
+                'dog_west_left', 'dog_west_right', 'dog_west_center',
+                'dog_north_left', 'dog_north_right', 'dog_north_center',
+                'dog_east_left', 'dog_east_right', 'dog_east_center'
             ],
-            images: null,
+            images: [],
         },
         sheep: {
             urls: ['../../assets/images/sheep_right.png',
                 '../../assets/images/sheep_left.png',
                 '../../assets/images/sheep_center.png'
             ],
-            image: null
+            images: []
         }
     };
 
     let gameRunner = new GameRunner(sprites, dog, herd);
 
-    loadAllImages([sprites.dog, sprites.sheep]);
+    loadAllImages(sprites);
     console.log(gameRunner);
 
     window.requestAnimationFrame(gameRunner.updateGame);
 }
 
 async function loadAllImages(sprites) {
-    const promiseArray = [];
+    let promiseArray = [];
 
-    for (let sprite of sprites) {
-        sprite.images = [];
-        for (let url of sprite.urls) {
-            promiseArray.push(new Promise(resolve => {
-                const img = new Image();
-                img.onload = function () {
-
-                    // Here the image will be scaled if the canvas
-                    // size differs from the game model size
-
-                    resolve();
-                }
-                img.src = url;
-                sprite.images.push(img);
-            }));
-        }
-
+    // Load 12 dog images.
+    for (let url of sprites.dog.urls) {
+        promiseArray.push(new Promise(resolve => {
+            const img = new Image();
+            img.onload = function () {
+                // Here the image will be scaled if the canvas
+                // size differs from the game model size
+                resolve();
+            }
+            img.src = `../assets/images/dog_images/${url}.png`;
+            sprites.dog.images.push(img);
+        }));
     }
     await Promise.all(promiseArray);
-    console.log('images loaded');
+    console.log('dog images loaded');
+
+    // Load 3 sheep images.
+    promiseArray = [];
+    for (let url of sprites.sheep.urls) {
+        promiseArray.push(new Promise(resolve => {
+            const img = new Image();
+            img.onload = function () {
+                // Here the image will be scaled if the canvas
+                // size differs from the game model size
+                resolve();
+            }
+            img.src = url;
+            sprites.sheep.images.push(img);
+        }));
+    }
+    await Promise.all(promiseArray);
+
+    console.log('sheep images loaded');
 }

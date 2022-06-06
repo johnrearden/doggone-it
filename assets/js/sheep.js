@@ -1,7 +1,8 @@
 import {getAngularDifference} from "./utilities.js";
 import {SHEEP_MAX_DIST_FROM_NEIGHBOURS,
         SHEEP_ANGULAR_CHANGE_PER_FRAME,
-        SHEEP_MAX_VELOCITY} from './constants.js';
+        SHEEP_BASE_VELOCITY_TOWARDS_NEIGHBOURS,
+        SHEEP_BASE_VELOCITY_AWAY_FROM_DOG} from './constants.js';
 
 class Sheep {
     /**
@@ -18,9 +19,6 @@ class Sheep {
         this.direction = 0;
         this.velocity = 0;
         this.anxiety = 1;
-
-        this.MAX_VELOCITY = 1.5;
-        this.ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
     }
 
     /**
@@ -39,6 +37,8 @@ class Sheep {
      * @param {Dog} dog 
      */
     update(centerOfNearNeighbours, dog) {
+
+        // Calculate the center of the nearest neighbours set
         let xCenter, yCenter;
         let totalX = 0;
         let totalY = 0;
@@ -48,6 +48,25 @@ class Sheep {
         })
         xCenter = totalX / centerOfNearNeighbours.size;
         yCenter = totalY / centerOfNearNeighbours.size;
+
+        let xDistSq = Math.pow(xCenter, 2);
+        let yDistSq = Math.pow(yCenter, 2);
+        let maxDistSq = Math.pow(SHEEP_MAX_DIST_FROM_NEIGHBOURS, 2);
+        let xVel = 0, yVel = 0;
+        if (maxDistSq > xDistSq + yDistSq) {
+            let distance = Math.sqrt(xDistSq + yDistSq);
+            let returnArray = this.#moveTowardsNeighbours(distance, xCenter, yCenter);
+            xVel += returnArray[0];
+            yVel += returnArray[1];
+        }
+    }
+
+    #moveTowardsNeighbours(distance, xCenter, yCenter) {
+        let directionToNeighbours = Math.atan2(
+            yCenter - this.yPos,
+            xCenter - this.xPos);
+        let vel;
+        
     }
 
 

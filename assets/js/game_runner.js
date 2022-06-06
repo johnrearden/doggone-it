@@ -1,3 +1,5 @@
+import {Quadrant, getQuadrant} from './utilities.js';
+
 function GameRunner(sprites, dog, herd) {
     this.sprites = sprites;
     this.dog = dog;
@@ -30,15 +32,42 @@ function GameRunner(sprites, dog, herd) {
 
         // Pick the correct dog sprite based on the frame count
         let correctSprite;
+
+        // Pick the correct directional sprite from South, West, North, East
+        let left, right, center, angle;
+        let quadrant = getQuadrant(this.dog.direction);
+        switch(quadrant) {
+            case Quadrant.SOUTH: {
+                left = 0; right = 1; center = 2;
+                angle = this.dog.direction - Math.PI / 2;
+                break;
+            }
+            case Quadrant.WEST: {
+                left = 3; right = 4; center = 5;
+                angle = 0;
+                break;
+            }
+            case Quadrant.NORTH: {
+                left = 6; right = 7; center = 8;
+                angle = this.dog.direction + Math.PI / 2;
+                break;
+            }
+            case Quadrant.EAST:
+                angle = 0;
+            default: {
+                left = 9; right = 10; center = 11;
+            }
+        }
+
         let mod60 = this.frameCount % 20;
         if (!this.dog.moving) {
-            correctSprite = this.sprites.dog.images[2];
+            correctSprite = this.sprites.dog.images[center];
         } else if (mod60 < 5) {
-            correctSprite = this.sprites.dog.images[0];
+            correctSprite = this.sprites.dog.images[left];
         } else if (mod60 >= 10 && mod60 < 15) {
-            correctSprite = this.sprites.dog.images[1];
+            correctSprite = this.sprites.dog.images[right];
         } else {
-            correctSprite = this.sprites.dog.images[2];
+            correctSprite = this.sprites.dog.images[center];
         }
         // Draw the dog.
         this.drawSprite(
@@ -46,7 +75,7 @@ function GameRunner(sprites, dog, herd) {
             correctSprite,
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
-            this.dog.direction);
+            angle);
 
         // Draw the dog's destination
         context.fillStyle = 'red';
@@ -67,14 +96,17 @@ function GameRunner(sprites, dog, herd) {
     }
 
     this.drawSprite = function (context, image, x, y, angle) {
-        context.save();
-        context.translate(x, y);
-        context.rotate(angle);
-        context.drawImage(
-            image,
-            -image.width / 2, -image.height / 2,
-            image.width, image.height);
-        context.restore();
+        if (image) {
+            context.save();
+            context.translate(x, y);
+            context.rotate(angle);
+            context.drawImage(
+                image,
+                -image.width / 2, -image.height / 2,
+                image.width, image.height);
+            context.restore();
+        }
+        
     }
 }
 
