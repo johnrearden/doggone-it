@@ -32,8 +32,7 @@ class Herd {
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
-        this.sortArrays();
-        this.calculateHerdCenter();
+        this.#sortArrays();
     }
 
     /**
