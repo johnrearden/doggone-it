@@ -38,14 +38,13 @@ class Herd {
 
     /**
      * Called by the GameRunner on each frame, to re-sort the position-based
-     * arrays, create an array for each sheep of its nearest neighbours, and
+     * arrays, create a set for each sheep of its nearest neighbours, and
      * update each sheep in turn.
      * 
      * @param {Dog} dog 
      */
     update(dog) {
-        this.calculateHerdCenter();
-        this.sortArrays();
+        this.#sortArrays();
 
         let preferredDistFromHerdCenter = dog.barking ? 
             this.PREFFERED_DIST_FROM_HERD_CENTER : 
@@ -55,32 +54,53 @@ class Herd {
 
             // Get nearest neighbour set for each sheep.
             let nearestNeighbours = new Set();
+           
+            // Check along the increasing x-axis
             let ownIndex = this.xArray.indexOf(this);
-            if (ownIndex < this.xArray.length - 1) {
+            if (ownIndex < this.xArray.length - 1) { // don't run off the array
                 let pointer = ownIndex + 1;
                 while (this.#evaluateDistance(this.xArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.xArray[pointer]);
-                    pointer++;
+                    nearestNeighbours.add(this.xArray[pointer++]);
                     if (pointer = this.xArray.length) {
-                        break;
+                        break; // We have reached the end of the array
                     }
                 }
             }
+            // Check along the decreasing x-axis
             if (ownIndex > 0) {
                 let pointer = ownIndex - 1;
                 while (this.#evaluateDistance(this.xArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.xArray[pointer]);
-                    pointer--;
-                    if (pointer = 0) {
+                    nearestNeighbours.add(this.xArray[pointer--]);
+                    if (pointer < 0) {
                         break;
                     }
                 }
             }
+            // Check along the increasing y-axis
+            ownIndex = this.yArray.indexOf(this);
+            if (ownIndex < this.yArray.length - 1) {
+                let pointer = ownIndex + 1;
+                while(this.#evaluateDistance(this.yArray[pointer], sheep)) {
+                    nearestNeighbours.add(this.yArray[pointer++]);
+                }
+                if (pointer = this.yArray.length) {
+                    break;
+                }
+            }
+            // Check along the decreasing y-axis
+            if (ownIndex > 0) {
+                let pointer = ownIndex - 1;
+                while(this.#evaluateDistance(this.yArray[pointer], sheep)) {
+                    nearestNeighbours.add(this.yArray[pointer--]);
+                }
+                if (pointer < 0) {
+                    break;
+                }
+            }
 
-            // Calculate the center of this array.
-            let center = this.calculateHerdCenter(nearestNeighbours);
-
-            sheep.update(center, dog);
+            // Finally update the sheep, passing the set of nearest neighbours and 
+            // a reference to the dog.
+            sheep.update(nearestNeighbours, dog);
         }
     }
 
