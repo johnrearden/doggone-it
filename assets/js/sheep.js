@@ -1,6 +1,7 @@
-import {
-    getAngularDifference
-} from "./utilities.js";
+import {getAngularDifference} from "./utilities.js";
+import {SHEEP_MAX_DIST_FROM_NEIGHBOURS,
+        SHEEP_ANGULAR_CHANGE_PER_FRAME,
+        SHEEP_MAX_VELOCITY} from './constants.js';
 
 class Sheep {
     /**
@@ -34,11 +35,19 @@ class Sheep {
      * which depends upon its distance from the dog, and whether the dog
      * is barking.
      * 
-     * @param {Number} centerOfNearNeighbours 
-     * @param {Number} dog 
+     * @param {set} centerOfNearNeighbours
+     * @param {Dog} dog 
      */
     update(centerOfNearNeighbours, dog) {
-
+        let xCenter, yCenter;
+        let totalX = 0;
+        let totalY = 0;
+        centerOfNearNeighbours.forEach(member => {
+            totalX += member.xPos;
+            totalY += member.yPos;
+        })
+        xCenter = totalX / centerOfNearNeighbours.size;
+        yCenter = totalY / centerOfNearNeighbours.size;
     }
 
 

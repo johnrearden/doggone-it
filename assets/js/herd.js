@@ -1,4 +1,9 @@
-import {Sheep} from './sheep.js';
+import {
+    Sheep
+} from './sheep.js';
+import {
+    SHEEP_MAX_RANGE_FOR_NEIGHBOURS
+} from './constants.js';
 
 class Herd {
     /**
@@ -23,8 +28,6 @@ class Herd {
         this.xArray = [];
         this.yArray = [];
 
-        this.PREFFERED_DIST_FROM_HERD_CENTER = 100;
-
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * canvasWidth;
             let randY = Math.random() * canvasHeight;
@@ -45,15 +48,15 @@ class Herd {
     update(dog) {
         this.#sortArrays();
 
-        let preferredDistFromHerdCenter = dog.barking ? 
-            this.PREFFERED_DIST_FROM_HERD_CENTER : 
-            this.PREFFERED_DIST_FROM_HERD_CENTER / 4;
+        let preferredDistFromHerdCenter = dog.barking ?
+            SHEEP_MAX_RANGE_FOR_NEIGHBOURS :
+            SHEEP_MAX_RANGE_FOR_NEIGHBOURS / 4;
 
         for (let sheep of this.xArray) {
 
             // Get nearest neighbour set for each sheep.
             let nearestNeighbours = new Set();
-           
+
             // Check along the increasing x-axis
             let ownIndex = this.xArray.indexOf(this);
             if (ownIndex < this.xArray.length - 1) { // don't run off the array
@@ -79,7 +82,7 @@ class Herd {
             ownIndex = this.yArray.indexOf(this);
             if (ownIndex < this.yArray.length - 1) {
                 let pointer = ownIndex + 1;
-                while(this.#evaluateDistance(this.yArray[pointer], sheep)) {
+                while (this.#evaluateDistance(this.yArray[pointer], sheep)) {
                     nearestNeighbours.add(this.yArray[pointer++]);
                 }
                 if (pointer = this.yArray.length) {
@@ -89,7 +92,7 @@ class Herd {
             // Check along the decreasing y-axis
             if (ownIndex > 0) {
                 let pointer = ownIndex - 1;
-                while(this.#evaluateDistance(this.yArray[pointer], sheep)) {
+                while (this.#evaluateDistance(this.yArray[pointer], sheep)) {
                     nearestNeighbours.add(this.yArray[pointer--]);
                 }
                 if (pointer < 0) {
@@ -145,4 +148,6 @@ class Herd {
     }
 }
 
-export {Herd};
+export {
+    Herd
+};

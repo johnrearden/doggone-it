@@ -1,4 +1,5 @@
 import { getAngularDifference } from "./utilities.js";
+import {DOG_ANGULAR_CHANGE_PER_FRAME, DOG_TRAVEL_PER_FRAME} from './constants.js';
 
 class Dog {
     /**
@@ -14,9 +15,6 @@ class Dog {
         this.direction = 0;
         this.barking = false;
         this.moving = false;
-
-        this.DISTANCE_PER_FRAME = 2.5;
-        this.ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
     }
 
     /**
@@ -51,7 +49,7 @@ class Dog {
     moveToDest() {
         // Don't move if the dog is within one frame's travel of 
         // reaching the destination (to avoid thrashing).
-        if (this.#getDistanceToDestination() <= this.DISTANCE_PER_FRAME) {
+        if (this.#getDistanceToDestination() <= DOG_TRAVEL_PER_FRAME) {
             this.moving = false;
             return;
         }
@@ -60,14 +58,14 @@ class Dog {
         let angularDifference = getAngularDifference(correctDirection, this.direction);
 
         // Check first to ensure the dog does not turn past the correct direction
-        if (this.ANGULAR_CHANGE_PER_FRAME > Math.abs(angularDifference)) {
+        if (DOG_ANGULAR_CHANGE_PER_FRAME > Math.abs(angularDifference)) {
             this.direction = correctDirection;
         } else {
-            this.direction += this.ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
+            this.direction += DOG_ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
         }
 
-        this.xPos += this.DISTANCE_PER_FRAME * Math.cos(this.direction);
-        this.yPos += this.DISTANCE_PER_FRAME * Math.sin(this.direction);
+        this.xPos += DOG_TRAVEL_PER_FRAME * Math.cos(this.direction);
+        this.yPos += DOG_TRAVEL_PER_FRAME * Math.sin(this.direction);
     }
 
     /**

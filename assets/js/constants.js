@@ -1,0 +1,11 @@
+export const SHEEP_MAX_DIST_FROM_NEIGHBOURS = 100;
+
+export const SHEEP_MAX_RANGE_FOR_NEIGHBOURS = 70;
+
+export const SHEEP_MAX_VELOCITY = 1.5;
+
+export const SHEEP_ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
+
+export const DOG_TRAVEL_PER_FRAME = 2.5;
+
+export const DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
