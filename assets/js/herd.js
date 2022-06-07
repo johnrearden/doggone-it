@@ -109,12 +109,16 @@ class Herd {
                 
             }
 
-            // Remove the sheep from its own nearest neighbour set.
+            // Remove the sheep itself from its own nearest neighbour set.
             nearestNeighbours.delete(sheep);
+
+            // Sort the array by decreasing distance;
+            let neighbourArray = Array.from(nearestNeighbours);
+            this.#sortNeighboursByDistance(sheep, neighbourArray);
 
             // Finally update the sheep, passing the set of nearest neighbours and 
             // a reference to the dog.
-            sheep.update(nearestNeighbours, dog);
+            sheep.update(neighbourArray, dog);
         }
     }
 
@@ -124,6 +128,16 @@ class Herd {
         });
         this.yArray.sort((sheep1, sheep2) => {
             return sheep1.yPos - sheep2.yPos;
+        });
+    }
+
+    #sortNeighboursByDistance(sheep, neighbours) {
+        neighbours.sort((a, b) => {
+            let aDistSqX = Math.pow(a.xPos - sheep.xPos);
+            let aDistSqY = Math.pow(a.yPos - sheep.yPos);
+            let bDistSqX = Math.pow(b.xPos - sheep.xPos);
+            let bDistSqY = Math.pow(b.yPos - sheep.yPos);
+            return (aDistSqX + aDistSqY) - (bDistSqX + bDistSqY);
         });
     }
 
