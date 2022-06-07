@@ -1,9 +1,10 @@
-import {getAngularDifference, ensureCorrectRange} from "./utilities.js";
+import {ensureCorrectRange} from "./utilities.js";
 import {SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
-        SHEEP_ANGULAR_CHANGE_PER_FRAME,
+        SHEEP_MIN_RANGE_FOR_NEIGHBOURS,
         SHEEP_VELOCITY_TOWARDS_NEIGHBOURS,
         SHEEP_OUTER_REACTION_LIMIT,
-        SHEEP_VELOCITY_AWAY_FROM_DOG} from './constants.js';
+        SHEEP_VELOCITY_AWAY_FROM_DOG,
+        FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH} from './constants.js';
 
 class Sheep {
     /**
@@ -52,19 +53,25 @@ class Sheep {
             })
             averageNeighbourX = totalX / nearestNeighbours.size;
             averageNeighbourY = totalY / nearestNeighbours.size;
-            // console.log(`averageNeighbour == ${averageNeighbourX}, ${averageNeighbourY}`);
     
             // If the sheep is too far away from the average neighbour position, 
             // move it back towards its part of the herd.
-            let xDistSq = Math.pow(averageNeighbourX, 2);
-            let yDistSq = Math.pow(averageNeighbourY, 2);
+            let xDistSq = Math.pow(averageNeighbourX - this.xPos, 2);
+            let yDistSq = Math.pow(averageNeighbourY - this.yPos, 2);
             let maxDistSq = Math.pow(SHEEP_MAX_RANGE_FOR_NEIGHBOURS, 2);
-            if (maxDistSq < xDistSq + yDistSq) {
+            if (xDistSq + yDistSq > maxDistSq) {
                 [xVelTowardHerd, yVelTowardHerd] = this.#getVelTowardsNeighbours(
                     averageNeighbourX, 
                     averageNeighbourY);
             }
-            // console.log(`sheep${this.id} xVelToHerd: ${xVelTowardHerd}, yVelToHerd: ${yVelTowardHerd}`);
+            // If the sheep is too close to the average neighbour position, 
+            // move it away.
+            let minDistSq = Math.pow(SHEEP_MIN_RANGE_FOR_NEIGHBOURS, 2);
+            if (xDistSq + yDistSq < minDistSq) {
+                [xVelTowardHerd, yVelTowardHerd] = this.#getVelAwayFromNeighbours(
+                    averageNeighbourX, 
+                    averageNeighbourY);
+            }
         }
         
 
@@ -96,8 +103,6 @@ class Sheep {
         // Update the sheeps position
         let combinedXVel = xVelTowardHerd + xVelAwayFromDog;
         let combinedYVel = yVelTowardHerd + yVelAwayFromDog;
-        // combinedXVel = xVelTowardHerd;
-        // combinedYVel = yVelTowardHerd;
         if (combinedXVel === 0 && combinedYVel === 0) {
             this.moving = false;
         } else {
@@ -106,22 +111,43 @@ class Sheep {
         }
         this.xPos += combinedXVel;
         this.yPos += combinedYVel;
+        this.#checkGameAreaBounds();
     }
 
     #getVelTowardsNeighbours(xCenter, yCenter) {
         let directionToNeighbours = Math.atan2(
             yCenter - this.yPos,
             xCenter - this.xPos);
-            // console.log(`xCenter: ${xCenter}, yCenter: ${yCenter}, 
-            //     Sheep${this.id} direction : ${directionToNeighbours / Math.PI},
-            //     xPos:${this.xPos}, yPos: ${this.yPos}`);
         let velocity = this.anxiety * SHEEP_VELOCITY_TOWARDS_NEIGHBOURS;
         return [velocity * Math.cos(directionToNeighbours),
                 velocity * Math.sin(directionToNeighbours)];
     }
 
+    #getVelAwayFromNeighbours(xCenter, yCenter) {
+        let directionToNeighbours = Math.atan2(
+            yCenter - this.yPos,
+            xCenter - this.xPos);
+        
+        // In this case, reverse the direction.
+        directionToNeighbours = ensureCorrectRange(directionToNeighbours - Math.PI);
+        
+        let velocity = this.anxiety * SHEEP_VELOCITY_TOWARDS_NEIGHBOURS;
+        return [velocity * Math.cos(directionToNeighbours),
+                velocity * Math.sin(directionToNeighbours)];
+    }
 
-
+    #checkGameAreaBounds() {
+        if (this.xPos < FIELD_BORDER) {
+            this.xPos = FIELD_BORDER;
+        } else if (this.xPos > FIELD_WIDTH - FIELD_BORDER) {
+            this.xPos = FIELD_WIDTH - FIELD_BORDER;
+        }
+        if (this.yPos < FIELD_BORDER) {
+            this.yPos = FIELD_BORDER;
+        } else if (this.yPos > FIELD_HEIGHT - FIELD_BORDER) {
+            this.yPos = FIELD_HEIGHT - FIELD_BORDER;
+        }
+    }
 }
 
 export {Sheep};
