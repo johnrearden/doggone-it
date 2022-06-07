@@ -16,9 +16,13 @@ function GameRunner(sprites, dog, herd) {
     // requestAnimationFrame() scope.
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
+            console.time('loop');
             this.dog.update();
             this.herd.update(dog);
+            
             this.drawFrame();
+            console.timeEnd('loop');
+
         }
 
         // Request the next frame, passing the updageGame function as the callback.

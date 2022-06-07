@@ -43,7 +43,7 @@ class Sheep {
     update(nearestNeighbours, dog) {
         // Calculate the average position of the nearest neighbours set
         let xVelTowardHerd = 0, yVelTowardHerd = 0;
-        if (nearestNeighbours.size > 0) {
+        if (nearestNeighbours.length > 0) {
             let averageNeighbourX, averageNeighbourY;
             let totalX = 0;
             let totalY = 0;
@@ -64,15 +64,22 @@ class Sheep {
                     averageNeighbourX, 
                     averageNeighbourY);
             }
-            // If the sheep is too close to the average neighbour position, 
+            // If the sheep is too close to the closest neighbour, 
             // move it away.
             let minDistSq = Math.pow(SHEEP_MIN_RANGE_FOR_NEIGHBOURS, 2);
+            let closestX = nearestNeighbours[0].xPos;
+            let closestY = nearestNeighbours[0].yPos;
+            xDistSq = Math.pow(closestX - this.xPos, 2);
+            yDistSq = Math.pow(closestY - this.yPos, 2);
+            // console.log(`closest to ${this.id} is ${nearestNeighbours[0].id} 
+            //         @ ${closestX},${closestY}`);
             if (xDistSq + yDistSq < minDistSq) {
+                // console.log(`sheep${this.id} says sheep${nearestNeighbours[0].id} is too close`);
                 [xVelTowardHerd, yVelTowardHerd] = this.#getVelAwayFromNeighbours(
-                    averageNeighbourX, 
-                    averageNeighbourY);
+                    closestX, 
+                    closestY);
             }
-        }
+        } 
         
 
         // If the sheep is close enough to the dog, it should react by 

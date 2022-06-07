@@ -114,6 +114,7 @@ class Herd {
 
             // Sort the array by decreasing distance;
             let neighbourArray = Array.from(nearestNeighbours);
+            
             this.#sortNeighboursByDistance(sheep, neighbourArray);
 
             // Finally update the sheep, passing the set of nearest neighbours and 
