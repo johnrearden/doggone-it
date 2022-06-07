@@ -59,12 +59,12 @@ function GameRunner(sprites, dog, herd) {
             }
         }
 
-        let mod60 = this.frameCount % 20;
+        let mod20 = this.frameCount % 20;
         if (!this.dog.moving) {
             correctSprite = this.sprites.dog.images[center];
-        } else if (mod60 < 5) {
+        } else if (mod20 < 5) {
             correctSprite = this.sprites.dog.images[left];
-        } else if (mod60 >= 10 && mod60 < 15) {
+        } else if (mod20 >= 10 && mod60 < 15) {
             correctSprite = this.sprites.dog.images[right];
         } else {
             correctSprite = this.sprites.dog.images[center];

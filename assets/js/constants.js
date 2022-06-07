@@ -36,7 +36,7 @@ export const SHEEP_BASE_VELOCITY_AWAY_FROM_DOG = 2;
 /**
  * Represents the distance the dog can travel in one frame
  */
-export const DOG_TRAVEL_PER_FRAME = 2.5;
+export const DOG_TRAVEL_PER_FRAME = 4;
 
 
 /**
