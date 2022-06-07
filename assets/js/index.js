@@ -24,7 +24,7 @@ function init() {
     gameCanvas.height = CANVAS_HEIGHT;
 
     let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
-    let herd = new Herd(20, gameCanvas.width, gameCanvas.height);
+    let herd = new Herd(10, gameCanvas.width, gameCanvas.height);
 
     gameCanvas.addEventListener('click', function (event) {
         let rect = gameCanvas.getBoundingClientRect();

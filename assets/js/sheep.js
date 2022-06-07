@@ -80,7 +80,6 @@ class Sheep {
                     closestY);
             }
         } 
-        
 
         // If the sheep is close enough to the dog, it should react by 
         // moving away from it.
@@ -116,6 +115,7 @@ class Sheep {
             this.moving = true;
             this.direction = Math.atan2(combinedYVel, combinedXVel);
         }
+
         this.xPos += combinedXVel;
         this.yPos += combinedYVel;
         this.#checkGameAreaBounds();

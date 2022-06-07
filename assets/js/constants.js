@@ -4,7 +4,6 @@
  */
 export const SHEEP_NEIGHBOURLY_DISTANCE = 300;
 
-
 /**
  * Represents the furthest a sheep will tolerate being from
  * the center of its nearest neighbours. This facilitates the herding 
@@ -23,12 +22,11 @@ export const SHEEP_MIN_RANGE_FOR_NEIGHBOURS = 100;
  */
 export const SHEEP_VELOCITY_TOWARDS_NEIGHBOURS = 1;
 
-
 /**
  * Represents the base speed (when least anxious) a sheep will travel 
  * at away from the dog.
  */
-export const SHEEP_VELOCITY_AWAY_FROM_DOG = 2.2;
+export const SHEEP_VELOCITY_AWAY_FROM_DOG = 5;
 
 /**
  * Represents the range inside which the dog needs to be in order
@@ -39,7 +37,7 @@ export const SHEEP_OUTER_REACTION_LIMIT = 150;
 /**
  * Represents the distance the dog can travel in one frame
  */
-export const DOG_TRAVEL_PER_FRAME = 2;
+export const DOG_TRAVEL_PER_FRAME = 2.5;
 
 /**
  * Represents the rate at which the dog is able to turn.
