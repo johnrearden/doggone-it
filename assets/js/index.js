@@ -77,7 +77,7 @@ async function loadAllImages(sprites) {
                 // size differs from the game model size
                 resolve();
             }
-            img.src = `/assets/images/dog_images/${url}.png`;
+            img.src = `assets/images/dog_images/${url}.png`;
             sprites.dog.images.push(img);
             console.log(img.src);
         }));
