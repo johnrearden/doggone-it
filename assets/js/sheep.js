@@ -19,6 +19,7 @@ class Sheep {
         this.direction = 0;
         this.velocity = 0;
         this.anxiety = 1;
+        this.moving = false;
     }
 
     /**

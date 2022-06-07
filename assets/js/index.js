@@ -47,9 +47,11 @@ function init() {
             images: [],
         },
         sheep: {
-            urls: ['../../assets/images/sheep_right.png',
-                '../../assets/images/sheep_left.png',
-                '../../assets/images/sheep_center.png'
+            urls: [
+                'sheep_south_left', 'sheep_south_right', 'sheep_south_center',
+                'sheep_west_left', 'sheep_west_right', 'sheep_west_center',
+                'sheep_north_left', 'sheep_north_right', 'sheep_north_center',
+                'sheep_east_left', 'sheep_east_right', 'sheep_east_center'
             ],
             images: []
         }
@@ -82,7 +84,7 @@ async function loadAllImages(sprites) {
     await Promise.all(promiseArray);
     console.log('dog images loaded');
 
-    // Load 3 sheep images.
+    // Load 12 sheep images.
     promiseArray = [];
     for (let url of sprites.sheep.urls) {
         promiseArray.push(new Promise(resolve => {
@@ -92,11 +94,10 @@ async function loadAllImages(sprites) {
                 // size differs from the game model size
                 resolve();
             }
-            img.src = url;
+            img.src = `../assets/images/sheep_images/${url}.png`;
             sprites.sheep.images.push(img);
         }));
     }
     await Promise.all(promiseArray);
-
     console.log('sheep images loaded');
 }
