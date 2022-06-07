@@ -77,8 +77,9 @@ async function loadAllImages(sprites) {
                 // size differs from the game model size
                 resolve();
             }
-            img.src = `../assets/images/dog_images/${url}.png`;
+            img.src = `/assets/images/dog_images/${url}.png`;
             sprites.dog.images.push(img);
+            console.log(img.src);
         }));
     }
     await Promise.all(promiseArray);
@@ -94,7 +95,7 @@ async function loadAllImages(sprites) {
                 // size differs from the game model size
                 resolve();
             }
-            img.src = `../assets/images/sheep_images/${url}.png`;
+            img.src = `/assets/images/sheep_images/${url}.png`;
             sprites.sheep.images.push(img);
         }));
     }
