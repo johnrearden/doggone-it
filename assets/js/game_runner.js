@@ -17,6 +17,7 @@ function GameRunner(sprites, dog, herd) {
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
             this.dog.update();
+            this.herd.update(dog);
             this.drawFrame();
         }
 
@@ -34,7 +35,7 @@ function GameRunner(sprites, dog, herd) {
 
         // Pick the correct directional sprite from South, West, North, East
         let quadrant = getQuadrant(this.dog.direction);
-        let [index, angleOffset] = this.getIndexAndAngleOffset(quadrant);
+        let [index, adjustedAngle] = this.getIndexAndAdjustedAngle(quadrant, this.dog.direction);
 
         // Pick the correct sprite leg position based on the frame count
         let indexOffset;
@@ -51,7 +52,7 @@ function GameRunner(sprites, dog, herd) {
             correctSprite,
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
-            this.dog.direction + angleOffset);
+            adjustedAngle);
 
         // Draw the dog's destination
         context.fillStyle = 'red';
@@ -63,7 +64,7 @@ function GameRunner(sprites, dog, herd) {
 
             // Pick the correct directional sprite from South, West, North, East
             let quadrant = getQuadrant(sheep.direction);
-            let [index, angleOffset] = this.getIndexAndAngleOffset(quadrant);
+            let [index, adjustedAngle] = this.getIndexAndAdjustedAngle(quadrant, sheep.direction);
 
             // Pick the correct sprite leg position based on the frame count
             if (!sheep.moving) {
@@ -79,7 +80,7 @@ function GameRunner(sprites, dog, herd) {
                 correctSprite,
                 sheep.xPos,
                 sheep.yPos,
-                sheep.direction + angleOffset
+                adjustedAngle
             )
         }
 
@@ -132,31 +133,31 @@ function GameRunner(sprites, dog, herd) {
      * @returns index : the base index of the correct sprite
      * @returns angleOffset : the adjustment to the sprites direction.
      */
-    this.getIndexAndAngleOffset = function (quadrant) {
-        let index, angleOffset;
+    this.getIndexAndAdjustedAngle = function (quadrant, direction) {
+        let index, adjustedAngle;
         switch (quadrant) {
             case Quadrant.SOUTH: {
                 index = 0;
-                angleOffset = -Math.PI / 2;
+                adjustedAngle = direction - Math.PI / 2;
                 break;
             }
             case Quadrant.WEST: {
                 index = 3;
-                angleOffset = Math.PI;
+                adjustedAngle = 0;
                 break;
             }
             case Quadrant.NORTH: {
                 index = 6;
-                angleOffset = Math.PI / 2;
+                adjustedAngle = direction + Math.PI / 2;
                 break;
             }
             case Quadrant.EAST:
             default: {
                 index = 9;
-                angleOffset = 0;
+                adjustedAngle = 0;
             }
         }
-        return [index, angleOffset];
+        return [index, adjustedAngle];
     }
 }
 

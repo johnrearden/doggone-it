@@ -49,4 +49,13 @@ const getQuadrant = (angle) => {
     }
 }
 
-export {getAngularDifference, Quadrant, getQuadrant}
+const ensureCorrectRange = (angle) => {
+    if (angle > Math.PI) {
+        angle -= Math.PI * 2;
+    } else if (angle < -Math.PI) {
+        angle += Math.PI * 2;
+    }
+    return angle;
+}
+
+export {getAngularDifference, Quadrant, getQuadrant, ensureCorrectRange}
