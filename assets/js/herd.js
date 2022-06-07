@@ -2,7 +2,7 @@ import {
     Sheep
 } from './sheep.js';
 import {
-    SHEEP_MAX_RANGE_FOR_NEIGHBOURS
+    SHEEP_MAX_RANGE_FOR_NEIGHBOURS, SHEEP_NEIGHBOURLY_DISTANCE
 } from './constants.js';
 
 class Herd {
@@ -31,7 +31,7 @@ class Herd {
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * canvasWidth;
             let randY = Math.random() * canvasHeight;
-            let newSheep = new Sheep(randX, randY);
+            let newSheep = new Sheep(randX, randY, i);
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
@@ -48,22 +48,23 @@ class Herd {
     update(dog) {
         this.#sortArrays();
 
-        let preferredDistFromHerdCenter = dog.barking ?
-            SHEEP_MAX_RANGE_FOR_NEIGHBOURS :
-            SHEEP_MAX_RANGE_FOR_NEIGHBOURS / 4;
+        let preferredDist = dog.barking ?
+            SHEEP_NEIGHBOURLY_DISTANCE / 4:
+            SHEEP_NEIGHBOURLY_DISTANCE;
         
         for (let sheep of this.xArray) {
             // Get nearest neighbour set for each sheep.
             let nearestNeighbours = new Set();
 
             // Check along the increasing x-axis
-            let ownIndex = this.xArray.indexOf(this);
+            let ownIndex = this.xArray.indexOf(sheep);
             if (ownIndex < this.xArray.length - 1) { // don't run off the array
                 let pointer = ownIndex + 1;
                 whileLoop:
-                while (this.#evaluateDistance(this.xArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.xArray[pointer++]);
-                    if (pointer = this.xArray.length) {
+                while (this.#evaluateDistance(this.xArray[pointer], sheep, preferredDist)) {
+                    nearestNeighbours.add(this.xArray[pointer]);
+                    pointer++;
+                    if (pointer === this.xArray.length) {
                         break whileLoop; // We have reached the end of the array
                     }
                 }
@@ -72,8 +73,9 @@ class Herd {
             if (ownIndex > 0) {
                 let pointer = ownIndex - 1;
                 whileLoop:
-                while (this.#evaluateDistance(this.xArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.xArray[pointer--]);
+                while (this.#evaluateDistance(this.xArray[pointer], sheep, preferredDist)) {
+                    nearestNeighbours.add(this.xArray[pointer]);
+                    pointer--;
                     if (pointer < 0) {
                         break whileLoop;
                     }
@@ -84,8 +86,9 @@ class Herd {
             if (ownIndex < this.yArray.length - 1) {
                 let pointer = ownIndex + 1;
                 whileLoop:
-                while (this.#evaluateDistance(this.yArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.yArray[pointer++]);
+                while (this.#evaluateDistance(this.yArray[pointer], sheep, preferredDist)) {
+                    nearestNeighbours.add(this.yArray[pointer]);
+                    pointer++;
                     if (pointer = this.yArray.length) {
                         break whileLoop;
                     }
@@ -96,14 +99,18 @@ class Herd {
             if (ownIndex > 0) {
                 let pointer = ownIndex - 1;
                 whileLoop:
-                while (this.#evaluateDistance(this.yArray[pointer], sheep)) {
-                    nearestNeighbours.add(this.yArray[pointer--]);
+                while (this.#evaluateDistance(this.yArray[pointer], sheep, preferredDist)) {
+                    nearestNeighbours.add(this.yArray[pointer]);
+                    pointer--;
                     if (pointer < 0) {
                         break whileLoop;
                     }
                 }
                 
             }
+
+            // Remove the sheep from its own nearest neighbour set.
+            nearestNeighbours.delete(sheep);
 
             // Finally update the sheep, passing the set of nearest neighbours and 
             // a reference to the dog.
@@ -133,11 +140,11 @@ class Herd {
      * @param {Sheep} sheep2 
      * @returns true if sheep1 and sheep2 are close enough to be near neighbours
      */
-    #evaluateDistance(sheep1, sheep2) {
+    #evaluateDistance(sheep1, sheep2, preferredDistance) {
         let xDist = sheep1.xPos - sheep2.xPos;
         let yDist = sheep1.yPos - sheep2.yPos;
         let distanceSquared = Math.pow(xDist, 2) + Math.pow(yDist, 2);
-        let preferredDistSq = Math.pow(this.preferredDistFromHerdCenter, 2);
+        let preferredDistSq = Math.pow(preferredDistance, 2);
         return (distanceSquared <= preferredDistSq);
     }
 }

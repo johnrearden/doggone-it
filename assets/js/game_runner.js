@@ -82,6 +82,8 @@ function GameRunner(sprites, dog, herd) {
                 sheep.yPos,
                 adjustedAngle
             )
+            // Draw the sheep id
+            context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
         }
 
     }

@@ -2,7 +2,7 @@
  * Represents the distance within which a sheep considers another
  * sheep its neighbour.
  */
-export const SHEEP_MAX_DIST_FROM_NEIGHBOURS = 100;
+export const SHEEP_NEIGHBOURLY_DISTANCE = 200;
 
 
 /**
@@ -10,7 +10,7 @@ export const SHEEP_MAX_DIST_FROM_NEIGHBOURS = 100;
  * the center of its nearest neighbours. This facilitates the herding 
  * behaviour.
  */
-export const SHEEP_MAX_RANGE_FOR_NEIGHBOURS = 70;
+export const SHEEP_MAX_RANGE_FOR_NEIGHBOURS = 30;
 
 
 /**
@@ -23,7 +23,7 @@ export const SHEEP_ANGULAR_CHANGE_PER_FRAME = Math.PI / 24;
  * Represents the base speed (when least anxious) a sheep will travel
  * at in the direction of the center of its neighbours.
  */
-export const SHEEP_VELOCITY_TOWARDS_NEIGHBOURS = 0.3;
+export const SHEEP_VELOCITY_TOWARDS_NEIGHBOURS = 1;
 
 
 /**
