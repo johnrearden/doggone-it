@@ -30,7 +30,7 @@ export const SHEEP_VELOCITY_TOWARDS_NEIGHBOURS = 0.3;
  * Represents the base speed (when least anxious) a sheep will travel 
  * at away from the dog.
  */
-export const SHEEP_VELOCITY_AWAY_FROM_DOG = 5;
+export const SHEEP_VELOCITY_AWAY_FROM_DOG = 3;
 
 /**
  * Represents the range inside which the dog needs to be in order

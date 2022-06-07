@@ -73,8 +73,13 @@ class Sheep {
         let dogXDistSq = Math.pow(dog.xPos - this.xPos, 2);
         let dogYDistSq = Math.pow(dog.yPos - this.yPos, 2);
         if (dogXDistSq + dogYDistSq < Math.pow(reactionRange, 2)) {
+
+            // The sheep is within reaction range. Its speed away from the dog depends
+            // on how far away it is, hitting a maximum if the dog is within 30.
             let dist = Math.sqrt(dogXDistSq + dogYDistSq);
-            let velocity = SHEEP_VELOCITY_AWAY_FROM_DOG;
+            let adjDist = dist < 30 ? 0 : dist - 30;
+            let multiplicand = adjDist / SHEEP_OUTER_REACTION_LIMIT;
+            let velocity = SHEEP_VELOCITY_AWAY_FROM_DOG - SHEEP_VELOCITY_AWAY_FROM_DOG * multiplicand;
             let angle = Math.atan2(dog.yPos - this.yPos, dog.xPos - this.xPos);
 
             // Reverse the angle so that the sheep moves away.
