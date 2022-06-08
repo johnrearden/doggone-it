@@ -154,6 +154,9 @@ https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-
 Value of this in callback functions from global scope
 https://www.w3docs.com/snippets/javascript/how-to-access-the-correct-this-inside-a-callback.html
 
+Handling mouse events:
+https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/
+
 ---
 
 ## Acknowledgements

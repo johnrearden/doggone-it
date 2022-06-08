@@ -26,15 +26,17 @@ function init() {
     let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
     let herd = new Herd(10, gameCanvas.width, gameCanvas.height);
 
-    gameCanvas.addEventListener('click', function (event) {
-        let rect = gameCanvas.getBoundingClientRect();
+    // gameCanvas.addEventListener('click', function (event) {
+    //     let rect = gameCanvas.getBoundingClientRect();
 
-        // The mouse coordinates must be converted to the internal canvas 
-        // coordinates.
-        let xDest = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
-        let yDest = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
-        dog.setDestination(xDest, yDest);
-    });
+    //     // The mouse coordinates must be converted to the internal canvas 
+    //     // coordinates.
+    //     let xDest = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
+    //     let yDest = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+    //     dog.setDestination(xDest, yDest);
+    // });
+
+    
 
     let sprites = {
         dog: {
@@ -61,6 +63,31 @@ function init() {
 
     loadAllImages(sprites);
     console.log(gameRunner);
+
+    gameCanvas.addEventListener('mousedown', (event) => {
+        let rect = gameCanvas.getBoundingClientRect();
+        let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+        dog.onPointerDown(x, y);
+        
+    });
+
+    gameCanvas.addEventListener('mouseup', (event) => {
+        let rect = gameCanvas.getBoundingClientRect();
+        let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+        dog.onPointerUp(x, y);
+    });
+
+    gameCanvas.addEventListener('mousemove', event => {
+        if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
+            let rect = gameCanvas.getBoundingClientRect();
+            let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
+            let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+            dog.onPointerMove(x, y);
+            document.getElementById("text-output").innerHTML = dog.destinations;
+        }
+    });
 
     window.requestAnimationFrame(gameRunner.updateGame);
 }

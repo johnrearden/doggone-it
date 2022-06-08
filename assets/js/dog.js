@@ -1,7 +1,11 @@
-import { getAngularDifference } from "./utilities.js";
-import {DOG_ANGULAR_CHANGE_PER_FRAME, 
-        DOG_TRAVEL_PER_FRAME,
-        DOG_SLOWDOWN_RANGE} from './constants.js';
+import {
+    getAngularDifference
+} from "./utilities.js";
+import {
+    DOG_ANGULAR_CHANGE_PER_FRAME,
+    DOG_TRAVEL_PER_FRAME,
+    DOG_SLOWDOWN_RANGE
+} from './constants.js';
 
 class Dog {
     /**
@@ -17,24 +21,27 @@ class Dog {
         this.direction = 0;
         this.barking = false;
         this.moving = false;
+        this.pointerDown = false;
+        this.destinations = [];
     }
 
     /**
      * Updates the dogs position, called before each repaint
      */
     update() {
+        this.setDestination();
         this.moveToDest();
+        document.getElementById("text-output2").innerHTML = `x:${this.xDest},y:${this.yDest}`;
     }
 
     /**
-     * Sets the destination the dog is moving towards, based on where 
-     * on the game-area the player has tapped/clicked.
-     * @param {Number} x 
-     * @param {Number} y 
+     * Sets the destination the dog is moving towards.
      */
-    setDestination(x, y) {
-        this.xDest = x;
-        this.yDest = y;
+    setDestination() {
+        if (this.destinations.length > 0) {
+            this.xDest = this.destinations[0][0];
+            this.yDest = this.destinations[0][1];
+        }
     }
 
     /**
@@ -51,9 +58,16 @@ class Dog {
     moveToDest() {
         // Don't move if the dog is within one frame's travel of 
         // reaching the destination (to avoid thrashing).
-        if (this.#getDistanceToDestination() <= DOG_TRAVEL_PER_FRAME) {
-            this.moving = false;
-            return;
+        if (this.#getDistanceToDestination() <= DOG_TRAVEL_PER_FRAME * 2) {
+            this.destinations.shift();
+            if (this.destinations.length <= 1) {
+                this.moving = false;
+                return;
+            } else {
+                this.xDest = this.destinations[0][0];
+                this.yDest = this.destinations[0][1];
+            }
+
         }
         this.moving = true;
         let correctDirection = this.#getDirectionToDestination();
@@ -68,16 +82,33 @@ class Dog {
 
         let distToTravel = DOG_TRAVEL_PER_FRAME;
         let distToDestinationSq = Math.pow(this.xDest - this.xPos, 2) +
-                                  Math.pow(this.yDest - this.yPos, 2);
+            Math.pow(this.yDest - this.yPos, 2);
         let distToDestination = Math.sqrt(distToDestinationSq);
 
-        // Reduce the dogs travel distance as he nears his destination. 
-        if (distToDestination < DOG_SLOWDOWN_RANGE) {
+        // Reduce the dogs travel distance as he nears his final destination. 
+        if (distToDestination < DOG_SLOWDOWN_RANGE && this.destinations.length === 1) {
             distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
         }
 
         this.xPos += distToTravel * Math.cos(this.direction);
         this.yPos += distToTravel * Math.sin(this.direction);
+    }
+
+    onPointerDown(x, y) {
+        if (!this.pointerDown) {
+            this.pointerDown = true;
+            this.destinations = [];
+        }
+    }
+
+    onPointerMove(x, y) {
+        if (this.pointerDown) {
+            this.destinations.push([x, y]);
+        }
+    }
+
+    onPointerUp(x, y) {
+        this.pointerDown = false;
     }
 
     /**
@@ -100,4 +131,6 @@ class Dog {
     }
 }
 
-export {Dog};
+export {
+    Dog
+};

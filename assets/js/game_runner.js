@@ -60,7 +60,7 @@ function GameRunner(sprites, dog, herd) {
             0.65);
 
         // Draw the dog's destination
-        context.fillStyle = 'red';
+        context.fillStyle = dog.pointerDown ? 'red' : 'blue';
         context.fillRect(this.dog.xDest - 2, this.dog.yDest - 2, 5, 5);
 
         // Draw the herd
