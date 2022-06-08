@@ -26,18 +26,6 @@ function init() {
     let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
     let herd = new Herd(10, gameCanvas.width, gameCanvas.height);
 
-    // gameCanvas.addEventListener('click', function (event) {
-    //     let rect = gameCanvas.getBoundingClientRect();
-
-    //     // The mouse coordinates must be converted to the internal canvas 
-    //     // coordinates.
-    //     let xDest = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
-    //     let yDest = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
-    //     dog.setDestination(xDest, yDest);
-    // });
-
-    
-
     let sprites = {
         dog: {
             urls: [
@@ -58,10 +46,14 @@ function init() {
             images: []
         }
     };
+    let background = {
+        url: 'assets/images/backgrounds/1.png',
+        image: null
+    }
 
-    let gameRunner = new GameRunner(sprites, dog, herd);
+    let gameRunner = new GameRunner(sprites, background, dog, herd);
 
-    loadAllImages(sprites);
+    loadAllImages(sprites, background);
     console.log(gameRunner);
 
     gameCanvas.addEventListener('mousedown', (event) => {
@@ -69,7 +61,6 @@ function init() {
         let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
         let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
         dog.onPointerDown(x, y);
-        
     });
 
     gameCanvas.addEventListener('mouseup', (event) => {
@@ -92,7 +83,7 @@ function init() {
     window.requestAnimationFrame(gameRunner.updateGame);
 }
 
-async function loadAllImages(sprites) {
+async function loadAllImages(sprites, background) {
     let promiseArray = [];
 
     // Load 12 dog images.
@@ -128,4 +119,8 @@ async function loadAllImages(sprites) {
     }
     await Promise.all(promiseArray);
     console.log('sheep images loaded');
+
+    // Load background image.
+    background.image = new Image();
+    background.image.src = background.url;
 }

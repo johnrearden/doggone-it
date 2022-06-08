@@ -31,7 +31,7 @@ class Dog {
     update() {
         this.setDestination();
         this.moveToDest();
-        document.getElementById("text-output2").innerHTML = `x:${this.xDest},y:${this.yDest}`;
+        
     }
 
     /**

@@ -149,11 +149,13 @@ class Sheep {
         } else if (this.xPos > FIELD_WIDTH - FIELD_BORDER) {
             this.xPos = FIELD_WIDTH - FIELD_BORDER;
         }
-        if (this.yPos < FIELD_BORDER) {
+        if (this.yPos < FIELD_BORDER && (this.xPos < 165 || this.xPos > 235)) {
             this.yPos = FIELD_BORDER;
         } else if (this.yPos > FIELD_HEIGHT - FIELD_BORDER) {
             this.yPos = FIELD_HEIGHT - FIELD_BORDER;
         }
+
+        
     }
 }
 

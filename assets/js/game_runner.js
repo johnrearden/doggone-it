@@ -3,8 +3,9 @@ import {
     getQuadrant
 } from './utilities.js';
 
-function GameRunner(sprites, dog, herd) {
+function GameRunner(sprites, background, dog, herd) {
     this.sprites = sprites;
+    this.background = background;
     this.dog = dog;
     this.herd = herd;
     this.frameCount = 0;
@@ -16,6 +17,7 @@ function GameRunner(sprites, dog, herd) {
     // requestAnimationFrame() scope.
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
+            this.drawBackground();
             //console.time('loop');
             this.dog.update();
             this.herd.update(dog);
@@ -29,13 +31,17 @@ function GameRunner(sprites, dog, herd) {
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
 
+    this.drawBackground = function() {
+        if (background.image) {
+            let gameCanvas = document.getElementById('game-area');
+            let context = gameCanvas.getContext('2d');
+            context.drawImage(this.background.image, 0, 0);
+        }
+    }
+
     this.drawFrame = function () {
         let gameCanvas = document.getElementById('game-area');
         let context = gameCanvas.getContext('2d');
-
-        // Redraw an empty field.
-        context.fillStyle = 'green';
-        context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
 
         // Draw the dog's path
         context.fillStyle = 'purple'
