@@ -1,5 +1,7 @@
 import { getAngularDifference } from "./utilities.js";
-import {DOG_ANGULAR_CHANGE_PER_FRAME, DOG_TRAVEL_PER_FRAME} from './constants.js';
+import {DOG_ANGULAR_CHANGE_PER_FRAME, 
+        DOG_TRAVEL_PER_FRAME,
+        DOG_SLOWDOWN_RANGE} from './constants.js';
 
 class Dog {
     /**
@@ -64,8 +66,18 @@ class Dog {
             this.direction += DOG_ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
         }
 
-        this.xPos += DOG_TRAVEL_PER_FRAME * Math.cos(this.direction);
-        this.yPos += DOG_TRAVEL_PER_FRAME * Math.sin(this.direction);
+        let distToTravel = DOG_TRAVEL_PER_FRAME;
+        let distToDestinationSq = Math.pow(this.xDest - this.xPos, 2) +
+                                  Math.pow(this.yDest - this.yPos, 2);
+        let distToDestination = Math.sqrt(distToDestinationSq);
+
+        // Reduce the dogs travel distance as he nears his destination. 
+        if (distToDestination < DOG_SLOWDOWN_RANGE) {
+            distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
+        }
+
+        this.xPos += distToTravel * Math.cos(this.direction);
+        this.yPos += distToTravel * Math.sin(this.direction);
     }
 
     /**

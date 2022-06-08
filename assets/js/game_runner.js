@@ -19,7 +19,7 @@ function GameRunner(sprites, dog, herd) {
             //console.time('loop');
             this.dog.update();
             this.herd.update(dog);
-            
+
             this.drawFrame();
             //console.timeEnd('loop');
 
@@ -56,7 +56,8 @@ function GameRunner(sprites, dog, herd) {
             correctSprite,
             Math.floor(this.dog.xPos),
             Math.floor(this.dog.yPos),
-            adjustedAngle);
+            adjustedAngle,
+            0.65);
 
         // Draw the dog's destination
         context.fillStyle = 'red';
@@ -84,7 +85,8 @@ function GameRunner(sprites, dog, herd) {
                 correctSprite,
                 sheep.xPos,
                 sheep.yPos,
-                adjustedAngle
+                adjustedAngle,
+                0.8
             )
             // Draw the sheep id
             context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
@@ -92,15 +94,17 @@ function GameRunner(sprites, dog, herd) {
 
     }
 
-    this.drawSprite = function (context, image, x, y, angle) {
+    this.drawSprite = function (context, image, x, y, angle, scale) {
         if (image) {
+            let imgWidth = image.width * scale;
+            let imgHeight = image.height * scale;
             context.save();
             context.translate(x, y);
             context.rotate(angle);
             context.drawImage(
                 image,
-                -image.width / 2, -image.height / 2,
-                image.width, image.height);
+                -imgWidth / 2, -imgHeight / 2,
+                imgWidth, imgHeight);
             context.restore();
         }
     }
