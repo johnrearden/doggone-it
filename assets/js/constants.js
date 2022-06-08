@@ -50,7 +50,7 @@ export const DOG_TRAVEL_PER_FRAME = 2.5;
 /**
  * Represents the rate at which the dog is able to turn.
  */
-export const DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 10;
+export const DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 8;
 
 
 /**

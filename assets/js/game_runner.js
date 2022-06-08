@@ -37,6 +37,19 @@ function GameRunner(sprites, dog, herd) {
         context.fillStyle = 'green';
         context.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
 
+        // Draw the dog's path
+        context.fillStyle = 'purple'
+        if (this.dog.destinations.length > 0 && this.dog.pointerDown) {
+            context.beginPath();
+            context.moveTo(this.dog.xPos, this.dog.yPos);
+            for (let i = 0; i < this.dog.destinations.length; i++) {
+                context.lineTo(
+                    this.dog.destinations[i][0],
+                    this.dog.destinations[i][1]);
+            }
+            context.stroke();
+        }
+
         // Pick the correct directional sprite from South, West, North, East
         let quadrant = getQuadrant(this.dog.direction);
         let [index, adjustedAngle] = this.getIndexAndAdjustedAngle(quadrant, this.dog.direction);
@@ -90,6 +103,8 @@ function GameRunner(sprites, dog, herd) {
             )
             // Draw the sheep id
             context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
+
+            
         }
 
     }
