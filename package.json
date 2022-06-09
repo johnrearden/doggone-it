@@ -1,0 +1,28 @@
+{
+  "name": "doggone-it",
+  "version": "1.0.0",
+  "description": "A simple sheep herding game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnrearden/doggone-it.git"
+  },
+  "keywords": [
+    "sheep",
+    "dog",
+    "herding",
+    "game"
+  ],
+  "author": "John Rearden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnrearden/doggone-it/issues"
+  },
+  "homepage": "https://github.com/johnrearden/doggone-it#readme",
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}
