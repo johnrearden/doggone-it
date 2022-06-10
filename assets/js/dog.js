@@ -109,9 +109,7 @@ module.exports = class Dog {
 
     onPointerUp(x, y) {
         this.pointerDown = false;
-        if (this.destinations.length === 0){
-            this.destinations.push([x, y]);
-        }
+        this.destinations.push([x, y]);
     }
 
     /**
