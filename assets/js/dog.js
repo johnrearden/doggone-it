@@ -29,19 +29,8 @@ module.exports = class Dog {
      * Updates the dogs position, called before each repaint
      */
     update() {
-        this.setDestination();
         this.moveToDest();
         
-    }
-
-    /**
-     * Sets the destination the dog is moving towards.
-     */
-    setDestination(destinationArray) {
-        if (this.destinations.length > 0) {
-            this.xDest = destinationArray[0][0];
-            this.yDest = destinationArray[0][1];
-        }
     }
 
     /**
