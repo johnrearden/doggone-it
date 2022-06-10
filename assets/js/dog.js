@@ -1,11 +1,11 @@
-import {
-    getAngularDifference
-} from "./utilities.js";
-import {
-    DOG_ANGULAR_CHANGE_PER_FRAME,
-    DOG_TRAVEL_PER_FRAME,
-    DOG_SLOWDOWN_RANGE
-} from './constants.js';
+// import {
+//     getAngularDifference
+// } from "./utilities.js";
+// import {
+//     DOG_ANGULAR_CHANGE_PER_FRAME,
+//     DOG_TRAVEL_PER_FRAME,
+//     DOG_SLOWDOWN_RANGE
+// } from './constants.js';
 
 class Dog {
     /**
@@ -134,6 +134,6 @@ class Dog {
     }
 }
 
-export {
-    Dog
-};
+// export {
+    // Dog
+// };

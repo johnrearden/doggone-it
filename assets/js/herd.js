@@ -1,9 +1,9 @@
-import {
-    Sheep
-} from './sheep.js';
-import {
-    SHEEP_MAX_RANGE_FOR_NEIGHBOURS, SHEEP_NEIGHBOURLY_DISTANCE
-} from './constants.js';
+// import {
+//     Sheep
+// } from './sheep.js';
+// import {
+//     SHEEP_MAX_RANGE_FOR_NEIGHBOURS, SHEEP_NEIGHBOURLY_DISTANCE
+// } from './constants.js';
 
 class Herd {
     /**
@@ -173,6 +173,6 @@ class Herd {
     }
 }
 
-export {
-    Herd
-};
+// export {
+//     Herd
+// };

@@ -1,14 +1,14 @@
-import {
-    Dog
-} from './dog.js';
+// import {
+//     Dog
+// } from './dog.js';
 
-import {
-    GameRunner
-} from './game_runner.js';
+// import {
+//     GameRunner
+// } from './game_runner.js';
 
-import {
-    Herd
-} from './herd.js';
+// import {
+//     Herd
+// } from './herd.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {

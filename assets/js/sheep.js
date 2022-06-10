@@ -1,10 +1,10 @@
-import {ensureCorrectRange} from "./utilities.js";
-import {SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
-        SHEEP_MIN_RANGE_FOR_NEIGHBOURS,
-        SHEEP_VELOCITY_TOWARDS_NEIGHBOURS,
-        SHEEP_OUTER_REACTION_LIMIT,
-        SHEEP_VELOCITY_AWAY_FROM_DOG,
-        FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH} from './constants.js';
+// import {ensureCorrectRange} from "./utilities.js";
+// import {SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
+//         SHEEP_MIN_RANGE_FOR_NEIGHBOURS,
+//         SHEEP_VELOCITY_TOWARDS_NEIGHBOURS,
+//         SHEEP_OUTER_REACTION_LIMIT,
+//         SHEEP_VELOCITY_AWAY_FROM_DOG,
+//         FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH} from './constants.js';
 
 class Sheep {
     /**
@@ -159,4 +159,4 @@ class Sheep {
     }
 }
 
-export {Sheep};
+// export {Sheep};

@@ -1,7 +1,7 @@
-import {
-    Quadrant,
-    getQuadrant
-} from './utilities.js';
+// import {
+//     Quadrant,
+//     getQuadrant
+// } from './utilities.js';
 
 function GameRunner(sprites, background, dog, herd) {
     this.sprites = sprites;
@@ -192,6 +192,6 @@ function GameRunner(sprites, background, dog, herd) {
     }
 }
 
-export {
-    GameRunner
-}
+// export {
+//     GameRunner
+// }
