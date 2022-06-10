@@ -7,7 +7,7 @@
 //     DOG_SLOWDOWN_RANGE
 // } from './constants.js';
 
-class Dog {
+module.exports = class Dog {
     /**
      * A class representing a dog
      * @param {Number} xPos The x-coordinate of the dog's position 
@@ -37,10 +37,10 @@ class Dog {
     /**
      * Sets the destination the dog is moving towards.
      */
-    setDestination() {
+    setDestination(destinationArray) {
         if (this.destinations.length > 0) {
-            this.xDest = this.destinations[0][0];
-            this.yDest = this.destinations[0][1];
+            this.xDest = destinationArray[0][0];
+            this.yDest = destinationArray[0][1];
         }
     }
 
