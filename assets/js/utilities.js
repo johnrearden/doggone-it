@@ -18,6 +18,20 @@ const getAngularDifference = (angleTo, angleFrom) => {
     return difference;
 }
 
+/**
+ * Calculates the distance between 2 points.
+ * @param {Number} x1 
+ * @param {Number} y1 
+ * @param {Number} x2 
+ * @param {Number} y2 
+ * @returns The distance between (x1, y1) and (x2, y2)
+ */
+const getDistanceToPoint = (x1, y1, x2, y2) => {
+    let xDistSq = Math.pow(x2 - x1, 2);
+    let yDistSq = Math.pow(y2 - y1, 2);
+    return Math.sqrt(xDistSq + yDistSq);
+}
+
 const Quadrant = {
     EAST: {
         min: -Math.PI * 0.25,
@@ -49,13 +63,20 @@ const getQuadrant = (angle) => {
     }
 }
 
+/**
+ * Returns a value between -Math.PI and Math.PI, by recursively adding or subtracting
+ * Math.PI (depending on whether the angle is below or above the range).
+ * @param {Number} angle 
+ * @returns 
+ */
 const ensureCorrectRange = (angle) => {
     if (angle > Math.PI) {
-        angle -= Math.PI * 2;
+        return ensureCorrectRange(angle - Math.PI * 2);
     } else if (angle < -Math.PI) {
-        angle += Math.PI * 2;
+        return ensureCorrectRange(angle - Math.PI * 2);
+    } else {
+        return angle;
     }
-    return angle;
 }
 
 // export {getAngularDifference, Quadrant, getQuadrant, ensureCorrectRange}

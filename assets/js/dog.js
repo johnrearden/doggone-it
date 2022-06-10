@@ -1,12 +1,3 @@
-// import {
-//     getAngularDifference
-// } from "./utilities.js";
-// import {
-//     DOG_ANGULAR_CHANGE_PER_FRAME,
-//     DOG_TRAVEL_PER_FRAME,
-//     DOG_SLOWDOWN_RANGE
-// } from './constants.js';
-
 module.exports = class Dog {
     /**
      * A class representing a dog
@@ -30,7 +21,7 @@ module.exports = class Dog {
      */
     update() {
         this.moveToDest();
-        
+
     }
 
     /**
@@ -120,7 +111,3 @@ module.exports = class Dog {
             Math.pow(this.yDest - this.yPos, 2));
     }
 }
-
-// export {
-    // Dog
-// };
