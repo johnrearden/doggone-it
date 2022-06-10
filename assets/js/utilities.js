@@ -79,4 +79,10 @@ const ensureCorrectRange = (angle) => {
     }
 }
 
-// export {getAngularDifference, Quadrant, getQuadrant, ensureCorrectRange}
+module.exports = {
+    ensureCorrectRange,
+    getDistanceToPoint,
+    getAngularDifference,
+    Quadrant,
+    getQuadrant
+}
