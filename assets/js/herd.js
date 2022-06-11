@@ -46,8 +46,8 @@ export class Herd {
     update(dog) {
 
         // If sheep has left the field, remove it from the game.
-        this.xArray.filter(sheep => !sheep.yPos < 0);
-        this.yArray.filter(sheep => !sheep.yPos < 0);
+        this.xArray.filter(sheep => !(sheep.yPos < 0));
+        this.yArray.filter(sheep => !(sheep.yPos < 0));
         document.getElementById("text-output2").innerHTML = `#sheep === ${this.xArray.length}`;
 
         this.#sortArrays();
