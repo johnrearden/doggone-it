@@ -15,11 +15,22 @@ const getAngularDifference = (angleTo, angleFrom) => {
     if (difference < -Math.PI) {
         difference += 2 * Math.PI;
     }
-    
     return difference;
 }
 
-
+/**
+ * Calculates the direction a game object should travel in to reach
+ * the point (xTo, yTo) from its current position(xFrom, yFrom)
+ * 
+ * @param {Number} xFrom 
+ * @param {Number} yFrom 
+ * @param {Number} xTo 
+ * @param {Number} yTo 
+ * @returns A direction (angle) such that -Math.PI <= angle <= Math.PI
+ */
+const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
+    return Math.atan2(yTo - yFrom, xTo - xFrom);
+}
 
 /**
  * Calculates the distance between 2 points.
@@ -85,6 +96,7 @@ const ensureCorrectRange = (angle) => {
 module.exports = {
     ensureCorrectRange,
     getDistanceToPoint,
+    getDirectionToPoint,
     getAngularDifference,
     Quadrant,
     getQuadrant

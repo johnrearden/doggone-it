@@ -1,3 +1,5 @@
+const { getDistanceToPoint, getDirectionToPoint } = require("./utilities");
+
 module.exports = class Dog {
     /**
      * A class representing a dog
@@ -13,7 +15,7 @@ module.exports = class Dog {
         this.barking = false;
         this.moving = false;
         this.pointerDown = false;
-        this.destinations = [];
+        this.wayPoints = [];
     }
 
     /**
@@ -36,21 +38,56 @@ module.exports = class Dog {
      * Moves the dog in the direction of its destination. 
      */
     moveToDest() {
-        // Don't move if the dog is within one frame's travel of 
-        // reaching the destination (to avoid thrashing).
-        if (this.#getDistanceToDestination() <= DOG_TRAVEL_PER_FRAME * 2) {
-            this.destinations.shift();
-            if (this.destinations.length <= 1) {
+        
+        // Check if the dog has arrived at the next waypoint. If so, remove the
+        // waypoint. If there are no more waypoints, return immediately.
+        if (arrivedAtNextWaypoint()) {
+            this.wayPoints.shift();
+            if (!hasNextDestination()) {
                 this.moving = false;
                 return;
             } else {
-                this.xDest = this.destinations[0][0];
-                this.yDest = this.destinations[0][1];
+                assignNextDestination();
+                this.moving = true;
             }
-
         }
-        this.moving = true;
-        let correctDirection = this.#getDirectionToDestination();
+
+        turnTowardsDestination();
+
+        // Reduce the dogs travel distance as he nears his final wayPoint. 
+        let distToDestination = getDistanceToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
+        let distToTravel = DOG_TRAVEL_PER_FRAME;
+        if (distToDestination < DOG_SLOWDOWN_RANGE && this.wayPoints.length === 1) {
+            distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
+        }
+
+        // Finally, update the dogs position.
+        this.xPos += distToTravel * Math.cos(this.direction);
+        this.yPos += distToTravel * Math.sin(this.direction);
+    }
+
+    onPointerDown(x, y) {
+        if (!this.pointerDown) {
+            this.pointerDown = true;
+            this.wayPoints = [];
+        }
+    }
+
+    onPointerMove(x, y) {
+        if (this.pointerDown) {
+            this.wayPoints.push([x, y]);
+        }
+    }
+
+    onPointerUp(x, y) {
+        this.pointerDown = false;
+        this.wayPoints.push([x, y]);
+    }
+
+    turnTowardsDestination() {
+        // Calculate the direction the dog needs to travel in to head directly for
+        // its destination, and turn towards this direction.
+        let correctDirection = getDirectionToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
         let angularDifference = getAngularDifference(correctDirection, this.direction);
 
         // Check first to ensure the dog does not turn past the correct direction
@@ -59,55 +96,29 @@ module.exports = class Dog {
         } else {
             this.direction += DOG_ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
         }
-
-        let distToTravel = DOG_TRAVEL_PER_FRAME;
-        let distToDestinationSq = Math.pow(this.xDest - this.xPos, 2) +
-            Math.pow(this.yDest - this.yPos, 2);
-        let distToDestination = Math.sqrt(distToDestinationSq);
-
-        // Reduce the dogs travel distance as he nears his final destination. 
-        if (distToDestination < DOG_SLOWDOWN_RANGE && this.destinations.length === 1) {
-            distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
-        }
-
-        this.xPos += distToTravel * Math.cos(this.direction);
-        this.yPos += distToTravel * Math.sin(this.direction);
     }
 
-    onPointerDown(x, y) {
-        if (!this.pointerDown) {
-            this.pointerDown = true;
-            this.destinations = [];
-        }
-    }
-
-    onPointerMove(x, y) {
-        if (this.pointerDown) {
-            this.destinations.push([x, y]);
-        }
-    }
-
-    onPointerUp(x, y) {
-        this.pointerDown = false;
-        this.destinations.push([x, y]);
+    
+    /**
+     * @returns true if distance < constants.DOG_TRAVEL_PER_FRAME, false otherwise.
+     */
+    arrivedAtNextWaypoint() {
+        let distToNextWaypoint = getDistanceToPoint(xDest, yDest, this.xPos, this.yPos);
+        return distToNextWaypoint <= DOG_TRAVEL_PER_FRAME;
     }
 
     /**
-     * This private method calculates the direction the dog should point in to travel directly
-     * towards its destination.
-     * @returns a number representing the direction the dog is pointing, between -PI and PI.
+     * 
+     * @returns true if the destination array has at least one element.
      */
-    #getDirectionToDestination() {
-        return Math.atan2(this.yDest - this.yPos, this.xDest - this.xPos);
+    hasNextDestination() {
+        return this.wayPoints.length > 0;
     }
 
     /**
-     * This method calculates how far the dog is from its destination.
-     * @returns The absolute distance of the dog from its destination.
+     * Assigns the last element in the destinations array as the current destination.
      */
-    #getDistanceToDestination() {
-        return Math.sqrt(
-            Math.pow(this.xDest - this.xPos, 2) +
-            Math.pow(this.yDest - this.yPos, 2));
+    assignNextDestination() {
+        [this.xDest, this.yDest] = wayPoints[0];
     }
 }

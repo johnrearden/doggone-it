@@ -44,13 +44,13 @@ const SHEEP_OUTER_REACTION_LIMIT = 150;
 /**
  * Represents the distance the dog can travel in one frame
  */
-DOG_TRAVEL_PER_FRAME = 2.5;
+const DOG_TRAVEL_PER_FRAME = 2.5;
 
 
 /**
  * Represents the rate at which the dog is able to turn.
  */
-DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 8;
+const DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 8;
 
 
 /**

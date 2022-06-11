@@ -24,13 +24,13 @@ describe("Testing the Dog class and its methods", () => {
         test("method should clear the dog object's destinations array if pointerDown is false", () => {
             dog.pointerDown = false;
             dog.onPointerDown(10, 10);
-            expect(dog.destinations.length).toBe(0);
+            expect(dog.wayPoints.length).toBe(0);
         });
         test("method should not clear the destination array if pointerDown is already true", () => {
             dog.pointerDown = true;
             dog.onPointerDown(10, 10);
-            dog.destinations = [[50, 50], [60, 60]];
-            expect(dog.destinations.length).toBeGreaterThan(0);
+            dog.wayPoints = [[50, 50], [60, 60]];
+            expect(dog.wayPoints.length).toBeGreaterThan(0);
         });
         test("Method should add a point to the destination array if pointerDown is true", () => {
             dog.pointerDown = true;
@@ -43,7 +43,7 @@ describe("Testing the Dog class and its methods", () => {
         });
         test("Method should add parameters passed to the destination array", () => {
             dog.onPointerUp(1, 1);
-            expect(dog.destinations[dog.destinations.length - 1]).toStrictEqual([1, 1]);
+            expect(dog.wayPoints[dog.wayPoints.length - 1]).toStrictEqual([1, 1]);
         });
     });
 });
