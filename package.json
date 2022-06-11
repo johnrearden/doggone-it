@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johnrearden/doggone-it.git"
@@ -23,6 +24,9 @@
   },
   "homepage": "https://github.com/johnrearden/doggone-it#readme",
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "jest": "^28.1.1"
   }
 }

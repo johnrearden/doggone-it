@@ -1,4 +1,4 @@
-const {ensureCorrectRange, getDistanceToPoint, getAngularDifference, getDirectionToPoint} = require('../utilities');
+import {ensureCorrectRange, getDistanceToPoint, getAngularDifference, getDirectionToPoint} from '../utilities.js';
 
 
 describe("getDistanceToPoint", () => {

@@ -1,4 +1,4 @@
-const Dog = require("../dog");
+import {Dog} from '../dog.js';
 
 describe("Testing the Dog class and its methods", () => {
 
