@@ -1,7 +1,14 @@
-import { getDistanceToPoint, getDirectionToPoint, getAngularDifference } from "./utilities.js";
-import {DOG_TRAVEL_PER_FRAME, 
+import {
+    getDistanceToPoint,
+    getDirectionToPoint, getAngularDifference
+} from "./utilities.js";
+
+import {
+    DOG_TRAVEL_PER_FRAME,
     DOG_ANGULAR_CHANGE_PER_FRAME,
-    DOG_SLOWDOWN_RANGE} from "./constants.js";
+    DOG_SLOWDOWN_RANGE
+} from "./constants.js";
+
 export class Dog {
     /**
      * A class representing a dog
@@ -25,7 +32,6 @@ export class Dog {
      */
     update() {
         this.moveToDest();
-
     }
 
     /**
@@ -45,8 +51,9 @@ export class Dog {
         // next destination.
         if (this.wayPoints.length > 0) {
             [this.xDest, this.yDest] = this.wayPoints[0];
+            this.moving = true;
         }
-        
+
         // Check if the dog has arrived at the next waypoint. If so, remove the
         // waypoint. If there are no more waypoints, return immediately.
         if (this.arrivedAtNextWaypoint()) {
@@ -108,7 +115,7 @@ export class Dog {
         }
     }
 
-    
+
     /**
      * @returns true if distance < constants.DOG_TRAVEL_PER_FRAME, false otherwise.
      */

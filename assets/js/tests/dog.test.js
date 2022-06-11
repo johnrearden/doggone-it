@@ -1,4 +1,5 @@
 import {Dog} from '../dog.js';
+import { getAngularDifference } from '../utilities.js';
 
 describe("Testing the Dog class and its methods", () => {
 
@@ -7,7 +8,7 @@ describe("Testing the Dog class and its methods", () => {
         dog = new Dog(100, 100);
     });
 
-    describe("Dog()", () => {
+    describe("Test the Dog() constructor", () => {
         test("Constructor should return a valid object", () => {
             expect(dog).toBeDefined();
         });
@@ -16,7 +17,7 @@ describe("Testing the Dog class and its methods", () => {
         });
     })
 
-    describe("onPointerDown()", () => {
+    describe("test the onPointerDown() function", () => {
         test("method should set pointerDown flag to true if parameter is false", () => {
             dog.onPointerDown(10, 10);
             expect(dog.pointerDown).toBe(true);
@@ -32,10 +33,16 @@ describe("Testing the Dog class and its methods", () => {
             dog.wayPoints = [[50, 50], [60, 60]];
             expect(dog.wayPoints.length).toBeGreaterThan(0);
         });
+    });
+
+    describe("test the onPointerMove function", () => {
         test("Method should add a point to the destination array if pointerDown is true", () => {
             dog.pointerDown = true;
             dog.onPointerMove(1, 1);
         });
+    });
+
+    describe("test the onPointerUp function", () => {
         test("Method should set pointerDown flag to false", () => {
             dog.pointerDown = true;
             dog.onPointerUp(1, 1);
@@ -46,4 +53,19 @@ describe("Testing the Dog class and its methods", () => {
             expect(dog.wayPoints[dog.wayPoints.length - 1]).toStrictEqual([1, 1]);
         });
     });
+
+    describe("test the turnTowardsDestination function", () => {
+        test("After calling the method, the dog's direction should be closer to the direction to his destination", () => {
+            dog.xPos = 0;
+            dog.yPos = 0;
+            dog.xDest = 5;
+            dog.yDest = 0;
+            dog.direction = -Math.PI / 2;
+            dog.turnTowardsDestination();
+            expect(dog.direction).toBeGreaterThan(-Math.PI / 2);
+            dog.direction = Math.PI / 2;
+            dog.turnTowardsDestination();
+            expect(dog.direction).toBeLessThan(Math.PI / 2);            
+        })
+    })
 });
