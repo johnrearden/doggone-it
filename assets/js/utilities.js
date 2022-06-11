@@ -15,8 +15,11 @@ const getAngularDifference = (angleTo, angleFrom) => {
     if (difference < -Math.PI) {
         difference += 2 * Math.PI;
     }
+    
     return difference;
 }
+
+
 
 /**
  * Calculates the distance between 2 points.
@@ -73,7 +76,7 @@ const ensureCorrectRange = (angle) => {
     if (angle > Math.PI) {
         return ensureCorrectRange(angle - Math.PI * 2);
     } else if (angle < -Math.PI) {
-        return ensureCorrectRange(angle - Math.PI * 2);
+        return ensureCorrectRange(angle + Math.PI * 2);
     } else {
         return angle;
     }
