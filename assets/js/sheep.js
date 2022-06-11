@@ -1,12 +1,13 @@
-// import {ensureCorrectRange} from "./utilities.js";
-// import {SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
-//         SHEEP_MIN_RANGE_FOR_NEIGHBOURS,
-//         SHEEP_VELOCITY_TOWARDS_NEIGHBOURS,
-//         SHEEP_OUTER_REACTION_LIMIT,
-//         SHEEP_VELOCITY_AWAY_FROM_DOG,
-//         FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH} from './constants.js';
+import { SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
+         SHEEP_MIN_RANGE_FOR_NEIGHBOURS,
+        SHEEP_OUTER_REACTION_LIMIT,
+        SHEEP_VELOCITY_TOWARDS_NEIGHBOURS,
+        SHEEP_VELOCITY_AWAY_FROM_DOG,
+        FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH } from "./constants.js";
+import { ensureCorrectRange } from "./utilities.js";
 
-class Sheep {
+
+export class Sheep {
     /**
      * Represents a sheep, with a velocity and direction. The sheep also
      * has an anxiety field, which affects how the sheep reacts to the

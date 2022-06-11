@@ -1,11 +1,9 @@
-// import {
-//     Sheep
-// } from './sheep.js';
-// import {
-//     SHEEP_MAX_RANGE_FOR_NEIGHBOURS, SHEEP_NEIGHBOURLY_DISTANCE
-// } from './constants.js';
+import {Sheep } from './sheep.js';
+import { SHEEP_NEIGHBOURLY_DISTANCE,
+         SHEEP_OUTER_REACTION_LIMIT,
+         SHEEP_MAX_RANGE_FOR_NEIGHBOURS} from './constants.js';   
 
-class Herd {
+export class Herd {
     /**
      * Represents a collection of sheep. It stores its members in two arrays, 
      * a horizontal and a vertical array. These are maintained in sorted order
@@ -172,7 +170,3 @@ class Herd {
         return (distanceSquared <= preferredDistSq);
     }
 }
-
-// export {
-//     Herd
-// };

@@ -1,14 +1,6 @@
-// import {
-//     Dog
-// } from './dog.js';
-
-// import {
-//     GameRunner
-// } from './game_runner.js';
-
-// import {
-//     Herd
-// } from './herd.js';
+import {Dog} from './dog.js';
+import {Herd} from './herd.js';
+import {GameRunner} from './game_runner.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
@@ -54,7 +46,6 @@ function init() {
     let gameRunner = new GameRunner(sprites, background, dog, herd);
 
     loadAllImages(sprites, background);
-    console.log(gameRunner);
 
     gameCanvas.addEventListener('mousedown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
@@ -76,7 +67,7 @@ function init() {
             let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
             let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
             dog.onPointerMove(x, y);
-            document.getElementById("text-output").innerHTML = dog.destinations;
+            document.getElementById("text-output").innerHTML = `pointer:${dog.pointerDown}, ${dog.wayPoints}`;
         }
     });
 

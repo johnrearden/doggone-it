@@ -7,7 +7,7 @@
  * @param {Number} angleTo in radians
  * @returns the difference between the parameters in radians
  */
-const getAngularDifference = (angleTo, angleFrom) => {
+export const getAngularDifference = (angleTo, angleFrom) => {
     let difference = angleTo - angleFrom;
     if (difference > Math.PI) {
         difference -= 2 * Math.PI;
@@ -28,7 +28,7 @@ const getAngularDifference = (angleTo, angleFrom) => {
  * @param {Number} yTo 
  * @returns A direction (angle) such that -Math.PI <= angle <= Math.PI
  */
-const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
+export const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
     return Math.atan2(yTo - yFrom, xTo - xFrom);
 }
 
@@ -40,13 +40,13 @@ const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
  * @param {Number} y2 
  * @returns The distance between (x1, y1) and (x2, y2)
  */
-const getDistanceToPoint = (x1, y1, x2, y2) => {
+export const getDistanceToPoint = (x1, y1, x2, y2) => {
     let xDistSq = Math.pow(x2 - x1, 2);
     let yDistSq = Math.pow(y2 - y1, 2);
     return Math.sqrt(xDistSq + yDistSq);
 }
 
-const Quadrant = {
+export const Quadrant = {
     EAST: {
         min: -Math.PI * 0.25,
         max: Math.PI * 0.25
@@ -65,7 +65,7 @@ const Quadrant = {
     }
 }
 
-const getQuadrant = (angle) => {
+export const getQuadrant = (angle) => {
     if (angle >= Quadrant.EAST.min && angle < Quadrant.EAST.max) {
         return Quadrant.EAST;
     } else if (angle >= Quadrant.SOUTH.min && angle < Quadrant.SOUTH.max) {
@@ -83,7 +83,7 @@ const getQuadrant = (angle) => {
  * @param {Number} angle 
  * @returns 
  */
-const ensureCorrectRange = (angle) => {
+export const ensureCorrectRange = (angle) => {
     if (angle > Math.PI) {
         return ensureCorrectRange(angle - Math.PI * 2);
     } else if (angle < -Math.PI) {
@@ -91,13 +91,4 @@ const ensureCorrectRange = (angle) => {
     } else {
         return angle;
     }
-}
-
-module.exports = {
-    ensureCorrectRange,
-    getDistanceToPoint,
-    getDirectionToPoint,
-    getAngularDifference,
-    Quadrant,
-    getQuadrant
 }

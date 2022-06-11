@@ -1,9 +1,6 @@
-// import {
-//     Quadrant,
-//     getQuadrant
-// } from './utilities.js';
+import { getQuadrant, Quadrant } from './utilities.js';
 
-function GameRunner(sprites, background, dog, herd) {
+export function GameRunner(sprites, background, dog, herd) {
     this.sprites = sprites;
     this.background = background;
     this.dog = dog;
@@ -45,13 +42,13 @@ function GameRunner(sprites, background, dog, herd) {
 
         // Draw the dog's path
         context.fillStyle = 'purple'
-        if (this.dog.destinations.length > 0 && this.dog.pointerDown) {
+        if (this.dog.wayPoints.length > 0 && this.dog.pointerDown) {
             context.beginPath();
             context.moveTo(this.dog.xPos, this.dog.yPos);
-            for (let i = 0; i < this.dog.destinations.length; i++) {
+            for (let i = 0; i < this.dog.wayPoints.length; i++) {
                 context.lineTo(
-                    this.dog.destinations[i][0],
-                    this.dog.destinations[i][1]);
+                    this.dog.wayPoints[i][0],
+                    this.dog.wayPoints[i][1]);
             }
             context.stroke();
         }
@@ -109,10 +106,7 @@ function GameRunner(sprites, background, dog, herd) {
             )
             // Draw the sheep id
             context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
-
-            
         }
-
     }
 
     this.drawSprite = function (context, image, x, y, angle, scale) {
@@ -191,7 +185,3 @@ function GameRunner(sprites, background, dog, herd) {
         return [index, adjustedAngle];
     }
 }
-
-// export {
-//     GameRunner
-// }
