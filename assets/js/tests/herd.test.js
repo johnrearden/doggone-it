@@ -3,6 +3,24 @@ import {FIELD_HEIGHT, FIELD_WIDTH} from '../constants.js';
 import { Herd } from '../herd.js';
 
 describe("Test the herd class", () => {
+
+    describe("Test the Herd() constructor", () => {
+        let herd;
+        let testNumber;
+        beforeEach(() => {
+            testNumber = 10;
+            herd = new Herd(testNumber);
+            console.log(`typeof herd === ${typeof herd}`);
+        });
+        it("should not return undefined", () => {
+            expect(herd).toBeDefined();
+        });
+        it("should contain the correct number of sheep in xArray and yArray", () => {
+            expect(herd.xArray.length).toBe(testNumber);
+            expect(herd.yArray.length).toBe(testNumber);
+        });
+    })
+
     describe("Test the removeDepartedSheep function", () => {
         let herd;
         beforeEach(() => {

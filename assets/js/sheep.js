@@ -41,7 +41,7 @@ export class Sheep {
      * @param {set} centerOfNearNeighbours
      * @param {Dog} dog 
      */
-    update(nearestNeighbours, dog) {
+    update(herdXCenter, herdYCenter, dog) {
         // Calculate the average position of the nearest neighbours set
         let xVelTowardHerd = 0, yVelTowardHerd = 0;
         if (nearestNeighbours.length > 0) {

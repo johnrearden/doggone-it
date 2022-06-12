@@ -39,9 +39,7 @@ export class Herd {
     }
 
     /**
-     * Called by the GameRunner on each frame, to re-sort the position-based
-     * arrays, create a set for each sheep of its nearest neighbours, and
-     * update each sheep in turn.
+     * Called by the GameRunner on each frame, to update each sheep in turn.
      * 
      * @param {Dog} dog 
      */
@@ -60,6 +58,10 @@ export class Herd {
         }
     }
 
+    /**
+     * Checks if any sheep in the herd have left the game area via the top of the screen
+     * (where yPos < 0) and if so, removes them.
+     */
     removeDepartedSheep() {
         // If sheep has left the field, remove it from the game.
         this.xArray = this.xArray.filter(sheep => sheep.yPos > 0);
@@ -67,6 +69,10 @@ export class Herd {
         //document.getElementById("text-output2").innerHTML = `#sheep === ${this.xArray.length}`;
     }
 
+    /**
+     * Calculates the average position on the x-axis of the sheep in xArray
+     * @returns average x position
+     */
     calculateAverageXPosition() {
         let total = 0;
         for(let i = 0; i < this.xArray.length; i++) {
@@ -75,6 +81,10 @@ export class Herd {
         return total / this.xArray.length;
     }
 
+    /**
+     * Calculates the average position on the y-axis of the sheep in yArray
+     * @returns average y position
+     */
     calculateAverageYPosition() {
         let total = 0;
         for(let i = 0; i < this.yArray.length; i++) {
@@ -83,6 +93,10 @@ export class Herd {
         return total / this.yArray.length;
     }
 
+    /**
+     * Sorts the xArray in order of increasing x position of its sheep, and
+     * the yArray in order of increasing y position of its sheep
+     */
     sortPositionArrays() {
         this.xArray.sort((sheep1, sheep2) => {
             return sheep1.xPos - sheep2.xPos;
