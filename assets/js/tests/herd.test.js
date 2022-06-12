@@ -1,5 +1,3 @@
-import {Sheep} from '../sheep.js';
-import {FIELD_HEIGHT, FIELD_WIDTH} from '../constants.js';
 import { Herd } from '../herd.js';
 
 describe("Test the herd class", () => {
