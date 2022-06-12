@@ -109,6 +109,9 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 indexOffset = this.getSpriteFrame(this.frameCount);
             }
             let correctSprite = this.sprites.sheep.images[index + indexOffset];
+            
+            // Every second sheep is a lamb.
+            let scale = sheep.id % 2 === 0 ? 0.8 : 0.4;
 
             // Draw this sheep
             this.drawSprite(
@@ -117,7 +120,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 sheep.xPos,
                 sheep.yPos,
                 adjustedAngle,
-                0.8
+                scale
             )
             // Draw the sheep id
             context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
