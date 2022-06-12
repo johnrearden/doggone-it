@@ -1,6 +1,6 @@
 # **Doggone It Website**
 
-### A website that lets visitors play a simple sheepherding game.
+### A website that lets visitors play a simple sheep herding game.
 
 [View the live project here]()
 

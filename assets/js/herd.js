@@ -33,6 +33,9 @@ export class Herd {
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
+
+        let sheepRemainingOutput = document.getElementById("sheep-remaining");
+        sheepRemainingOutput.innerText = numSheep;
     }
 
     /**
@@ -59,11 +62,11 @@ export class Herd {
      * Checks if any sheep in the herd have left the game area via the top of the screen
      * (where yPos < 0) and if so, removes them.
      */
-    removeDepartedSheep() {
+    removeDepartedSheep() { 
         // If sheep has left the field, remove it from the game.
         this.xArray = this.xArray.filter(sheep => sheep.yPos > 0);
         this.yArray = this.yArray.filter(sheep => !(sheep.yPos < 0));
-        //document.getElementById("text-output2").innerHTML = `#sheep === ${this.xArray.length}`;
+        document.getElementById("sheep-remaining").innerText = this.xArray.length;
     }
 
     /**
