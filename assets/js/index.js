@@ -15,7 +15,7 @@ function init() {
     gameCanvas.height = FIELD_HEIGHT;
 
     let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
-    let herd = new Herd(10);
+    let herd = new Herd(20);
 
     let sprites = {
         dog: {

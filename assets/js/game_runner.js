@@ -79,6 +79,10 @@ export function GameRunner(sprites, background, dog, herd) {
         context.fillStyle = dog.pointerDown ? 'red' : 'blue';
         context.fillRect(this.dog.xDest - 2, this.dog.yDest - 2, 5, 5);
 
+        // Draw the herd center
+        context.fillStyle = 'white';
+        context.fillRect(this.herd.centerX, this.herd.centerY, 10, 10);
+
         // Draw the herd
         for (let i = 0; i < herd.xArray.length; i++) {
             let sheep = herd.xArray[i];

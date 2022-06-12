@@ -120,7 +120,7 @@ export class Dog {
      */
     arrivedAtNextWaypoint() {
         let distToNextWaypoint = getDistanceToPoint(this.xDest, this.yDest, this.xPos, this.yPos);
-        return distToNextWaypoint <= DOG_TRAVEL_PER_FRAME;
+        return distToNextWaypoint <= DOG_TRAVEL_PER_FRAME * 2;
     }
 
     /**

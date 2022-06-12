@@ -1,10 +1,7 @@
 import {Sheep } from './sheep.js';
-import { SHEEP_NEIGHBOURLY_DISTANCE,
-         SHEEP_OUTER_REACTION_LIMIT,
-         SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
-         FIELD_WIDTH,
-         FIELD_BORDER,
-         FIELD_HEIGHT} from './constants.js';   
+import {FIELD_WIDTH,
+        FIELD_BORDER,
+        FIELD_HEIGHT} from './constants.js';   
 
 export class Herd {
     /**
