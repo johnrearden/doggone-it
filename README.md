@@ -153,7 +153,7 @@ You can make a copy of the original repository to view and/or make changes witho
 
 ## Code:
 CSS aspect-ratio property:
-https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ 
 
 CSS flex-box:
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
@@ -170,11 +170,9 @@ https://stackoverflow.com/questions/37854355/wait-for-image-loading-to-complete-
 Value of this in callback functions from global scope
 https://www.w3docs.com/snippets/javascript/how-to-access-the-correct-this-inside-a-callback.html
 
-Handling mouse events:
-https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/
+Preventing touch events from scrolling the screen on mobile
+https://stackoverflow.com/a/26591826
 
-Handling touch events:
-https://stackoverflow.com/a/25099771
 
 ---
 
