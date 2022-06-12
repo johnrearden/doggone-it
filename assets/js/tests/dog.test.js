@@ -6,7 +6,7 @@ describe("Testing the Dog class and its methods", () => {
     let dog;
     beforeEach(() => {
         dog = new Dog(100, 100);
-    });
+    }); 
 
     describe("Test the Dog() constructor", () => {
         test("Constructor should return a valid object", () => {

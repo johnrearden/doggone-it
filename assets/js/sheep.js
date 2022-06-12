@@ -104,6 +104,7 @@ export class Sheep {
         if (dog.barking) {
             reactionRange *= 2;
         }
+        
 
         // Compare the squares of the distances (it's not necessary to compute the
         // square root also before deciding if the dog is within range - that's 

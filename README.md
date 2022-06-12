@@ -29,9 +29,19 @@
 - ### User Stories
 
     - #### First Time Visitor Goals
+        - As a first-time visitor, I want to be able to quickly engage in the game, 
+        with a minimum of setup.
+        - As a first-time visitor, I want to find the game controls straightforward
+        and easy to use.
 
     - #### Returning Visitor Goals
+        - As a returning visitor, I want to be challenged as I progress in the game
+        - As a returning visitor, I would like to watch a replay of my games to
+        learn from my mistakes.
 
+    - #### Frequent Visitor Goals
+        - As a frequent visitor, I would like to be able to experiment with some 
+        of the game mechanics and customize them without breaking the gameplay.
 - ### Design
 
     - Colour Scheme
@@ -75,6 +85,7 @@
 # Testing
 
 ## Testing User Stories from UX section
+
 - #### First Time Visitor Goals
  
 
@@ -91,6 +102,11 @@
 - Lighthouse report
 
 ---
+
+## Automated Testing
+
+- Unit tests were written for the project using Jest. A description of the process I undertook to set up my testing environment on my local machine can be found [here](TESTING.md). The tests can be run on GitPod using the following commands :
+    - do it
 
 ## Manual Testing
 Feature | Expected | Action | Result
