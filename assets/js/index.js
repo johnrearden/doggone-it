@@ -70,6 +70,33 @@ function init() {
         }
     });
 
+    gameCanvas.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        let rect = gameCanvas.getBoundingClientRect();
+        let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
+        dog.onPointerDown(x, y);
+    });
+
+    gameCanvas.addEventListener('touchend', (event) => {
+        event.preventDefault();
+        let rect = gameCanvas.getBoundingClientRect();
+        let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
+        dog.onPointerUp(x, y);
+    });
+
+    gameCanvas.addEventListener('touchmove', event => {
+        event.preventDefault();
+        if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
+            let rect = gameCanvas.getBoundingClientRect();
+            let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+            let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
+            dog.onPointerMove(x, y);
+            document.getElementById("text-output").innerHTML = `pointer:${dog.pointerDown}, ${dog.wayPoints}`;
+        }
+    });
+
     window.requestAnimationFrame(gameRunner.updateGame);
 }
 
