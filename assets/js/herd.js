@@ -1,7 +1,10 @@
 import {Sheep } from './sheep.js';
 import { SHEEP_NEIGHBOURLY_DISTANCE,
          SHEEP_OUTER_REACTION_LIMIT,
-         SHEEP_MAX_RANGE_FOR_NEIGHBOURS} from './constants.js';   
+         SHEEP_MAX_RANGE_FOR_NEIGHBOURS,
+         FIELD_WIDTH,
+         FIELD_BORDER,
+         FIELD_HEIGHT} from './constants.js';   
 
 export class Herd {
     /**
@@ -19,7 +22,7 @@ export class Herd {
      * @param {Number} canvasWidth 
      * @param {Number} canvasHeight 
      */
-    constructor(numSheep, canvasWidth, canvasHeight) {
+    constructor(numSheep) {
         this.numSheep = numSheep;
         this.centerX = 0;
         this.centerY = 0;
@@ -27,9 +30,9 @@ export class Herd {
         this.yArray = [];
 
         for (let i = 0; i < this.numSheep; i++) {
-            let randX = Math.random() * canvasWidth;
-            let randY = Math.random() * canvasHeight;
-            let newSheep = new Sheep(randX, randY, i);
+            let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
+            let randY = Math.random() * (FIELD_HEIGHT - 2 * FIELD_BORDER);
+            let newSheep = new Sheep(randX + FIELD_BORDER, randY + FIELD_BORDER, i);
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
@@ -45,10 +48,8 @@ export class Herd {
      */
     update(dog) {
 
-        // If sheep has left the field, remove it from the game.
-        this.xArray.filter(sheep => !(sheep.yPos < 0));
-        this.yArray.filter(sheep => !(sheep.yPos < 0));
-        document.getElementById("text-output2").innerHTML = `#sheep === ${this.xArray.length}`;
+        this.removeDepartedSheep();
+        
 
         this.#sortArrays();
 
@@ -128,6 +129,13 @@ export class Herd {
             
         }
         
+    }
+
+    removeDepartedSheep() {
+        // If sheep has left the field, remove it from the game.
+        this.xArray.filter(sheep => !(sheep.yPos < 0));
+        this.yArray.filter(sheep => !(sheep.yPos < 0));
+        document.getElementById("text-output2").innerHTML = `#sheep === ${this.xArray.length}`;
     }
 
     #sortArrays() {

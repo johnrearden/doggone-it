@@ -1,6 +1,7 @@
 import {Dog} from './dog.js';
 import {Herd} from './herd.js';
 import {GameRunner} from './game_runner.js';
+import { FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
@@ -9,14 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function init() {
-    let CANVAS_WIDTH = 400;
-    let CANVAS_HEIGHT = 500;
     let gameCanvas = document.getElementById('game-area');
-    gameCanvas.width = CANVAS_WIDTH;
-    gameCanvas.height = CANVAS_HEIGHT;
+    gameCanvas.width = FIELD_WIDTH;
+    gameCanvas.height = FIELD_HEIGHT;
 
-    let dog = new Dog(gameCanvas.width / 2, gameCanvas.height / 2);
-    let herd = new Herd(10, gameCanvas.width, gameCanvas.height);
+    let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
+    let herd = new Herd(10);
 
     let sprites = {
         dog: {
@@ -49,23 +48,23 @@ function init() {
 
     gameCanvas.addEventListener('mousedown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
-        let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
-        let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+        let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
         dog.onPointerDown(x, y);
     });
 
     gameCanvas.addEventListener('mouseup', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
-        let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
-        let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+        let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+        let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
         dog.onPointerUp(x, y);
     });
 
     gameCanvas.addEventListener('mousemove', event => {
         if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
             let rect = gameCanvas.getBoundingClientRect();
-            let x = (event.clientX - rect.left) / rect.width * CANVAS_WIDTH;
-            let y = (event.clientY - rect.top) / rect.height * CANVAS_HEIGHT;
+            let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
+            let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
             dog.onPointerMove(x, y);
             document.getElementById("text-output").innerHTML = `pointer:${dog.pointerDown}, ${dog.wayPoints}`;
         }

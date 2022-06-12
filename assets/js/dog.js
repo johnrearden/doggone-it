@@ -57,7 +57,6 @@ export class Dog {
         // Check if the dog has arrived at the next waypoint. If so, remove the
         // waypoint. If there are no more waypoints, return immediately.
         if (this.arrivedAtNextWaypoint()) {
-            console.log(`arrived at point ${this.wayPoints[0]}`);
             this.wayPoints.shift();
             if (!this.hasNextWaypoint()) {
                 this.moving = false;
