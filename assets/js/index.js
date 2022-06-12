@@ -14,9 +14,6 @@ function init() {
     gameCanvas.width = FIELD_WIDTH;
     gameCanvas.height = FIELD_HEIGHT;
 
-    let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
-    let herd = new Herd(20);
-
     let sprites = {
         dog: {
             urls: [
@@ -42,7 +39,13 @@ function init() {
         image: null
     }
 
-    let gameRunner = new GameRunner(sprites, background, dog, herd);
+    let level = {
+        sheep: 20,
+        time: 60
+    }
+    let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
+    let herd = new Herd(level.sheep);
+    let gameRunner = new GameRunner(sprites, background, dog, herd, level);
 
     loadAllImages(sprites, background);
 
@@ -74,33 +77,6 @@ function init() {
     gameCanvas.addEventListener('touchmove', event => {
         event.preventDefault();
     });
-
-    // gameCanvas.addEventListener('touchstart', (event) => {
-    //     event.preventDefault();
-    //     let rect = gameCanvas.getBoundingClientRect();
-    //     let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
-    //     let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-    //     dog.onPointerDown(x, y);
-    // });
-
-    // gameCanvas.addEventListener('touchend', (event) => {
-    //     event.preventDefault();
-    //     let rect = gameCanvas.getBoundingClientRect();
-    //     let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
-    //     let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-    //     dog.onPointerUp(x, y);
-    // });
-
-    // gameCanvas.addEventListener('touchmove', event => {
-    //     event.preventDefault();
-    //     if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
-    //         let rect = gameCanvas.getBoundingClientRect();
-    //         let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
-    //         let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-    //         dog.onPointerMove(x, y);
-    //         document.getElementById("text-output").innerHTML = `pointer:${dog.pointerDown}, ${dog.wayPoints}`;
-    //     }
-    // });
 
     window.requestAnimationFrame(gameRunner.updateGame);
 }

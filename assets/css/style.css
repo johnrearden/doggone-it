@@ -79,11 +79,35 @@ header {
     width: 100%;
     text-align: center;
 }
-
-#time-remaining {
-    width: 70%;
-    margin: 0 auto 10px auto;
+#time-remaining[value] {
+    --color: blue; /* the progress color */
+    --background: #333333; /* the background color */
+  
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    width: 80%;
+    height: 39px;
+    margin: 10px auto 10px auto;
+    border-radius: 20px;
+    background: var(--background);
 }
+
+#time-remaining[value]::-webkit-progress-bar {
+    border-radius: 20px;
+    background: var(--background);
+}
+
+#time-remaining[value]::-webkit-progress-value {
+    border-radius: 20px;
+    background: var(--color);
+}
+
+#time-remaining[value]::-moz-progress-bar {
+    border-radius: 20px;
+    background: var(--color);
+  }
 
 #bark-button {
     width: 50%;

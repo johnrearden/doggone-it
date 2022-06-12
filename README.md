@@ -173,6 +173,9 @@ https://www.w3docs.com/snippets/javascript/how-to-access-the-correct-this-inside
 Preventing touch events from scrolling the screen on mobile
 https://stackoverflow.com/a/26591826
 
+How to style a progress bar
+https://verpex.com/blog/website-tips/how-to-style-a-progress-bar-using-css
+
 
 ---
 

@@ -1,12 +1,18 @@
 import { getQuadrant, Quadrant } from './utilities.js';
 
-export function GameRunner(sprites, background, dog, herd) {
+export function GameRunner(sprites, background, dog, herd, level) {
     this.sprites = sprites;
     this.background = background;
     this.dog = dog;
     this.herd = herd;
     this.frameCount = 0;
-    console.log(dog);
+    this.running = true;
+    this.levelTimeLimit = level.time * 1000;
+    this.timeRemaining = level.time * 1000;
+    this.lastStartTime = new Date().getTime();
+
+    document.getElementById("time-remaining").max = this.levelTimeLimit;
+    document.getElementById("time-remaining").value = this.levelTimeLimit;
 
     // This is the callback passed to window.requestAnimationFrame, 
     // and needs to be explicitly bound to the GameRunner object, 
@@ -15,13 +21,18 @@ export function GameRunner(sprites, background, dog, herd) {
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
             this.drawBackground();
-            //console.time('loop');
-            this.dog.update();
-            this.herd.update(dog);
-
+            if (this.running) {
+                this.dog.update();
+                this.herd.update(dog);
+                
+                let currentTime = new Date().getTime();
+                let elapsedTime = currentTime - this.lastStartTime;
+                
+                let timerBar = document.getElementById("time-remaining");
+                let value = Math.ceil(this.timeRemaining - elapsedTime);
+                timerBar.value = value;
+            }
             this.drawFrame();
-            //console.timeEnd('loop');
-
         }
 
         // Request the next frame, passing the updageGame function as the callback.
@@ -187,5 +198,17 @@ export function GameRunner(sprites, background, dog, herd) {
             }
         }
         return [index, adjustedAngle];
+    }
+
+    this.start = function() {
+        this.running = true;
+        this.startTime = new Date().getTime();
+    }
+
+    this.stop = function() {
+        this.running = false;
+        let currentTime = new Date().getTime();
+        let timeSinceLastStart = currentTime - this.lastStartTime;
+        this.timeRemaining -= timeSinceLastStart;
     }
 }
