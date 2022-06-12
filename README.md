@@ -173,6 +173,9 @@ https://www.w3docs.com/snippets/javascript/how-to-access-the-correct-this-inside
 Handling mouse events:
 https://www.javascripttutorial.net/javascript-dom/javascript-mouse-events/
 
+Handling touch events:
+https://stackoverflow.com/a/25099771
+
 ---
 
 ## Acknowledgements
