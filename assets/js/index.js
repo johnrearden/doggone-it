@@ -40,8 +40,9 @@ function init() {
     }
 
     let level = {
-        sheep: 20,
-        time: 60
+        id: 1,
+        sheep: 1,
+        time: 20,
     }
     let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
     let herd = new Herd(level.sheep);
@@ -70,7 +71,6 @@ function init() {
             let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
             let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
             dog.onPointerMove(x, y);
-            document.getElementById("text-output").innerHTML = `pointer:${dog.pointerDown}, ${dog.wayPoints}`;
         }
     });
 

@@ -25,6 +25,7 @@ export class Herd {
         this.centerY = 0;
         this.xArray = [];
         this.yArray = [];
+        this.allSheepGone = false;
 
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
@@ -56,6 +57,8 @@ export class Herd {
             // Update the sheep, passing a reference to the dog.
             sheep.update(this.centerX, this.centerY, dog);
         }
+
+        
     }
 
     /**
@@ -66,6 +69,9 @@ export class Herd {
         // If sheep has left the field, remove it from the game.
         this.xArray = this.xArray.filter(sheep => sheep.yPos > 0);
         this.yArray = this.yArray.filter(sheep => !(sheep.yPos < 0));
+        if (this.xArray.length === 0) {
+            this.allSheepGone = true;
+        }
         document.getElementById("sheep-remaining").innerText = this.xArray.length;
     }
 

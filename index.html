@@ -17,38 +17,48 @@
 
 <body>
     <header>
-        <h1>Doggone It!</h1>
     </header>
 
     <div id="game-ui">
 
         <div id="displays">
+
             <div id="progress-display">
                 <span id="sheep-remaining-text">Sheep&ThickSpace;</span>
                 <span id="sheep-remaining">0</span>
             </div>
-            <canvas id="game-area"></canvas>
+
+            <div id="main-display">
+                <canvas id="game-area"></canvas>
+                <div id="end-of-level-display">
+                    <div id="end-level-message">Dummy end-level message</div>
+                    <div id="level-over-buttons">
+                        <button id="action-replay">Action Replay</button>
+                        <button id="next-level">Next Level</button>
+                        <button id="try-again">Try Again</button>
+                    </div>
+                </div>
+            </div>
+
             <div id="time-display">
                 <progress id="time-remaining" min="0" max="100" value="100"></progress>
             </div>
+
         </div>
 
         <div id="controls">
             <button id="bark-button">BARK!</button>
-            <div id="secondary-buttons">
-                <button id="info">i</button>
-                <button id="play-pause">play/pause</button>
-            </div>
             <!-- <textarea id="text-output" rows="2" cols="80"></textarea>
             <textarea id="text-output2" rows="1" cols="80"></textarea> -->
         </div>
 
+        
+
     </div>
 
     <footer>
-        <span>&copy; John Rearden 2022</span>
-
     </footer>
+
     <script type="module" src="assets/js/index.js"></script>
 </body>
 

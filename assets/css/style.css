@@ -16,6 +16,7 @@ body {
 
 button {
     font-family: inherit;
+    text-transform: uppercase;
     background-color: orange;
     color: black;
     padding: 5px 10px;
@@ -42,7 +43,6 @@ header {
 
 #displays {
     margin: 0 auto;
-    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,14 @@ header {
     box-sizing: border-box;
 }
 
+#main-display {
+    position: relative;
+}
+
 #game-area {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 95%;
     height: auto;
     aspect-ratio: 0.8;
@@ -59,8 +66,28 @@ header {
     position: relative;
 }
 
+#end-of-level-display {
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    margin-top: 150px;
+    left: 0;
+    right: 0;
+    color: orange;
+    font-size: 3rem;
+    z-index: 5;
+    display: none;
+}
+
+#end-level-message {
+    text-align: center;
+}
+
+#level-over-buttons {
+    
+}
+
 #controls {
-    /* border: 1px solid blue; */
     width: 100%;
     box-sizing: border-box;
 }
@@ -107,7 +134,9 @@ header {
 #time-remaining[value]::-moz-progress-bar {
     border-radius: 20px;
     background: var(--color);
-  }
+}
+
+
 
 #bark-button {
     width: 50%;
@@ -116,9 +145,12 @@ header {
     font-weight: bolder;
 }
 
-#info, #play-pause {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+#action-replay, #try-again {
+    font-size: 1.2rem;
+}
+
+#next-level {
+    font-size: 1.6rem;
 }
 
 footer {

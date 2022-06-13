@@ -2,6 +2,7 @@ import { getQuadrant, Quadrant } from './utilities.js';
 
 export function GameRunner(sprites, background, dog, herd, level) {
     this.sprites = sprites;
+    this.level = level;
     this.background = background;
     this.dog = dog;
     this.herd = herd;
@@ -21,9 +22,20 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
             this.drawBackground();
+
             if (this.running) {
                 this.dog.update();
                 this.herd.update(dog);
+
+                // Check for level complete
+                if (herd.allSheepGone) {
+                    this.running = false;
+                    console.log("all sheep gone");
+                    let display = document.getElementById("end-of-level-display");
+                    display.style.display = "initial";
+                    let displayText = document.getElementById("end-level-message");
+                    displayText.innerText = `LEVEL ${this.level.id} COMPLETE!`;
+                }
                 
                 let currentTime = new Date().getTime();
                 let elapsedTime = currentTime - this.lastStartTime;
@@ -31,6 +43,17 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 let timerBar = document.getElementById("time-remaining");
                 let value = Math.ceil(this.timeRemaining - elapsedTime);
                 timerBar.value = value;
+
+                if (value <= 0) {
+                    this.running = false;
+                    console.log("time up");
+                    let display = document.getElementById("end-of-level-display");
+                    display.style.display = "initial";
+                    let displayText = document.getElementById("end-level-message");
+                    displayText.innerText = `OUTTA TIME!`;
+                    let nextLevelButton = document.getElementById("next-level");
+                    nextLevelButton.style.display = "none";
+                }
             }
             this.drawFrame();
         }
@@ -38,6 +61,15 @@ export function GameRunner(sprites, background, dog, herd, level) {
         // Request the next frame, passing the updageGame function as the callback.
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
+
+    this.startNewLevel = function(newLevel) {
+
+    }
+
+    this.gameOver = function() {
+
+    }
+
 
     this.drawBackground = function() {
         if (background.image) {
