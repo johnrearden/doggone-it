@@ -1,7 +1,8 @@
 import {Dog} from './dog.js';
 import {Herd} from './herd.js';
 import {GameRunner} from './game_runner.js';
-import { FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
+import { levels } from '../data/levels.js';
+import { FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
@@ -39,11 +40,7 @@ function init() {
         image: null
     }
 
-    let level = {
-        id: 1,
-        sheep: 1,
-        time: 20,
-    }
+    let level = levels[0];
     let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
     let herd = new Herd(level.sheep);
     let gameRunner = new GameRunner(sprites, background, dog, herd, level);
@@ -65,7 +62,6 @@ function init() {
     });
 
     gameCanvas.addEventListener('pointermove', event => {
-        
         if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
             let rect = gameCanvas.getBoundingClientRect();
             let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
@@ -77,6 +73,10 @@ function init() {
     gameCanvas.addEventListener('touchmove', event => {
         event.preventDefault();
     });
+
+    document.getElementById("next-level").addEventListener('click', event => {
+        gameRunner.startNextLevel();
+    })
 
     window.requestAnimationFrame(gameRunner.updateGame);
 }

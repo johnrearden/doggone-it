@@ -1,4 +1,8 @@
+import { Dog } from './dog.js';
+import { Herd } from './herd.js';
 import { getQuadrant, Quadrant } from './utilities.js';
+import { levels } from '../data/levels.js';
+import { FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
 
 export function GameRunner(sprites, background, dog, herd, level) {
     this.sprites = sprites;
@@ -62,14 +66,27 @@ export function GameRunner(sprites, background, dog, herd, level) {
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
 
-    this.startNewLevel = function(newLevel) {
-
+    this.startNextLevel = function() {
+        this.hideEndLevelDisplay();
+        let nextLevelIndex = this.level.id; // levels.json array is zero-based
+        this.level = levels[nextLevelIndex];
+        console.log(`loading level ${this.level.id}`);
+        this.dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
+        console.log("new dog created");
+        this.herd = new Herd(this.level.sheep);
+        console.log("new herd created");
+        this.frameCount = 0;
+        this.levelTimeLimit = level.time * 1000;
+        this.timeRemaining = level.time * 1000;
+        this.lastStartTime = new Date().getTime();
+        
+        this.running = true;
     }
 
-    this.gameOver = function() {
-
+    this.hideEndLevelDisplay = function() {
+        let display = document.getElementById("end-of-level-display");
+        display.style.display = "none";
     }
-
 
     this.drawBackground = function() {
         if (background.image) {

@@ -34,9 +34,12 @@ export class Herd {
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
+        console.log(`herd constructor complete, allsheepgone = ${this.allSheepGone},
+        xarray.length = ${this.xArray.length}`);
 
         let sheepRemainingOutput = document.getElementById("sheep-remaining");
         sheepRemainingOutput.innerText = numSheep;
+        
     }
 
     /**
@@ -45,7 +48,8 @@ export class Herd {
      * @param {Dog} dog 
      */
     update(dog) {
-
+        console.log(`herd update() invoked, allsheepgone = ${this.allSheepGone},
+        xarray.length = ${this.xArray.length}`);
         this.removeDepartedSheep();
 
         this.sortPositionArrays();
@@ -68,7 +72,7 @@ export class Herd {
     removeDepartedSheep() { 
         // If sheep has left the field, remove it from the game.
         this.xArray = this.xArray.filter(sheep => sheep.yPos > 0);
-        this.yArray = this.yArray.filter(sheep => !(sheep.yPos < 0));
+        this.yArray = this.yArray.filter(sheep => sheep.yPos > 0);
         if (this.xArray.length === 0) {
             this.allSheepGone = true;
         }
