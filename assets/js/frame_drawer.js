@@ -40,15 +40,15 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         Math.floor(dog.xPos),
         Math.floor(dog.yPos),
         adjustedAngle,
-        0.65);
+        0.8);
 
     // Draw the dog's destination
     context.fillStyle = dog.pointerDown ? 'red' : 'blue';
     context.fillRect(dog.xDest - 2, dog.yDest - 2, 5, 5);
 
     // Draw the herd center
-    context.fillStyle = 'white';
-    context.fillRect(herd.centerX, herd.centerY, 10, 10);
+    // context.fillStyle = 'white';
+    // context.fillRect(herd.centerX, herd.centerY, 10, 10);
 
     // Draw the herd
     for (let i = 0; i < herd.xArray.length; i++) {
@@ -67,7 +67,7 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         let correctSprite = sprites.sheep.images[index + indexOffset];
 
         // Every second sheep is a lamb.
-        let scale = sheep.id % 2 === 0 ? 0.8 : 0.4;
+        let scale = sheep.id % 2 === 0 ? 1.0 : 0.7;
 
         // Draw this sheep
         drawSprite(
@@ -79,7 +79,7 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
             scale
         )
         // Draw the sheep id
-        context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
+        // context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
     }
 }
 
