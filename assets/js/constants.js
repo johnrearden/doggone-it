@@ -67,3 +67,10 @@ export const FIELD_HEIGHT = 500;
  * game characters cannot go.
  */
 export const FIELD_BORDER = 30;
+
+
+/**
+ * The number of frames between snaphots of the game recorded 
+ * for action replay.
+ */
+export const REPLAY_SNAPSHOT_FREQUENCY = 10;
