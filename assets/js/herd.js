@@ -3,6 +3,8 @@ import {FIELD_WIDTH,
         FIELD_BORDER,
         FIELD_HEIGHT} from './constants.js';   
 
+var count = 0;
+
 export class Herd {
     /**
      * Represents a collection of sheep. It stores its members in two arrays, 
@@ -26,6 +28,7 @@ export class Herd {
         this.xArray = [];
         this.yArray = [];
         this.allSheepGone = false;
+        this.id = count++;
 
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
@@ -34,11 +37,9 @@ export class Herd {
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
-        console.log(`herd constructor complete, allsheepgone = ${this.allSheepGone},
-        xarray.length = ${this.xArray.length}`);
 
-        let sheepRemainingOutput = document.getElementById("sheep-remaining");
-        sheepRemainingOutput.innerText = numSheep;
+        // let sheepRemainingOutput = document.getElementById("sheep-remaining");
+        // sheepRemainingOutput.innerText = numSheep;
         
     }
 
@@ -48,8 +49,6 @@ export class Herd {
      * @param {Dog} dog 
      */
     update(dog) {
-        console.log(`herd update() invoked, allsheepgone = ${this.allSheepGone},
-        xarray.length = ${this.xArray.length}`);
         this.removeDepartedSheep();
 
         this.sortPositionArrays();

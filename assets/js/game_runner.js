@@ -29,12 +29,11 @@ export function GameRunner(sprites, background, dog, herd, level) {
 
             if (this.running) {
                 this.dog.update();
-                this.herd.update(dog);
+                this.herd.update(this.dog);
 
                 // Check for level complete
-                if (herd.allSheepGone) {
+                if (this.herd.allSheepGone) {
                     this.running = false;
-                    console.log("all sheep gone");
                     let display = document.getElementById("end-of-level-display");
                     display.style.display = "initial";
                     let displayText = document.getElementById("end-level-message");
@@ -70,11 +69,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.hideEndLevelDisplay();
         let nextLevelIndex = this.level.id; // levels.json array is zero-based
         this.level = levels[nextLevelIndex];
-        console.log(`loading level ${this.level.id}`);
         this.dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
-        console.log("new dog created");
         this.herd = new Herd(this.level.sheep);
-        console.log("new herd created");
         this.frameCount = 0;
         this.levelTimeLimit = level.time * 1000;
         this.timeRemaining = level.time * 1000;
@@ -144,8 +140,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
         context.fillRect(this.herd.centerX, this.herd.centerY, 10, 10);
 
         // Draw the herd
-        for (let i = 0; i < herd.xArray.length; i++) {
-            let sheep = herd.xArray[i];
+        for (let i = 0; i < this.herd.xArray.length; i++) {
+            let sheep = this.herd.xArray[i];
 
             // Pick the correct directional sprite from South, West, North, East
             let quadrant = getQuadrant(sheep.direction);
@@ -262,5 +258,32 @@ export function GameRunner(sprites, background, dog, herd, level) {
         let currentTime = new Date().getTime();
         let timeSinceLastStart = currentTime - this.lastStartTime;
         this.timeRemaining -= timeSinceLastStart;
+    }
+
+    /**
+     * Passes the pointer events through to the dog.
+     * @param {Number} x The position of the pointer on the x-axis
+     * @param {Number} y The position of the pointer on the y-axis
+     */
+    this.onPointerDown = function (x, y){
+        this.dog.onPointerDown(x, y);
+    }
+
+    /**
+     * Passes the pointer events through to the dog.
+     * @param {Number} x The position of the pointer on the x-axis
+     * @param {Number} y The position of the pointer on the y-axis
+     */
+    this.onPointerUp = function (x, y){
+        this.dog.onPointerUp(x, y);
+    }
+
+    /**
+     Passes the pointer events through to the dog.
+     * @param {Number} x The position of the pointer on the x-axis
+     * @param {Number} y The position of the pointer on the y-axis
+     */
+    this.onPointerMove = function (x, y){
+        this.dog.onPointerMove(x, y);
     }
 }

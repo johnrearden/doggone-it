@@ -51,14 +51,14 @@ function init() {
         let rect = gameCanvas.getBoundingClientRect();
         let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
         let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-        dog.onPointerDown(x, y);
+        gameRunner.onPointerDown(x, y);
     });
 
     gameCanvas.addEventListener('pointerup', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
         let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
         let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-        dog.onPointerUp(x, y);
+        gameRunner.onPointerUp(x, y);
     });
 
     gameCanvas.addEventListener('pointermove', event => {
@@ -66,7 +66,7 @@ function init() {
             let rect = gameCanvas.getBoundingClientRect();
             let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
             let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;
-            dog.onPointerMove(x, y);
+            gameRunner.onPointerMove(x, y);
         }
     });
 
