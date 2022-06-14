@@ -17,7 +17,7 @@ body {
 button {
     font-family: inherit;
     text-transform: uppercase;
-    background-color: orange;
+    background-color: #facc20;
     color: black;
     padding: 5px 10px;
     border-radius: 10px;
@@ -66,6 +66,22 @@ header {
     position: relative;
 }
 
+#replay-banner {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    /* display: none; */
+}
+
+#replay-speed {
+    position: absolute;
+    font-weight: bolder;
+    right: 35px;
+    top: 20px;
+    color: #facc20;
+    background-color: transparent;
+}
+
 #end-of-level-display {
     position: absolute;
     background-color: transparent;
@@ -73,7 +89,7 @@ header {
     margin-top: 150px;
     left: 0;
     right: 0;
-    color: orange;
+    color: #facc20;
     font-size: 3rem;
     z-index: 5;
     display: none;

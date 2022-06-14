@@ -30,6 +30,10 @@
 
             <div id="main-display">
                 <canvas id="game-area"></canvas>
+                <img src="assets/images/backgrounds/replay.png" 
+                     id="replay-banner"
+                     alt="replay banner">
+                <span id="replay-speed">1x</span>
                 <div id="end-of-level-display">
                     <div id="end-level-message">Dummy end-level message</div>
                     <div id="level-over-buttons">
@@ -40,6 +44,15 @@
                     <div id="game-complete-button">
                         <button id="begin-again">Begin Again</button>
                     </div>
+                </div>
+                <div id="action-replay-display">
+                    <div id="replay-buttons">
+                        <button id="rewind"><i class="fa-solid fa-backward"></i></button>
+                        <button id="play"><i class="fa-solid fa-play"></i></button>
+                        <button id="pause"><i class="fa-solid fa-pause"></i></i></button>
+                        <button id="fast-forward"><i class="fa-solid fa-forward"></i></button>
+                    </div>
+                    <input type="range" id="replay-slider" min="0" max="100" value="0">
                 </div>
             </div>
 
@@ -62,6 +75,7 @@
     <footer>
     </footer>
 
+    <script src="https://kit.fontawesome.com/f2f8e80db6.js" crossorigin="anonymous"></script>
     <script type="module" src="assets/js/index.js"></script>
 </body>
 
