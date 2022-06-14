@@ -87,6 +87,14 @@ header {
     
 }
 
+#game-complete-button {
+    display: none;
+}
+
+#begin-again {
+    font-size: 2rem;
+}
+
 #controls {
     width: 100%;
     box-sizing: border-box;

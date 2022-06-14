@@ -83,7 +83,6 @@ export class Dog {
 
     onPointerDown(x, y) {
         if (!this.pointerDown) {
-            console.log('onPointerDown invoked')
             this.pointerDown = true;
             this.wayPoints = [];
         }

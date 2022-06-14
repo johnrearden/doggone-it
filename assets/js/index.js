@@ -76,6 +76,14 @@ function init() {
 
     document.getElementById("next-level").addEventListener('click', event => {
         gameRunner.startNextLevel();
+    });
+
+    document.getElementById("try-again").addEventListener('click', event => {
+        gameRunner.repeatCurrentLevel();
+    });
+
+    document.getElementById("begin-again").addEventListener('click', event => {
+        gameRunner.startGameAgain();
     })
 
     window.requestAnimationFrame(gameRunner.updateGame);

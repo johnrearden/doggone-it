@@ -33,11 +33,25 @@ export function GameRunner(sprites, background, dog, herd, level) {
 
                 // Check for level complete
                 if (this.herd.allSheepGone) {
-                    this.running = false;
-                    let display = document.getElementById("end-of-level-display");
-                    display.style.display = "initial";
-                    let displayText = document.getElementById("end-level-message");
-                    displayText.innerText = `LEVEL ${this.level.id} COMPLETE!`;
+                    if (this.level.id + 1 === levels.length) {
+                        console.log("GAME COMPLETE!");
+                        this.running = false;
+                        let display = document.getElementById("end-of-level-display");
+                        display.style.display = "initial";
+                        let endGameDisplay = document.getElementById("game-complete-button");
+                        endGameDisplay.style.display = "initial";
+                        let displayText = document.getElementById("end-level-message");
+                        displayText.innerText = `You beat the game!`;
+                        let levelOverButtons = document.getElementById("level-over-buttons");
+                        levelOverButtons.style.display = "none";
+                    } else {
+                        this.running = false;
+                        let display = document.getElementById("end-of-level-display");
+                        display.style.display = "initial";
+                        let displayText = document.getElementById("end-level-message");
+                        displayText.innerText = `LEVEL ${this.level.id + 1} COMPLETE!`;
+                    }
+                    
                 }
                 
                 let currentTime = new Date().getTime();
@@ -47,6 +61,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 let value = Math.ceil(this.timeRemaining - elapsedTime);
                 timerBar.value = value;
 
+                // Check for out of time.
                 if (value <= 0) {
                     this.running = false;
                     console.log("time up");
@@ -65,10 +80,24 @@ export function GameRunner(sprites, background, dog, herd, level) {
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
 
-    this.startNextLevel = function() {
+    /**
+     * Starts the current level again. 
+     */
+    this.repeatCurrentLevel = function() {
+        this.startLevel(this.level.id);
+    }
+
+    this.startNextLevel = function () {
+        this.startLevel(this.level.id + 1);
+    }
+
+    this.startGameAgain = function () {
+        this.startLevel(0);
+    }
+
+    this.startLevel = function(levelIndex) {
         this.hideEndLevelDisplay();
-        let nextLevelIndex = this.level.id; // levels.json array is zero-based
-        this.level = levels[nextLevelIndex];
+        this.level = levels[levelIndex];
         this.dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
         this.herd = new Herd(this.level.sheep);
         this.frameCount = 0;
