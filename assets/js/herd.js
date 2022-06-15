@@ -33,7 +33,12 @@ export class Herd {
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
             let randY = Math.random() * (FIELD_HEIGHT - 2 * FIELD_BORDER);
-            let newSheep = new Sheep(randX + FIELD_BORDER, randY + FIELD_BORDER, i);
+            let isLamb = i % 2 === 0 ? true : false;
+            let newSheep = new Sheep(
+                randX + FIELD_BORDER, 
+                randY + FIELD_BORDER, 
+                i,
+                isLamb);
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }

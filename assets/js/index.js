@@ -82,9 +82,33 @@ function init() {
         gameRunner.repeatCurrentLevel();
     });
 
+    document.getElementById("action-replay").addEventListener('click', event => {
+        gameRunner.startActionReplay();
+    })
+
     document.getElementById("begin-again").addEventListener('click', event => {
         gameRunner.startGameAgain();
-    })
+    });
+
+    document.getElementById("rewind").addEventListener('click', event => {
+        gameRunner.rewindReplay();
+    });
+
+    document.getElementById("play").addEventListener('click', event => {
+        gameRunner.playReplay();
+    });
+
+    document.getElementById("pause").addEventListener('click', event => {
+        gameRunner.pauseReplay();
+    });
+
+    document.getElementById("fast-forward").addEventListener('click', event => {
+        gameRunner.fastForwardReplay();
+    });
+
+    document.getElementById("finish").addEventListener('click', event => {
+        gameRunner.finishReplay();
+    });
 
     window.requestAnimationFrame(gameRunner.updateGame);
 }

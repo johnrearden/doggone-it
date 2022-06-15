@@ -16,7 +16,7 @@ export class Sheep {
      * @param {Number} xPos 
      * @param {Number} yPos 
      */
-    constructor(xPos, yPos, id) {
+    constructor(xPos, yPos, id, isLamb) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.direction = 0;
@@ -24,6 +24,7 @@ export class Sheep {
         this.anxiety = 1;
         this.id = id;
         this.moving = false;
+        this.isLamb = isLamb
     }
 
     /**

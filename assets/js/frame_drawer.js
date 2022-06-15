@@ -83,7 +83,7 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
     }
 }
 
-const drawSprite = (context, image, x, y, angle, scale) => {
+export const drawSprite = (context, image, x, y, angle, scale) => {
     if (image) {
         let imgWidth = image.width * scale;
         let imgHeight = image.height * scale;
@@ -132,7 +132,7 @@ const getSpriteFrame = (frameCount) => {
  * @returns index : the base index of the correct sprite
  * @returns angleOffset : the adjustment to the sprites direction.
  */
-const getIndexAndAdjustedAngle = (quadrant, direction) => {
+export const getIndexAndAdjustedAngle = (quadrant, direction) => {
     let index, adjustedAngle;
     switch (quadrant) {
         case Quadrant.SOUTH: {

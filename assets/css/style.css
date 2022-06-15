@@ -66,6 +66,10 @@ header {
     position: relative;
 }
 
+#action-replay-display {
+    display: none;
+}
+
 #replay-banner {
     position: absolute;
     left: 20px;
