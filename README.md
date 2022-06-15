@@ -150,6 +150,8 @@ You can make a copy of the original repository to view and/or make changes witho
 - Press Enter. Your clone will be created.
 # Credits
 ## Images:
+Farm tileset:
+Buch @ http://blog-buch.rhcloud.com
 
 ## Code:
 CSS aspect-ratio property:
