@@ -65,7 +65,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 // Check for out of time.
                 if (value <= 0) {
                     this.running = false;
-                    this.show(["end-of-level-display"]);
+                    this.show(["end-of-level-display", 
+                               "action-replay"]);
                     this.hide(["next-level"]);
                     this.showMessage("Out of time!");
                 }
@@ -152,7 +153,9 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.startActionReplay = function () {
         console.log("starting action replay");
         this.hide(["end-of-level-display"]);
-        this.show(["action-replay-display", "replay-banner"]);
+        this.show(["action-replay-display", 
+                   "replay-banner", 
+                   "replay-speed"]);
         this.actionReplay = new ActionReplay(
                                     this.snapshots, 
                                     this.sprites, 
@@ -164,7 +167,9 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.actionReplay = null;
         this.hide(["action-replay-display", 
                    "end-level-message", 
-                   "action-replay"]);
+                   "action-replay",
+                   "replay-speed",
+                   "replay-banner"]);
         this.show(["end-of-level-display"]);
     }
 

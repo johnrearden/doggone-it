@@ -84,6 +84,7 @@ header {
     top: 20px;
     color: #facc20;
     background-color: transparent;
+    display: none;
 }
 
 #end-of-level-display {

@@ -2,7 +2,7 @@ export const levels = [
     {
         "id": 0,
         "sheep": 3,
-        "time": 20
+        "time": 2
     },
     {
         "id": 1,
