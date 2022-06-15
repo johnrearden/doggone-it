@@ -6,7 +6,7 @@
 
 body {
     font-family: 'VT323', monospace;
-    background-image: linear-gradient(#24631b, #123254);
+    background-image: linear-gradient(#24631b, #174211);
     color: red;
     width: 100vw;
     height: 100vh;
@@ -136,7 +136,7 @@ header {
     text-align: center;
 }
 #time-remaining[value] {
-    --color: blue; /* the progress color */
+    --color: #facc42; /* the progress color */
     --background: #333333; /* the background color */
   
     -webkit-appearance: none;

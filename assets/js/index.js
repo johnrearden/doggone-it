@@ -36,7 +36,7 @@ function init() {
         }
     };
     let background = {
-        url: 'assets/images/backgrounds/1.png',
+        url: 'assets/images/backgrounds/background1.png',
         image: null
     }
 
@@ -62,7 +62,7 @@ function init() {
     });
 
     gameCanvas.addEventListener('pointermove', event => {
-        if (gameRunner.frameCount % 5 === 0){ // throttle the mouse events
+        if (gameRunner.frameCount % 2 === 0){ // throttle the mouse events
             let rect = gameCanvas.getBoundingClientRect();
             let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
             let y = (event.clientY - rect.top) / rect.height * FIELD_HEIGHT;

@@ -8,7 +8,9 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
     }
 
     // Draw the dog's path
-    context.fillStyle = 'purple'
+    context.strokeStyle = 'white';
+    context.lineWidth = 5;
+
     if (dog.wayPoints.length > 0 && dog.pointerDown) {
         context.beginPath();
         context.moveTo(dog.xPos, dog.yPos);

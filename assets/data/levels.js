@@ -1,8 +1,8 @@
 export const levels = [
     {
         "id": 0,
-        "sheep": 3,
-        "time": 2
+        "sheep": 5,
+        "time": 20
     },
     {
         "id": 1,
