@@ -1,9 +1,10 @@
 import { REPLAY_SNAPSHOT_FREQUENCY } from "./constants.js";
-import { Dog } from "./dog.js";
 import { getQuadrant } from "./utilities.js";
 import { getIndexAndAdjustedAngle, drawSprite } from "./frame_drawer.js";
-import { Herd } from "./herd.js";
 
+/**
+ * An enum representing the speed at which the replay is being played
+ */
 export const ReplaySpeed = {
     NORMAL: 1,
     PAUSE: 0,
@@ -11,6 +12,9 @@ export const ReplaySpeed = {
     REWIND: -1
 }
 
+/**
+ * A class that represents an action replay of the level just played.
+ */
 export class ActionReplay {
     constructor(snapshots, sprites, background) {
         this.snapshots = snapshots;
@@ -24,26 +28,34 @@ export class ActionReplay {
         this.drawBackground();
         this.drawReplayFrame(snapshots[0]);
 
+        // Calibrate the replay slider's value scale.
         let replaySlider = document.getElementById("replay-slider");
         replaySlider.max = this.snapshots.length - 1;
     }
 
     update = function () {
+        // Only update every REPLAY_SNAPSHOT_FREQUENCY frames
         if (++this.frameCount % REPLAY_SNAPSHOT_FREQUENCY === 0) {
             
+            // Increment the index of the snapshot (which points to 
+            // the correct snapshot in the array). Prevent it from running
+            // off either end of the array
             this.snapshotIndex += this.replaySpeed;
             if (this.snapshotIndex < 0) {
                 this.snapshotIndex = 0;
             } else if (this.snapshotIndex >= this.snapshots.length) {
                 this.snapshotIndex = this.snapshots.length - 1;
             }
-            document.getElementById("replay-time").innerText = this.snapshotIndex;
+
+            // Draw this snapshot
             this.drawBackground();
             this.drawReplayFrame(this.snapshots[this.snapshotIndex]);
 
+            // Update the replay-time slider
             let replaySlider = document.getElementById("replay-slider");
             replaySlider.value = this.snapshotIndex;
 
+            // Update the time-display.
             let timeDisplay = document.getElementById("replay-time");
             let framesPerSecond = 60 / REPLAY_SNAPSHOT_FREQUENCY;
             let seconds = this.snapshotIndex / framesPerSecond;
@@ -58,6 +70,7 @@ export class ActionReplay {
             
         }
 
+        // Flash the replay banner on and off twice a second
         if (this.frameCount % 30 === 0) {
             let replayBanner = document.getElementById("replay-banner");
             if (replayBanner.style.display === "none") {
@@ -69,12 +82,17 @@ export class ActionReplay {
 
     }
 
+    /**
+     * Draws one snapshot frame of the previous level
+     * @param {Snapshot} snapshot 
+     */
     drawReplayFrame = function (snapshot) {
 
         let canvas = document.getElementById("game-area");
         if (canvas) {
             document.getElementById("sheep-remaining").innerText = snapshot.sheep.length;
             let context = canvas.getContext("2d");
+
             // Pick the correct directional sprite from South, West, North, East
             let quadrant = getQuadrant(snapshot.dog.direction);
             let [index, adjustedAngle] = getIndexAndAdjustedAngle(
@@ -82,7 +100,6 @@ export class ActionReplay {
                 snapshot.dog.direction);
             let correctSprite = this.sprites.dog.images[index];
             
-            context.fillText("alsdkf;laksjdfa", 0, 0);
             // Draw the dog.
             drawSprite(
                 context,
@@ -110,26 +127,14 @@ export class ActionReplay {
                     sheep.y,
                     adjustedAngle,
                     scale
-                )
+                );
             }
         }
     }
 
-    drawSprite = function (context, image, x, y, angle, scale) {
-        if (image) {
-            let imgWidth = image.width * scale;
-            let imgHeight = image.height * scale;
-            context.save();
-            context.translate(x, y);
-            context.rotate(angle);
-            context.drawImage(
-                image,
-                -imgWidth / 2, -imgHeight / 2,
-                imgWidth, imgHeight);
-            context.restore();
-        }
-    }
-
+    /**
+     * Draws the background image onto the canvas in order to clear it
+     */
     drawBackground = function () {
         if (this.background.image) {
             let gameCanvas = document.getElementById('game-area');

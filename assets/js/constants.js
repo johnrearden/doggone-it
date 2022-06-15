@@ -34,13 +34,13 @@ export const SHEEP_MIN_DISTANCE_FROM_HERD = 150;
 /**
  * Represents the distance the dog can travel in one frame
  */
-export const DOG_TRAVEL_PER_FRAME = 2.5;
+export const DOG_UNIT_MOVE = 2.5;
 
 
 /**
  * Represents the rate at which the dog is able to turn.
  */
-export const DOG_ANGULAR_CHANGE_PER_FRAME = Math.PI / 8;
+export const DOG_UNIT_TURN = Math.PI / 8;
 
 
 /**

@@ -7,11 +7,10 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         context = gameCanvas.getContext('2d');
     }
 
-    // Draw the dog's path
-    context.strokeStyle = 'white';
-    context.lineWidth = 5;
-
+    // If the pointer is down, draw the dog's path
     if (dog.wayPoints.length > 0 && dog.pointerDown) {
+        context.strokeStyle = 'white';
+        context.lineWidth = 5;
         context.beginPath();
         context.moveTo(dog.xPos, dog.yPos);
         for (let i = 0; i < dog.wayPoints.length; i++) {
@@ -22,7 +21,7 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         context.stroke();
     }
 
-    // Pick the correct directional sprite from South, West, North, East
+    // Pick the correct directional dog sprite from South, West, North, East
     let quadrant = getQuadrant(dog.direction);
     let [index, adjustedAngle] = getIndexAndAdjustedAngle(quadrant, dog.direction);
 
@@ -44,19 +43,17 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         adjustedAngle,
         0.8);
 
-    // Draw the dog's destination
-    context.fillStyle = dog.pointerDown ? 'red' : 'blue';
-    context.fillRect(dog.xDest - 2, dog.yDest - 2, 5, 5);
-
-    // Draw the herd center
-    // context.fillStyle = 'white';
-    // context.fillRect(herd.centerX, herd.centerY, 10, 10);
+    // If the pointer is down, draw the dog's destination
+    if (dog.pointerDown) {
+        context.fillStyle = 'white';
+        context.fillRect(dog.xDest - 2, dog.yDest - 2, 5, 5);
+    }
 
     // Draw the herd
     for (let i = 0; i < herd.xArray.length; i++) {
         let sheep = herd.xArray[i];
 
-        // Pick the correct directional sprite from South, West, North, East
+        // Pick the correct directional sheep sprite from South, West, North, East
         let quadrant = getQuadrant(sheep.direction);
         let [index, adjustedAngle] = getIndexAndAdjustedAngle(quadrant, sheep.direction);
 
@@ -68,8 +65,8 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
         }
         let correctSprite = sprites.sheep.images[index + indexOffset];
 
-        // Every second sheep is a lamb.
-        let scale = sheep.id % 2 === 0 ? 1.0 : 0.7;
+        // Calculate the scale based on whether this sheep is a lamb or not
+        let scale = sheep.isLamb ? 0.7 : 1.0;
 
         // Draw this sheep
         drawSprite(
@@ -79,12 +76,20 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
             sheep.yPos,
             adjustedAngle,
             scale
-        )
-        // Draw the sheep id
-        // context.fillText(sheep.id, sheep.xPos, sheep.yPos - 20);
+        );
     }
 }
 
+/**
+ * Draws a sprite image on a supplied context, rotating the context so
+ * as to draw the sprite pointing in the appropriate direction.
+ * @param {Context} context 
+ * @param {Image} image 
+ * @param {Number} x 
+ * @param {Number} y 
+ * @param {Number} angle 
+ * @param {Number} scale The ratio of the drawn size to the original image size
+ */
 export const drawSprite = (context, image, x, y, angle, scale) => {
     if (image) {
         let imgWidth = image.width * scale;

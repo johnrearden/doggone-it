@@ -42,10 +42,6 @@ export class Herd {
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
-
-        // let sheepRemainingOutput = document.getElementById("sheep-remaining");
-        // sheepRemainingOutput.innerText = numSheep;
-        
     }
 
     /**
@@ -65,8 +61,6 @@ export class Herd {
             // Update the sheep, passing a reference to the dog.
             sheep.update(this.centerX, this.centerY, dog);
         }
-
-        
     }
 
     /**

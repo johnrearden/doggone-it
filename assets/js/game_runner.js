@@ -20,8 +20,10 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.actionReplay = null;
     this.snapshots = [];
 
+    // Calibrate the time remaining display to this level's time limit.
     document.getElementById("time-remaining").max = this.levelTimeLimit;
     document.getElementById("time-remaining").value = this.levelTimeLimit;
+
 
     // This is the callback passed to window.requestAnimationFrame, 
     // and needs to be explicitly bound to the GameRunner object, 
@@ -29,11 +31,10 @@ export function GameRunner(sprites, background, dog, herd, level) {
     // requestAnimationFrame() scope.
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
+            // If an action replay exists, update it.
             if (this.actionReplay) {
                 this.actionReplay.update();
-            }
-
-            if (this.running) {
+            } else if (this.running) {
                 this.drawBackground();
                 this.dog.update();
                 this.herd.update(this.dog);
@@ -41,6 +42,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 // Check for level complete
                 if (this.herd.allSheepGone) {
                     if (this.level.id + 1 === levels.length) {
+                        // Player has finished the final level
                         this.running = false;
                         this.show(["end-of-level-display", 
                                    "game-complete-button",
@@ -55,14 +57,14 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     }
                 }
 
+                // Update the time display
                 let currentTime = new Date().getTime();
                 let elapsedTime = currentTime - this.lastStartTime;
-
                 let timerBar = document.getElementById("time-remaining");
                 let value = Math.ceil(this.timeRemaining - elapsedTime);
                 timerBar.value = value;
 
-                // Check for out of time.
+                // Check if time has run out
                 if (value <= 0) {
                     this.running = false;
                     this.show(["end-of-level-display", 
@@ -93,6 +95,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     }
                     this.snapshots.push(snapshot);
                 }
+
+                // Finally, draw the frame
                 drawFrame(this.dog, this.herd, this.frameCount, this.sprites);
             }
             
@@ -109,14 +113,24 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.startLevel(this.level.id);
     }
 
+    /**
+     * Starts the next level.
+     */
     this.startNextLevel = function () {
         this.startLevel(this.level.id + 1);
     }
 
+    /**
+     * Begins the game again at level 0 (shown to the player as 1)
+     */
     this.startGameAgain = function () {
         this.startLevel(0);
     }
 
+    /**
+     * Begin a level
+     * @param {Integer} levelIndex 
+     */
     this.startLevel = function (levelIndex) {
         this.snapshots = [];
         this.hide(["end-of-level-display"]);
@@ -131,6 +145,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.running = true;
     }
 
+    // Clear the contents of the game canvas by drawing over it.
     this.drawBackground = function () {
         if (background.image) {
             let gameCanvas = document.getElementById('game-area');
@@ -139,11 +154,17 @@ export function GameRunner(sprites, background, dog, herd, level) {
         }
     }
 
+    /**
+     * Allows the game to be restarted
+     */
     this.start = function () {
         this.running = true;
         this.startTime = new Date().getTime();
     }
 
+    /**
+     * Allows the game to be paused
+     */
     this.stop = function () {
         this.running = false;
         let currentTime = new Date().getTime();
@@ -151,8 +172,10 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.timeRemaining -= timeSinceLastStart;
     }
 
+    /**
+     * Begins an action replay of the level just finished
+     */
     this.startActionReplay = function () {
-        console.log("starting action replay");
         this.hide(["end-of-level-display"]);
         this.show(["action-replay-display", 
                    "replay-banner", 
@@ -163,8 +186,12 @@ export function GameRunner(sprites, background, dog, herd, level) {
                                     this.background);
     }
 
+    /**
+     * Ends the replay, and presents the player with the choice of
+     * playing the same level again, or going to the next level if the
+     * previous one was completed successfully
+     */
     this.finishReplay = function () {
-        console.log("stopping action replay");
         this.actionReplay = null;
         this.hide(["action-replay-display", 
                    "end-level-message", 
@@ -174,33 +201,41 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.show(["end-of-level-display"]);
     }
 
+    /**
+     * Sets the speed of the action replay to -1x
+     */
     this.rewindReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.REWIND;
         }
     }
 
-
+    /**
+     * Starts the action replay, playing at 1x
+     */
     this.playReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.NORMAL;
         }
     }
 
-
+    /**
+     * Paused the action replay
+     */
     this.pauseReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.PAUSE;
         }
     }
 
-
+    /**
+     * Plays the action replay at double speed, 2x
+     */
     this.fastForwardReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.FAST_FORWARD;
         }
     }
-
 
     /**
      * Passes the pointer events through to the dog.
@@ -229,20 +264,30 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.dog.onPointerMove(x, y);
     }
 
+    /**
+     * Utility method to display an array of HTML elements.
+     * @param {Array} array of HTML id attributes 
+     */
     this.show = function (array) {
         for (let i = 0; i < array.length; i++) {
-            console.log(`showing ${array[i]}`);
             document.getElementById(array[i]).style.display = "initial";
         }
     }
 
+    /**
+     * Utility method to display an array of HTML elements.
+     * @param {Array} array of HTML id attributes 
+     */
     this.hide = function (array) {
         for (let i = 0; i < array.length; i++) {
-            console.log(`hiding ${array[i]}`);
             document.getElementById(array[i]).style.display = "none";
         }
     }
 
+    /**
+     * Utility method to show a string to the player
+     * @param {String} message to be displayed
+     */
     this.showMessage = function(message) {
         let displayText = document.getElementById("end-level-message");
         displayText.innerText = message;

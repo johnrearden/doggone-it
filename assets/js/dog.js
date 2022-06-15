@@ -4,8 +4,8 @@ import {
 } from "./utilities.js";
 
 import {
-    DOG_TRAVEL_PER_FRAME,
-    DOG_ANGULAR_CHANGE_PER_FRAME,
+    DOG_UNIT_MOVE,
+    DOG_UNIT_TURN,
     DOG_SLOWDOWN_RANGE
 } from "./constants.js";
 
@@ -28,7 +28,7 @@ export class Dog {
     }
 
     /**
-     * Updates the dogs position, called before each repaint
+     * Updates the dog's position, called before each repaint
      */
     update() {
         this.moveToDest();
@@ -66,12 +66,11 @@ export class Dog {
                 this.moving = true;
             }
         }
-
         this.turnTowardsDestination();
 
-        // Reduce the dogs travel distance as he nears his final wayPoint. 
+        // Reduce the dogs speed as he nears his final wayPoint. 
         let distToDestination = getDistanceToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
-        let distToTravel = DOG_TRAVEL_PER_FRAME;
+        let distToTravel = DOG_UNIT_MOVE;
         if (distToDestination < DOG_SLOWDOWN_RANGE && this.wayPoints.length === 1) {
             distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
         }
@@ -81,6 +80,13 @@ export class Dog {
         this.yPos += distToTravel * Math.sin(this.direction);
     }
 
+    /**
+     * If the pointerDown flag is false, sets it to true and clears
+     * the wayPoints array, as this is the beginning of a new path for
+     * the dog.
+     * @param {Number} x 
+     * @param {Number} y 
+     */
     onPointerDown(x, y) {
         if (!this.pointerDown) {
             this.pointerDown = true;
@@ -88,17 +94,32 @@ export class Dog {
         }
     }
 
+    /**
+     * Adds the current pointer position to the end of the wayPoints array
+     * @param {Number} x 
+     * @param {Number} y 
+     */
     onPointerMove(x, y) {
         if (this.pointerDown) {
             this.wayPoints.push([x, y]);
         }
     }
 
+    /**
+     * Sets the pointerDown flag to false, and adds the supplied point
+     * to the wayPoints array. This also ensures that a pointer tap/click
+     * without dragging will result in at least this one wayPoint
+     * @param {Number} x 
+     * @param {Number} y 
+     */
     onPointerUp(x, y) {
         this.pointerDown = false;
         this.wayPoints.push([x, y]);
     }
 
+    /**
+     * Makes the dog turn towards its destination
+     */
     turnTowardsDestination() {
         // Calculate the direction the dog needs to travel in to head directly for
         // its destination, and turn towards this direction.
@@ -106,20 +127,20 @@ export class Dog {
         let angularDifference = getAngularDifference(correctDirection, this.direction);
 
         // Check first to ensure the dog does not turn past the correct direction
-        if (DOG_ANGULAR_CHANGE_PER_FRAME > Math.abs(angularDifference)) {
+        if (DOG_UNIT_TURN > Math.abs(angularDifference)) {
             this.direction = correctDirection;
         } else {
-            this.direction += DOG_ANGULAR_CHANGE_PER_FRAME * Math.sign(angularDifference);
+            this.direction += DOG_UNIT_TURN * Math.sign(angularDifference);
         }
     }
 
 
     /**
-     * @returns true if distance < constants.DOG_TRAVEL_PER_FRAME, false otherwise.
+     * @returns true if distance is less than an effective threshold, false otherwise.
      */
     arrivedAtNextWaypoint() {
         let distToNextWaypoint = getDistanceToPoint(this.xDest, this.yDest, this.xPos, this.yPos);
-        return distToNextWaypoint <= DOG_TRAVEL_PER_FRAME * 2;
+        return distToNextWaypoint <= DOG_UNIT_MOVE * 2;
     }
 
     /**

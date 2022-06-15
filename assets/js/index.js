@@ -6,7 +6,6 @@ import { FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
 
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM content loaded triggered');
     init();
 })
 
@@ -127,11 +126,9 @@ async function loadAllImages(sprites, background) {
             }
             img.src = `assets/images/dog_images/${url}.png`;
             sprites.dog.images.push(img);
-            console.log(img.src);
         }));
     }
     await Promise.all(promiseArray);
-    console.log('dog images loaded');
 
     // Load 12 sheep images.
     promiseArray = [];
@@ -148,7 +145,6 @@ async function loadAllImages(sprites, background) {
         }));
     }
     await Promise.all(promiseArray);
-    console.log('sheep images loaded');
 
     // Load background image.
     background.image = new Image();

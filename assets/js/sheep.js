@@ -130,7 +130,6 @@ export class Sheep {
             xVel = Math.cos(angle) * velocity;
             yVel = Math.sin(angle) * velocity;
         }
-
         return [xVel, yVel];
     }
 
@@ -149,7 +148,5 @@ export class Sheep {
         } else if (this.yPos > FIELD_HEIGHT - FIELD_BORDER) {
             this.yPos = FIELD_HEIGHT - FIELD_BORDER;
         }
-
-        
     }
 }
