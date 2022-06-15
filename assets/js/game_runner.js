@@ -118,6 +118,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
     }
 
     this.startLevel = function (levelIndex) {
+        this.snapshots = [];
         this.hide(["end-of-level-display"]);
         this.level = levels[levelIndex];
         this.dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
@@ -155,7 +156,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.hide(["end-of-level-display"]);
         this.show(["action-replay-display", 
                    "replay-banner", 
-                   "replay-speed"]);
+                   "replay-time"]);
         this.actionReplay = new ActionReplay(
                                     this.snapshots, 
                                     this.sprites, 
@@ -168,7 +169,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.hide(["action-replay-display", 
                    "end-level-message", 
                    "action-replay",
-                   "replay-speed",
+                   "replay-time",
                    "replay-banner"]);
         this.show(["end-of-level-display"]);
     }

@@ -77,7 +77,7 @@ header {
     display: none;
 }
 
-#replay-speed {
+#replay-time {
     position: absolute;
     font-weight: bolder;
     right: 35px;

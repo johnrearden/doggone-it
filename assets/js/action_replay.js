@@ -37,13 +37,24 @@ export class ActionReplay {
             } else if (this.snapshotIndex >= this.snapshots.length) {
                 this.snapshotIndex = this.snapshots.length - 1;
             }
-            document.getElementById("replay-speed").innerText = this.snapshotIndex;
+            document.getElementById("replay-time").innerText = this.snapshotIndex;
             this.drawBackground();
             this.drawReplayFrame(this.snapshots[this.snapshotIndex]);
 
             let replaySlider = document.getElementById("replay-slider");
             replaySlider.value = this.snapshotIndex;
 
+            let timeDisplay = document.getElementById("replay-time");
+            let framesPerSecond = 60 / REPLAY_SNAPSHOT_FREQUENCY;
+            let seconds = this.snapshotIndex / framesPerSecond;
+            let hundreths = (seconds % 1) * 100;
+            let sText = Math.floor(seconds).toLocaleString("en-UK", {
+                minimumIntegerDigits: 2
+            });
+            let hText = Math.floor(hundreths).toLocaleString("en-UK", {
+                minimumIntegerDigits: 2
+            });
+            timeDisplay.innerText = `${sText}.${hText}`;
             
         }
 
