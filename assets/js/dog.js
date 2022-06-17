@@ -66,6 +66,7 @@ export class Dog {
                 this.moving = true;
             }
         }
+
         this.turnTowardsDestination();
 
         // Reduce the dogs speed as he nears his final wayPoint. 
@@ -123,15 +124,24 @@ export class Dog {
     turnTowardsDestination() {
         // Calculate the direction the dog needs to travel in to head directly for
         // its destination, and turn towards this direction.
-        let correctDirection = getDirectionToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
-        let angularDifference = getAngularDifference(correctDirection, this.direction);
+        let correctDirection = getDirectionToPoint(
+            this.xPos,
+            this.yPos,
+            this.xDest,
+            this.yDest);
+        this.direction = correctDirection;
+        // If the dog is close to its destination, it should move directly toward
+        // it without stepping.
 
-        // Check first to ensure the dog does not turn past the correct direction
-        if (DOG_UNIT_TURN > Math.abs(angularDifference)) {
-            this.direction = correctDirection;
-        } else {
-            this.direction += DOG_UNIT_TURN * Math.sign(angularDifference);
-        }
+        // let angularDifference = getAngularDifference(correctDirection, this.direction);
+
+        // // Check first to ensure the dog does not turn past the correct direction
+        // if (DOG_UNIT_TURN > Math.abs(angularDifference)) {
+        //     this.direction = correctDirection;
+        // } else {
+        //     // Turn toward the waypoint
+        //     this.direction += DOG_UNIT_TURN * Math.sign(angularDifference);
+        // }
     }
 
 

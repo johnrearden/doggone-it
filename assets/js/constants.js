@@ -40,7 +40,7 @@ export const DOG_UNIT_MOVE = 2.5;
 /**
  * Represents the rate at which the dog is able to turn.
  */
-export const DOG_UNIT_TURN = Math.PI / 8;
+export const DOG_UNIT_TURN = Math.PI / 4;
 
 
 /**

@@ -8,7 +8,7 @@ import {
 } from "./constants.js";
 import {
     ensureCorrectRange, getDirectionToPoint,
-    getDistanceToPoint, getQuadrant
+    getDistanceToPoint, Point, Rectangle, rectContainsPoint
 } from "./utilities.js";
 
 
@@ -40,7 +40,7 @@ export class Sheep {
      * @param {Number} herdYCenter 
      * @param {Dog} dog 
      */
-    update(herdXCenter, herdYCenter, dog) {
+    update(herdXCenter, herdYCenter, dog, obstacles) {
 
         // Calculate the sheeps velocity towards the center of the herd
         let xHerdVel, yHerdVel;
@@ -62,6 +62,13 @@ export class Sheep {
             this.moving = true;
             this.direction = Math.atan2(combinedYVel, combinedXVel);
         }
+
+        // Ensure the calculated move will not result in the sheep entering
+        // any of the obstacles in this level
+        [combinedXVel, combinedYVel] = this.checkMoveForObstacles(
+            combinedXVel,
+            combinedYVel,
+            obstacles);
 
         // Update the sheep's position
         this.xPos += combinedXVel;
@@ -155,5 +162,38 @@ export class Sheep {
         } else if (this.yPos > FIELD_HEIGHT - FIELD_BORDER) {
             this.yPos = FIELD_HEIGHT - FIELD_BORDER;
         }
+    }
+
+    /**
+     * Ensures that the sheep does not enter an area of the level occupied by 
+     * an obstacle.
+     * @param {Number} xVel The x velocity calculated for the current move
+     * @param {Number} yVel The y velocity calculated for the current move
+     * @returns the x and y velocities adjusted to avoid entering an obstacle
+     */
+    checkMoveForObstacles(xVel, yVel, obstacles) {
+        let futureX = this.xPos + xVel;
+        let futureY = this.yPos + yVel;
+        for (let obstacle of obstacles) {
+            let rect = new Rectangle(
+                obstacle.x,
+                obstacle.y,
+                obstacle.x + obstacle.width,
+                obstacle.y + obstacle.height);
+            if (rectContainsPoint(rect, new Point(futureX, futureY))) {
+                // Try keeping the current xPosition unchanged
+                if (!rectContainsPoint(rect, new Point(this.xPos, futureY))) {
+                    return [0, yVel];
+                }
+                // If that doesn't work, try keeping the current yPosition unchanged
+                if (!rectContainsPoint(rect, new Point(futureX, this.yPos))) {
+                    return [yVel, 0];
+                }
+                // Last resort, keep both unchanged
+                return [0, 0];
+
+            }
+        }
+        return [xVel, yVel];
     }
 }

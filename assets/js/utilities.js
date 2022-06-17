@@ -96,3 +96,42 @@ export const ensureCorrectRange = (angle) => {
         return angle;
     }
 }
+
+/**
+ * Tests if the point supplied is within the rectangle supplied.
+ * @param {Rectangle} rect 
+ * @param {Point} point 
+ * @returns true if the point is contained within the rectangle
+ */
+export const rectContainsPoint = (rect, point) => {
+    let isContained = true;
+    if (point.x > rect.right || point.x < rect.left) {
+        isContained = false;
+    }
+    if (point.y > rect.bottom || point.y < rect.top) {
+        isContained = false;
+    }
+    return isContained;
+}
+
+/**
+ * A class representing a point
+ */
+export class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+/**
+ * A class representing a rectangle
+ */
+export class Rectangle {
+    constructor(left, top, right, bottom) {
+        this.left = left;
+        this.top = top;
+        this.right = right;
+        this.bottom = bottom;
+    }
+}

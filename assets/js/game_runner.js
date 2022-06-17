@@ -136,7 +136,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
         this.hide(["end-of-level-display"]);
         this.level = levels[levelIndex];
         this.dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
-        this.herd = new Herd(this.level.sheep);
+        this.herd = new Herd(this.level);
         this.frameCount = 0;
         this.levelTimeLimit = this.level.time * 1000;
         this.timeRemaining = this.level.time * 1000;

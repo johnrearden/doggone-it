@@ -41,7 +41,7 @@ function init() {
 
     let level = levels[0];
     let dog = new Dog(FIELD_WIDTH / 2, FIELD_HEIGHT / 2);
-    let herd = new Herd(level.sheep);
+    let herd = new Herd(level);
     let gameRunner = new GameRunner(sprites, background, dog, herd, level);
 
     loadAllImages(sprites, background);

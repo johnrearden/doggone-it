@@ -21,14 +21,15 @@ export class Herd {
      * @param {Number} canvasWidth 
      * @param {Number} canvasHeight 
      */
-    constructor(numSheep) {
-        this.numSheep = numSheep;
+    constructor(level) {
+        this.numSheep = level.sheep;
         this.centerX = 0;
         this.centerY = 0;
         this.xArray = [];
         this.yArray = [];
         this.allSheepGone = false;
         this.id = count++;
+        this.obstacles = level.obstacles;
 
         for (let i = 0; i < this.numSheep; i++) {
             let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
@@ -59,7 +60,7 @@ export class Herd {
 
         for (let sheep of this.xArray) {
             // Update the sheep, passing a reference to the dog.
-            sheep.update(this.centerX, this.centerY, dog);
+            sheep.update(this.centerX, this.centerY, dog, this.obstacles);
         }
     }
 
