@@ -126,10 +126,6 @@ Feature | Expected | Action | Result
 - There was a problem with the sprite choice for the sheep. If a sheep's movement toward the herd center was balanced against it's movement away from the dog, it would thrash over and back across the balance point, switching the sprite drawn rapidly.
     - Solution found : In this case, the resultant velocity would be very small, so I set any velocity smaller than a low threshold to zero, and eliminated the thrashing.
 
-- As the dog turned in steps towards its next waypoint, it was possible for the arc that the dog described to be longer than the absolute distance to the waypoint, which resulted in the dog not actually being able to reach the waypoint at all. In this situation the dog would repeatedly loop around the waypoint, effectively going into orbit around it.
-    - Solution found : 
-
-
 # Deployment
 
 ### GitHub Pages
