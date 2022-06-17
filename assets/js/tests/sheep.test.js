@@ -32,4 +32,5 @@ describe("Test the Sheep class", () => {
             expect(velocity).toBeLessThanOrEqual(SHEEP_MAX_VELOCITY_AWAY_FROM_DOG);
         });
     });
+
 });

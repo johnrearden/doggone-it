@@ -123,11 +123,12 @@ Feature | Expected | Action | Result
 # Bugs
 
 ## Bugs found and solutions developed
-- There was a problem with the sprite choice for the sheep. When the direction was right on the threshold between two different sprites, a situtation could develop whereby the sheep would thrash back and forward between the two.
+- There was a problem with the sprite choice for the sheep. If a sheep's movement toward the herd center was balanced against it's movement away from the dog, it would thrash over and back across the balance point, switching the sprite drawn rapidly.
+    - Solution found : In this case, the resultant velocity would be very small, so I set any velocity smaller than a low threshold to zero, and eliminated the thrashing.
 
-- As the dog turns in steps towards its next waypoint, it was possible for the arc that the dog described to be longer than the absolute distance to the waypoint, which resulted in the dog temporarily going into orbit around that point. This was particularly noticeable when the user clicked on a point close to, and directly behind the dog.
-Here's a short clip of the problem
-![video clip](assets/images/documentation_images/dog.mp4)
+- As the dog turned in steps towards its next waypoint, it was possible for the arc that the dog described to be longer than the absolute distance to the waypoint, which resulted in the dog not actually being able to reach the waypoint at all. In this situation the dog would repeatedly loop around the waypoint, effectively going into orbit around it.
+    - Solution found : 
+
 
 # Deployment
 

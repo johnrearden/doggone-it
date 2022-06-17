@@ -48,18 +48,22 @@ export const getDistanceToPoint = (x1, y1, x2, y2) => {
 
 export const Quadrant = {
     EAST: {
+        name: "east",
         min: -Math.PI * 0.25,
         max: Math.PI * 0.25
     },
     SOUTH: {
+        name: "south",
         min: Math.PI * 0.25,
         max: Math.PI * 0.75,
     },
     NORTH: {
+        name: "north",
         min: -Math.PI * 0.75,
         max: -Math.PI * 0.25
     },
     WEST: {
+        name: "west",
         min: Math.PI * 0.75,
         max: -Math.PI * 0.75
     }

@@ -1,10 +1,15 @@
-import {SHEEP_OUTER_REACTION_LIMIT,
-        SHEEP_BASE_VELOCITY_AWAY_FROM_DOG,
-        SHEEP_VELOCITY_TOWARDS_HERD,
-        FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH, 
-        SHEEP_MAX_VELOCITY_AWAY_FROM_DOG, 
-        SHEEP_MIN_DISTANCE_FROM_HERD} from "./constants.js";
-import { ensureCorrectRange, getDirectionToPoint, getDistanceToPoint } from "./utilities.js";
+import {
+    SHEEP_OUTER_REACTION_LIMIT,
+    SHEEP_BASE_VELOCITY_AWAY_FROM_DOG,
+    SHEEP_VELOCITY_TOWARDS_HERD,
+    FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH,
+    SHEEP_MAX_VELOCITY_AWAY_FROM_DOG,
+    SHEEP_MIN_DISTANCE_FROM_HERD
+} from "./constants.js";
+import {
+    ensureCorrectRange, getDirectionToPoint,
+    getDistanceToPoint, getQuadrant
+} from "./utilities.js";
 
 
 export class Sheep {
@@ -40,17 +45,17 @@ export class Sheep {
         // Calculate the sheeps velocity towards the center of the herd
         let xHerdVel, yHerdVel;
         [xHerdVel, yHerdVel] = this.getVelocityTowardHerd(herdXCenter, herdYCenter);
-        
+
         // Calculate the sheeps velocity away from the dog.
         let xDogVel, yDogVel;
         [xDogVel, yDogVel] = this.getVelocityAwayFromDog(dog);
 
-
         // Sum the velocities and update the sheeps position
         let combinedXVel = xHerdVel + xDogVel;
         let combinedYVel = yHerdVel + yDogVel;
-        if (Math.abs(combinedXVel) <= 0.05 && Math.abs(combinedYVel) <= 0.05) {
+        if (Math.abs(combinedXVel) <= 1 && Math.abs(combinedYVel) <= 1) {
             this.moving = false;
+            this.direction = Math.atan2(combinedYVel, combinedXVel);
             combinedXVel = 0;
             combinedYVel = 0;
         } else {
@@ -58,9 +63,11 @@ export class Sheep {
             this.direction = Math.atan2(combinedYVel, combinedXVel);
         }
 
+        // Update the sheep's position
         this.xPos += combinedXVel;
         this.yPos += combinedYVel;
 
+        // Ensure the sheep has not left the game area
         this.checkGameAreaBounds();
     }
 
@@ -76,14 +83,14 @@ export class Sheep {
         let distToHerd = getDistanceToPoint(this.xPos, this.yPos, herdXCenter, herdYCenter);
         if (distToHerd > SHEEP_MIN_DISTANCE_FROM_HERD) {
             let directionToHerdCenter = getDirectionToPoint(
-                this.xPos, 
-                this.yPos, 
+                this.xPos,
+                this.yPos,
                 herdXCenter,
                 herdYCenter);
-            
+
             let velocity = this.anxiety * SHEEP_VELOCITY_TOWARDS_HERD;
             return [velocity * Math.cos(directionToHerdCenter),
-                    velocity * Math.sin(directionToHerdCenter)];
+            velocity * Math.sin(directionToHerdCenter)];
         } else {
             return [0, 0];
         }
@@ -105,7 +112,7 @@ export class Sheep {
         if (dog.barking) {
             reactionRange *= 2;
         }
-        
+
 
         // Compare the squares of the distances (it's not necessary to compute the
         // square root also before deciding if the dog is within range - that's 

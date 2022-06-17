@@ -55,7 +55,9 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
 
         // Pick the correct directional sheep sprite from South, West, North, East
         let quadrant = getQuadrant(sheep.direction);
-        let [index, adjustedAngle] = getIndexAndAdjustedAngle(quadrant, sheep.direction);
+        let [index, adjustedAngle] = getIndexAndAdjustedAngle(
+                                        quadrant, 
+                                        sheep.direction);
 
         // Pick the correct sprite leg position based on the frame count
         if (!sheep.moving) {
@@ -114,7 +116,7 @@ export const drawSprite = (context, image, x, y, angle, scale) => {
  * the frames progress.
  * 
  * @param {Integer} frameCount 
- * @returns 
+ * @returns an integer offset used to choose the correct sprite
  */
 const getSpriteFrame = (frameCount) => {
     let modulus = frameCount % 20;
