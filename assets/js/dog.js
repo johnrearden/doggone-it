@@ -131,10 +131,7 @@ export class Dog {
             }
             if (pointIsValid) {
                 this.wayPoints.push([x, y]);
-            } else {
-                this.pointerDown = false;
             }
-            
         }
     }
 

@@ -45,11 +45,11 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
+                        this.hide(["next-level"]);
                         this.show(["end-of-level-display", 
                                    "game-complete-button",
                                    "end-level-message",
-                                   "next-level"]);
-                        this.hide(["level-over-button"]);
+                                   ]);
                         this.showMessage("You beat the game!");
                     } else {
                         this.running = false;
