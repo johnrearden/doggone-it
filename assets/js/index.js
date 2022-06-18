@@ -7,7 +7,7 @@ import { FIELD_HEIGHT, FIELD_WIDTH } from './constants.js';
 // Wait for all content to be loaded into the DOM before performing setup.
 document.addEventListener('DOMContentLoaded', function () {
     init();
-})
+});
 
 function init() {
     let gameCanvas = document.getElementById('game-area');
@@ -37,7 +37,7 @@ function init() {
     let background = {
         url: 'assets/images/backgrounds/background1.png',
         image: null
-    }
+    };
 
     let level = levels[0];
     let dog = new Dog(FIELD_WIDTH / 2, 
@@ -88,7 +88,7 @@ function init() {
     document.getElementById("action-replay").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startActionReplay();
-    })
+    });
 
     document.getElementById("begin-again").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
@@ -134,7 +134,7 @@ async function loadAllImages(sprites, background) {
                 // Here the image will be scaled if the canvas
                 // size differs from the game model size
                 resolve();
-            }
+            };
             img.src = `assets/images/dog_images/${url}.png`;
             sprites.dog.images.push(img);
         }));
@@ -150,7 +150,7 @@ async function loadAllImages(sprites, background) {
                 // Here the image will be scaled if the canvas
                 // size differs from the game model size
                 resolve();
-            }
+            };
             img.src = `assets/images/sheep_images/${url}.png`;
             sprites.sheep.images.push(img);
         }));

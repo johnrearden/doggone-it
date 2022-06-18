@@ -16,7 +16,7 @@ export const getAngularDifference = (angleTo, angleFrom) => {
         difference += 2 * Math.PI;
     }
     return difference;
-}
+};
 
 /**
  * Calculates the direction a game object should travel in to reach
@@ -30,7 +30,7 @@ export const getAngularDifference = (angleTo, angleFrom) => {
  */
 export const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
     return Math.atan2(yTo - yFrom, xTo - xFrom);
-}
+};
 
 /**
  * Calculates the distance between 2 points.
@@ -44,7 +44,7 @@ export const getDistanceToPoint = (x1, y1, x2, y2) => {
     let xDistSq = Math.pow(x2 - x1, 2);
     let yDistSq = Math.pow(y2 - y1, 2);
     return Math.sqrt(xDistSq + yDistSq);
-}
+};
 
 export const Quadrant = {
     EAST: {
@@ -67,7 +67,7 @@ export const Quadrant = {
         min: Math.PI * 0.75,
         max: -Math.PI * 0.75
     }
-}
+};
 
 export const getQuadrant = (angle) => {
     if (angle >= Quadrant.EAST.min && angle < Quadrant.EAST.max) {
@@ -79,7 +79,7 @@ export const getQuadrant = (angle) => {
     } else {
         return Quadrant.WEST;
     }
-}
+};
 
 /**
  * Returns a value between -Math.PI and Math.PI, by recursively adding or subtracting
@@ -95,7 +95,7 @@ export const ensureCorrectRange = (angle) => {
     } else {
         return angle;
     }
-}
+};
 
 /**
  * Tests if the point supplied is within the rectangle supplied.
@@ -112,7 +112,7 @@ export const rectContainsPoint = (rect, point) => {
         isContained = false;
     }
     return isContained;
-}
+};
 
 /**
  * A class representing a point
@@ -144,7 +144,7 @@ export class Rectangle {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "initial";
     }
-}
+};
 
 /**
  * Utility method to display an array of HTML elements.
@@ -154,7 +154,7 @@ export const hide = function (array) {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "none";
     }
-}
+};
 
 /**
  * Utility method to show a string to the player
@@ -163,4 +163,4 @@ export const hide = function (array) {
 export const showMessage = function (message) {
     let displayText = document.getElementById("end-level-message");
     displayText.innerText = message;
-}
+};

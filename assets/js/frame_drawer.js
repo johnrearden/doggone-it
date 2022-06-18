@@ -80,7 +80,7 @@ export const drawFrame = (dog, herd, frameCount, sprites) => {
             scale
         );
     }
-}
+};
 
 /**
  * Draws a sprite image on a supplied context, rotating the context so
@@ -105,7 +105,7 @@ export const drawSprite = (context, image, x, y, angle, scale) => {
             imgWidth, imgHeight);
         context.restore();
     }
-}
+};
 
 /**
  * Takes the integer frameCount since the start of the game modulo 20, 
@@ -127,7 +127,7 @@ const getSpriteFrame = (frameCount) => {
     } else {
         return 2;
     }
-}
+};
 
 /**
  * Takes a quadrant value and calculates which sprite is the correct one
@@ -166,4 +166,4 @@ export const getIndexAndAdjustedAngle = (quadrant, direction) => {
         }
     }
     return [index, adjustedAngle];
-}
+};

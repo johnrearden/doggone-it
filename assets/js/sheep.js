@@ -29,7 +29,7 @@ export class Sheep {
         this.anxiety = 1;
         this.id = id;
         this.moving = false;
-        this.isLamb = isLamb
+        this.isLamb = isLamb;
     }
 
     /**

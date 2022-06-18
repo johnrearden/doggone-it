@@ -81,7 +81,7 @@ export class Dog {
         let distToDestination = getDistanceToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
         let distToTravel = DOG_UNIT_MOVE;
         if (distToDestination < DOG_SLOWDOWN_RANGE && this.wayPoints.length === 1) {
-            distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
+            distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE;
         }
 
         let xVel = distToTravel * Math.cos(this.direction);
