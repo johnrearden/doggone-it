@@ -84,9 +84,20 @@ export class Dog {
             distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE
         }
 
+        let xVel = distToTravel * Math.cos(this.direction);
+        let yVel = distToTravel * Math.sin(this.direction);
+
+        // Ensure the calculated move will not result in the dog entering
+        // any of the obstacles in this level
+        [xVel, yVel] = this.checkMoveForObstacles(
+            xVel,
+            yVel,
+            this.obstacles);
+        
+
         // Finally, update the dogs position.
-        this.xPos += distToTravel * Math.cos(this.direction);
-        this.yPos += distToTravel * Math.sin(this.direction);
+        this.xPos += xVel;
+        this.yPos += yVel;
     }
 
     /**
@@ -185,5 +196,33 @@ export class Dog {
     assignNextDestination() {
         this.xDest = this.wayPoints[0][0];
         this.yDest = this.wayPoints[0][1];
+    }
+
+    /**
+     * Ensures that the dog does not enter an area of the level occupied by 
+     * an obstacle.
+     * @param {Number} xVel The x velocity calculated for the current move
+     * @param {Number} yVel The y velocity calculated for the current move
+     * @returns the x and y velocities adjusted to avoid entering an obstacle
+     */
+     checkMoveForObstacles(xVel, yVel, obstacles) {
+        let futureX = this.xPos + xVel;
+        let futureY = this.yPos + yVel;
+        for (let obstacle of this.obstacleArray) {
+            if (rectContainsPoint(obstacle, new Point(futureX, futureY))) {
+                // Try keeping the current xPosition unchanged
+                if (!rectContainsPoint(obstacle, new Point(this.xPos, futureY))) {
+                    return [0, yVel];
+                }
+                // If that doesn't work, try keeping the current yPosition unchanged
+                if (!rectContainsPoint(obstacle, new Point(futureX, this.yPos))) {
+                    return [yVel, 0];
+                }
+                // Last resort, keep both unchanged
+                return [0, 0];
+
+            }
+        }
+        return [xVel, yVel];
     }
 }
