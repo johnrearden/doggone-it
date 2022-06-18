@@ -52,7 +52,9 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         this.showMessage("You beat the game!");
                     } else {
                         this.running = false;
-                        this.show(["end-of-level-display", "end-level-message"]);
+                        this.show(["end-of-level-display", 
+                                   "end-level-message",
+                                   "next-level"]);
                         this.showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }
