@@ -1,5 +1,5 @@
 import { REPLAY_SNAPSHOT_FREQUENCY } from "./constants.js";
-import { getQuadrant } from "./utilities.js";
+import { getQuadrant, hide, show } from "./utilities.js";
 import { getIndexAndAdjustedAngle, drawSprite } from "./frame_drawer.js";
 
 /**
@@ -9,7 +9,7 @@ export const ReplaySpeed = {
     NORMAL: 1,
     PAUSE: 0,
     FAST_FORWARD: 2,
-    REWIND: -1
+    REWIND: -2
 }
 
 /**
@@ -41,8 +41,11 @@ export class ActionReplay {
             // the correct snapshot in the array). Prevent it from running
             // off either end of the array
             this.snapshotIndex += this.replaySpeed;
-            if (this.snapshotIndex < 0) {
+            if (this.snapshotIndex <= 0) {
                 this.snapshotIndex = 0;
+                show(["play"]);
+                hide(["pause"]);
+                this.replaySpeed = ReplaySpeed.PAUSE;
             } else if (this.snapshotIndex >= this.snapshots.length) {
                 this.snapshotIndex = this.snapshots.length - 1;
             }

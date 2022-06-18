@@ -4,6 +4,7 @@ import { levels } from '../data/levels.js';
 import { drawFrame } from './frame_drawer.js';
 import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constants.js';
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
+import { show, hide, showMessage } from './utilities.js';
 
 export function GameRunner(sprites, background, dog, herd, level) {
     this.sprites = sprites;
@@ -45,19 +46,19 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        this.hide(["next-level"]);
-                        this.show(["end-of-level-display", 
-                                   "game-complete-button",
-                                   "end-level-message",
-                                   ]);
-                        this.showMessage("You beat the game!");
+                        hide(["next-level"]);
+                        show(["end-of-level-display",
+                            "game-complete-button",
+                            "end-level-message",
+                        ]);
+                        showMessage("You beat the game!");
                     } else {
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        this.show(["end-of-level-display", 
-                                   "end-level-message",
-                                   "next-level"]);
-                        this.showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
+                        show(["end-of-level-display",
+                            "end-level-message",
+                            "next-level"]);
+                        showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }
 
@@ -72,10 +73,10 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 if (value <= 0) {
                     this.running = false;
                     this.dimmerMaskOn(true);
-                    this.show(["end-of-level-display", 
-                               "action-replay"]);
-                    this.hide(["next-level"]);
-                    this.showMessage("Out of time!");
+                    show(["end-of-level-display",
+                        "action-replay"]);
+                    hide(["next-level"]);
+                    showMessage("Out of time!");
                 }
 
                 // Take a snapshot of the game for action replays
@@ -104,7 +105,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 // Finally, draw the frame
                 drawFrame(this.dog, this.herd, this.frameCount, this.sprites);
             }
-            
+
         }
 
         // Request the next frame, passing the updageGame function as the callback.
@@ -138,11 +139,11 @@ export function GameRunner(sprites, background, dog, herd, level) {
      */
     this.startLevel = function (levelIndex) {
         this.snapshots = [];
-        this.hide(["end-of-level-display"]);
+        hide(["end-of-level-display"]);
         this.level = levels[levelIndex];
-        this.dog = new Dog(FIELD_WIDTH / 2, 
-                           FIELD_HEIGHT / 2,
-                           this.level.obstacles);
+        this.dog = new Dog(FIELD_WIDTH / 2,
+            FIELD_HEIGHT / 2,
+            this.level.obstacles);
         this.herd = new Herd(this.level);
         this.frameCount = 0;
         this.levelTimeLimit = this.level.time * 1000;
@@ -184,14 +185,14 @@ export function GameRunner(sprites, background, dog, herd, level) {
      */
     this.startActionReplay = function () {
         this.dimmerMaskOn(false);
-        this.hide(["end-of-level-display"]);
-        this.show(["action-replay-display", 
-                   "replay-banner", 
-                   "replay-time"]);
+        hide(["end-of-level-display"]);
+        show(["action-replay-display",
+            "replay-banner",
+            "replay-time"]);
         this.actionReplay = new ActionReplay(
-                                    this.snapshots, 
-                                    this.sprites, 
-                                    this.background);
+            this.snapshots,
+            this.sprites,
+            this.background);
     }
 
     /**
@@ -201,20 +202,27 @@ export function GameRunner(sprites, background, dog, herd, level) {
      */
     this.finishReplay = function () {
         this.actionReplay = null;
-        this.hide(["action-replay-display", 
-                   "end-level-message", 
-                   "action-replay",
-                   "replay-time",
-                   "replay-banner"]);
-        this.show(["end-of-level-display"]);
+        hide(["action-replay-display",
+            "end-level-message",
+            "action-replay",
+            "replay-time",
+            "replay-banner"]);
+        show(["end-of-level-display"]);
     }
 
+    this.toStart = function () {
+        if (this.actionReplay) {
+            this.actionReplay.snapshotIndex = 0;
+        }
+    }
     /**
      * Sets the speed of the action replay to -1x
      */
     this.rewindReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.REWIND;
+            show(["pause"]);
+            hide(["play"]);
         }
     }
 
@@ -224,7 +232,10 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.playReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.NORMAL;
+            show(["pause"]);
+            hide(["play"]);
         }
+
     }
 
     /**
@@ -233,6 +244,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.pauseReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.PAUSE;
+            show(["play"]);
+            hide(["pause"]);
         }
     }
 
@@ -242,6 +255,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.fastForwardReplay = function () {
         if (this.actionReplay) {
             this.actionReplay.replaySpeed = ReplaySpeed.FAST_FORWARD;
+            show(["pause"]);
+            hide(["play"]);
         }
     }
 
@@ -273,40 +288,11 @@ export function GameRunner(sprites, background, dog, herd, level) {
     }
 
     /**
-     * Utility method to display an array of HTML elements.
-     * @param {Array} array of HTML id attributes 
-     */
-    this.show = function (array) {
-        for (let i = 0; i < array.length; i++) {
-            document.getElementById(array[i]).style.display = "initial";
-        }
-    }
-
-    /**
-     * Utility method to display an array of HTML elements.
-     * @param {Array} array of HTML id attributes 
-     */
-    this.hide = function (array) {
-        for (let i = 0; i < array.length; i++) {
-            document.getElementById(array[i]).style.display = "none";
-        }
-    }
-
-    /**
-     * Utility method to show a string to the player
-     * @param {String} message to be displayed
-     */
-    this.showMessage = function(message) {
-        let displayText = document.getElementById("end-level-message");
-        displayText.innerText = message;
-    }
-
-    /**
      * Utility method to partially mask the game ui while a choice of 
      * buttons is being displayed to the player
      * @param {Boolean} bool Whether the mask should be on or off 
      */
-    this.dimmerMaskOn = function(bool) {
+    this.dimmerMaskOn = function (bool) {
         let dimmerMask = document.getElementById("dimmer-mask");
         dimmerMask.style.opacity = bool ? 0.4 : 0;
     }

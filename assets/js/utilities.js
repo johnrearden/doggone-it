@@ -135,3 +135,32 @@ export class Rectangle {
         this.bottom = bottom;
     }
 }
+
+/**
+     * Utility method to display an array of HTML elements.
+     * @param {Array} array of HTML id attributes 
+     */
+ export const show = function (array) {
+    for (let i = 0; i < array.length; i++) {
+        document.getElementById(array[i]).style.display = "initial";
+    }
+}
+
+/**
+ * Utility method to display an array of HTML elements.
+ * @param {Array} array of HTML id attributes 
+ */
+export const hide = function (array) {
+    for (let i = 0; i < array.length; i++) {
+        document.getElementById(array[i]).style.display = "none";
+    }
+}
+
+/**
+ * Utility method to show a string to the player
+ * @param {String} message to be displayed
+ */
+export const showMessage = function (message) {
+    let displayText = document.getElementById("end-level-message");
+    displayText.innerText = message;
+}

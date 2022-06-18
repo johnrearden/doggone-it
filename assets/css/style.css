@@ -189,6 +189,18 @@ header {
     font-size: 1.6rem;
 }
 
+.replay-button {
+    font-size: 1rem;
+}
+
+#play {
+    display: none;
+}
+
+.fa-pause, .fa-play {
+    font-size: 1.5rem;
+}
+
 footer {
     position: absolute;
     bottom: 0;

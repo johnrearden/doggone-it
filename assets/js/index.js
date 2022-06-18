@@ -95,6 +95,10 @@ function init() {
         gameRunner.startGameAgain();
     });
 
+    document.getElementById("to-start").addEventListener('click', event => {
+        gameRunner.toStart();
+    });
+
     document.getElementById("rewind").addEventListener('click', event => {
         gameRunner.rewindReplay();
     });
