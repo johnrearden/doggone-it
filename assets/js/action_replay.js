@@ -10,7 +10,7 @@ export const ReplaySpeed = {
     PAUSE: 0,
     FAST_FORWARD: 2,
     REWIND: -2
-}
+};
 
 /**
  * A class that represents an action replay of the level just played.
@@ -33,7 +33,7 @@ export class ActionReplay {
         replaySlider.max = this.snapshots.length - 1;
     }
 
-    update = function () {
+    update() {
         // Only update every REPLAY_SNAPSHOT_FREQUENCY frames
         if (++this.frameCount % REPLAY_SNAPSHOT_FREQUENCY === 0) {
             
@@ -89,7 +89,7 @@ export class ActionReplay {
      * Draws one snapshot frame of the previous level
      * @param {Snapshot} snapshot 
      */
-    drawReplayFrame = function (snapshot) {
+    drawReplayFrame (snapshot) {
 
         let canvas = document.getElementById("game-area");
         if (canvas) {
@@ -138,7 +138,7 @@ export class ActionReplay {
     /**
      * Draws the background image onto the canvas in order to clear it
      */
-    drawBackground = function () {
+    drawBackground() {
         if (this.background.image) {
             let gameCanvas = document.getElementById('game-area');
             let context = gameCanvas.getContext('2d');

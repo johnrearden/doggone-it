@@ -28,5 +28,11 @@
     "@babel/core": "^7.18.2",
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "jest": "^28.1.1"
+  },
+  "dependencies": {
+    "jshint": "^2.13.4"
+  },
+  "jshintConfig": {
+    "esversion": 6
   }
 }
