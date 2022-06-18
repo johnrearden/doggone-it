@@ -74,18 +74,22 @@ function init() {
     });
 
     document.getElementById("next-level").addEventListener('click', event => {
+        gameRunner.dimmerMaskOn(false);
         gameRunner.startNextLevel();
     });
 
     document.getElementById("try-again").addEventListener('click', event => {
+        gameRunner.dimmerMaskOn(false);
         gameRunner.repeatCurrentLevel();
     });
 
     document.getElementById("action-replay").addEventListener('click', event => {
+        gameRunner.dimmerMaskOn(false);
         gameRunner.startActionReplay();
     })
 
     document.getElementById("begin-again").addEventListener('click', event => {
+        gameRunner.dimmerMaskOn(false);
         gameRunner.startGameAgain();
     });
 
@@ -106,6 +110,7 @@ function init() {
     });
 
     document.getElementById("finish").addEventListener('click', event => {
+        console.log("finishReplay button clicked");
         gameRunner.finishReplay();
     });
 

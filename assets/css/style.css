@@ -33,6 +33,18 @@ header {
     text-align: center;
 }
 
+#dimmer-mask {
+    pointer-events: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transition: opacity 1s ease;
+}
+
 #game-ui {
     margin: 0 auto;
     max-width: 450px;
@@ -105,10 +117,6 @@ header {
     text-align: center;
 }
 
-#level-over-buttons {
-    
-}
-
 #game-complete-button {
     display: none;
 }
@@ -165,8 +173,6 @@ header {
     border-radius: 20px;
     background: var(--color);
 }
-
-
 
 #bark-button {
     width: 50%;

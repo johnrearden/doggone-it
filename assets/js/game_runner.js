@@ -44,6 +44,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     if (this.level.id + 1 === levels.length) {
                         // Player has finished the final level
                         this.running = false;
+                        this.dimmerMaskOn(true);
                         this.show(["end-of-level-display", 
                                    "game-complete-button",
                                    "end-level-message",
@@ -52,6 +53,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         this.showMessage("You beat the game!");
                     } else {
                         this.running = false;
+                        this.dimmerMaskOn(true);
                         this.show(["end-of-level-display", 
                                    "end-level-message",
                                    "next-level"]);
@@ -69,6 +71,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 // Check if time has run out
                 if (value <= 0) {
                     this.running = false;
+                    this.dimmerMaskOn(true);
                     this.show(["end-of-level-display", 
                                "action-replay"]);
                     this.hide(["next-level"]);
@@ -178,6 +181,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
      * Begins an action replay of the level just finished
      */
     this.startActionReplay = function () {
+        this.dimmerMaskOn(false);
         this.hide(["end-of-level-display"]);
         this.show(["action-replay-display", 
                    "replay-banner", 
@@ -293,5 +297,15 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.showMessage = function(message) {
         let displayText = document.getElementById("end-level-message");
         displayText.innerText = message;
+    }
+
+    /**
+     * Utility method to partially mask the game ui while a choice of 
+     * buttons is being displayed to the player
+     * @param {Boolean} bool Whether the mask should be on or off 
+     */
+    this.dimmerMaskOn = function(bool) {
+        let dimmerMask = document.getElementById("dimmer-mask");
+        dimmerMask.style.opacity = bool ? 0.4 : 0;
     }
 }
