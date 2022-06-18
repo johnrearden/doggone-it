@@ -38,12 +38,6 @@ export const DOG_UNIT_MOVE = 2.5;
 
 
 /**
- * Represents the rate at which the dog is able to turn.
- */
-export const DOG_UNIT_TURN = Math.PI / 4;
-
-
-/**
  * Represents the distance at which the dog will start to
  * slow down when approaching his destination.
  */

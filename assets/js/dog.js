@@ -1,11 +1,10 @@
 import {
     getDistanceToPoint,
-    getDirectionToPoint, getAngularDifference
+    getDirectionToPoint, getAngularDifference, Rectangle, rectContainsPoint, Point
 } from "./utilities.js";
 
 import {
     DOG_UNIT_MOVE,
-    DOG_UNIT_TURN,
     DOG_SLOWDOWN_RANGE
 } from "./constants.js";
 
@@ -15,7 +14,7 @@ export class Dog {
      * @param {Number} xPos The x-coordinate of the dog's position 
      * @param {Number} yPos The y-coordinate of the dog's position 
      */
-    constructor(xPos, yPos) {
+    constructor(xPos, yPos, obstacles) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.xDest = xPos;
@@ -25,6 +24,15 @@ export class Dog {
         this.moving = false;
         this.pointerDown = false;
         this.wayPoints = [];
+        this.obstacleArray = [];
+        for (let ob of obstacles) {
+            let rectangle = new Rectangle(ob.x, 
+                                          ob.y, 
+                                          ob.x + ob.width,
+                                          ob.y + ob.height);
+            this.obstacleArray.push(rectangle);
+        }
+        console.log(this.obstacleArray);
     }
 
     /**
@@ -102,7 +110,20 @@ export class Dog {
      */
     onPointerMove(x, y) {
         if (this.pointerDown) {
-            this.wayPoints.push([x, y]);
+            // Check if the point is within any of the obstacles
+            let pointIsValid = true;
+            for (let ob of this.obstacleArray) {
+                if (rectContainsPoint(ob, new Point(x, y))) {
+                    pointIsValid = false;
+                    break;
+                }
+            }
+            if (pointIsValid) {
+                this.wayPoints.push([x, y]);
+            } else {
+                this.pointerDown = false;
+            }
+            
         }
     }
 
@@ -115,7 +136,16 @@ export class Dog {
      */
     onPointerUp(x, y) {
         this.pointerDown = false;
-        this.wayPoints.push([x, y]);
+        let pointIsValid = true;
+            for (let ob of this.obstacleArray) {
+                if (rectContainsPoint(ob, new Point(x, y))) {
+                    pointIsValid = false;
+                    break;
+                }
+            }
+            if (pointIsValid) {
+                this.wayPoints.push([x, y]);
+            } 
     }
 
     /**
@@ -130,18 +160,6 @@ export class Dog {
             this.xDest,
             this.yDest);
         this.direction = correctDirection;
-        // If the dog is close to its destination, it should move directly toward
-        // it without stepping.
-
-        // let angularDifference = getAngularDifference(correctDirection, this.direction);
-
-        // // Check first to ensure the dog does not turn past the correct direction
-        // if (DOG_UNIT_TURN > Math.abs(angularDifference)) {
-        //     this.direction = correctDirection;
-        // } else {
-        //     // Turn toward the waypoint
-        //     this.direction += DOG_UNIT_TURN * Math.sign(angularDifference);
-        // }
     }
 
 
