@@ -2,6 +2,7 @@ import {Sheep } from './sheep.js';
 import {FIELD_WIDTH,
         FIELD_BORDER,
         FIELD_HEIGHT} from './constants.js';   
+import { Point, Rectangle, rectContainsPoint } from './utilities.js';
 
 var count = 0;
 
@@ -22,6 +23,7 @@ export class Herd {
      * @param {Number} canvasHeight 
      */
     constructor(level) {
+        console.log('yo');
         this.numSheep = level.sheep;
         this.centerX = 0;
         this.centerY = 0;
@@ -32,12 +34,11 @@ export class Herd {
         this.obstacles = level.obstacles;
 
         for (let i = 0; i < this.numSheep; i++) {
-            let randX = Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
-            let randY = Math.random() * (FIELD_HEIGHT - 2 * FIELD_BORDER);
+            let possibleSpawnPoints = this.getPossibleSpawnPoints(this.numSheep);
             let isLamb = i % 2 === 0 ? true : false;
             let newSheep = new Sheep(
-                randX + FIELD_BORDER, 
-                randY + FIELD_BORDER, 
+                possibleSpawnPoints[i][0], 
+                possibleSpawnPoints[i][1], 
                 i,
                 isLamb);
             this.xArray.push(newSheep);
@@ -113,5 +114,47 @@ export class Herd {
         this.yArray.sort((sheep1, sheep2) => {
             return sheep1.yPos - sheep2.yPos;
         });
+    }
+
+    /**
+     * Creates a collection of spawn points for the herd that do not overlap with
+     * any of the obstacles in this level
+     * 
+     * @param {Integer} numSheep 
+     * @returns an array containing legal spawn points for the sheep
+     */
+    getPossibleSpawnPoints(numSheep) {
+        let array = [];
+        for (let i = 0; i < numSheep; i++) {
+            let randX, randY; 
+            do {
+                randX = FIELD_BORDER + Math.random() * (FIELD_WIDTH - 2 * FIELD_BORDER);
+                randY = FIELD_BORDER + Math.random() * (FIELD_HEIGHT - 2 * FIELD_BORDER);
+            } while (!this.pointIsValid(randX, randY));
+            array.push([randX, randY]);
+        }
+        return array;
+    }
+
+    /**
+     * Checks if the supplied point overlaps with any of the obstacles in 
+     * this level
+     * 
+     * @param {Number} x 
+     * @param {Number} y 
+     * @returns true if the point supplied does not overlap with any obstacles,
+     * false otherwise
+     */
+    pointIsValid(x, y) {
+        for (let ob of this.obstacles) {
+            let rect = new Rectangle(ob.x, 
+                                     ob.y, 
+                                     ob.x + ob.width, 
+                                     ob.y + ob.height);
+            if (rectContainsPoint(rect, new Point(x, y))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
