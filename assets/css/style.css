@@ -7,7 +7,7 @@
 body {
     font-family: 'Kdam Thmor Pro', monospace;
     background-image: linear-gradient(#24631b, #174211);
-    color: red;
+    color: #facc20;
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -18,9 +18,16 @@ button {
     font-family: inherit;
     text-transform: uppercase;
     background-color: #facc20;
-    color: black;
+    color: #333333;
     padding: 5px 10px;
     border-radius: 10px;
+    transition: .15s all ease-in-out;
+    border: none;
+}
+
+button:hover {
+    background-color: #333333;
+    color: #facc20;
 }
 
 span {
@@ -57,7 +64,6 @@ header {
     text-align: center;
     color: white;
     margin: 0 10px 30px 10px;
-
 }
 
 #button-panel {
@@ -66,11 +72,12 @@ header {
 
 #button-panel button {
     font-size: clamp(16px, 4vw, 35px);
+    margin: 0 5px;
 }
 
 #dimmer-mask {
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 0.7;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -127,7 +134,6 @@ header {
 }
 
 #next-level {
-    font-size: 1.5rem;
     display: none;
 }
 
@@ -136,13 +142,13 @@ header {
 }
 
 #action-replay, #try-again {
-    font-size: 1rem;
     display: none;
 }
 
 #end-level-message {
     display: none;
     text-align: center;
+    text-shadow: 0 0 100px #917513;
 }
 
 #game-complete-button {

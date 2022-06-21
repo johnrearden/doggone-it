@@ -304,6 +304,6 @@ export function GameRunner(sprites, background, dog, herd, level) {
      */
     this.dimmerMaskOn = function (bool) {
         let dimmerMask = document.getElementById("dimmer-mask");
-        dimmerMask.style.opacity = bool ? 0.4 : 0;
+        dimmerMask.style.opacity = bool ? 0.7 : 0;
     };
 }
