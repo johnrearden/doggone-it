@@ -60,7 +60,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         this.dimmerMaskOn(true);
                         show(["end-of-level-display",
                             "end-level-message",
-                            "next-level"]);
+                            "next-level",
+                            "try-again"]);
                             hide(["go"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
@@ -78,7 +79,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     this.running = false;
                     this.dimmerMaskOn(true);
                     show(["end-of-level-display",
-                        "action-replay"]);
+                        "action-replay",
+                        "try-again"]);
                     hide(["next-level", "go"]);
                     showMessage("Out of time!");
                 }
