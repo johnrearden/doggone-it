@@ -78,28 +78,7 @@ header {
     position: relative;
 }
 
-#action-replay-display {
-    display: none;
-}
-
-#replay-banner {
-    position: absolute;
-    left: 20px;
-    top: 10px;
-    display: none;
-}
-
-#replay-time {
-    position: absolute;
-    font-family: monospace;
-    font-weight: bolder;
-    right: 35px;
-    top: 20px;
-    color: #facc20;
-    background-color: transparent;
-    display: none;
-}
-
+/* End of level display styling */
 #end-of-level-display {
     position: absolute;
     background-color: transparent;
@@ -189,9 +168,7 @@ header {
     font-size: 1.6rem;
 }
 
-.replay-button {
-    font-size: 1rem;
-}
+
 
 #play {
     display: none;
@@ -200,6 +177,34 @@ header {
 .fa-pause, .fa-play {
     font-size: 1.5rem;
 }
+
+/* Action Replay elements styling */
+.replay-button {
+    font-size: 1rem;
+}
+
+#action-replay-display {
+    display: none;
+}
+
+#replay-banner {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    display: none;
+}
+
+#replay-time {
+    position: absolute;
+    font-family: monospace;
+    font-weight: bolder;
+    right: 35px;
+    top: 20px;
+    color: #facc20;
+    background-color: transparent;
+    display: none;
+}
+
 
 footer {
     position: absolute;

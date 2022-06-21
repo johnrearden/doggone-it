@@ -157,6 +157,11 @@ You can make a copy of the original repository to view and/or make changes witho
 Farm tileset:
 Buch @ http://blog-buch.rhcloud.com
 
+How to make a cartoon text - OCELOTHE
+https://www.youtube.com/watch?v=_iH-34i6kYE
+
+Sheep image for logo from dagadu, purchased from colorbox
+
 ## Code:
 CSS aspect-ratio property:
 https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ 
