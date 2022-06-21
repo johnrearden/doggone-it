@@ -35,7 +35,7 @@ function init() {
         }
     };
     let background = {
-        url: 'assets/images/backgrounds/background1.png',
+        url: 'assets/images/backgrounds/level1.png',
         image: null
     };
 
