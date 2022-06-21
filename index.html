@@ -20,53 +20,25 @@
     <header>
     </header>
 
-    <div id="game-ui">
-
-        <div id="displays">
-
-            <div id="progress-display">
-                <span id="sheep-remaining-text">Sheep&ThickSpace;</span>
-                <span id="sheep-remaining">0</span>
-            </div>
-
-            <div id="main-display">
-                <canvas id="game-area"></canvas>
-                <img src="assets/images/backgrounds/replay.png" 
-                     id="replay-banner"
-                     alt="replay banner">
-                <span id="replay-time">1x</span>
-                <div id="end-of-level-display">
-                    <div id="end-level-message">Dummy end-level message</div>
-                    <div id="level-over-buttons">
-                        <button id="action-replay">Action Replay</button>
-                        <button id="next-level">Next Level</button>
-                        <button id="try-again">Try Again</button>
-                    </div>
-                    <div id="game-complete-button">
-                        <button id="begin-again">Begin Again</button>
-                    </div>
-                </div>
-                <div id="action-replay-display">
-                    <div>
-                        <button id="to-start"><i class="fa-solid fa-backward-fast replay-button"></i></button>
-                        <button id="rewind"><i class="fa-solid fa-backward replay-button"></i></button>
-                        <button id="play"><i class="fa-solid fa-play replay-button"></i></button>
-                        <button id="pause"><i class="fa-solid fa-pause replay-button"></i></button>
-                        <button id="fast-forward"><i class="fa-solid fa-forward replay-button"></i></button>
-                        <button id="finish"><i class="fa-solid fa-check replay-button"></i></button>
-                    </div>
-                    <input type="range" id="replay-slider" 
-                           min="0" max="100" value="0">
-                </div>
-            </div>
-
-            <div id="time-display">
-                <progress id="time-remaining" max="100" value="100"></progress>
-            </div>
+    <div id="holder">
+        <div id="logo">
+            <img src="assets/images/game_logo.png" alt="Doggone-it text with sheep graphic above">
+        </div>
+        <div id="introduction">
+            <h1>A Sheep Herding Game</h1>
+            <p>
+                As a simple sheepdog, you must chase your sheep out of the 
+                exit before time runs out!
+            </p>
+        </div>
+        <div id="button-panel">
+            <a href="game.html">
+                <button id="play-game">PLAY</button>
+            </a>
+            <button id="instructions">INSTRUCTIONS</button>
         </div>
     </div>
-
-    <div id="dimmer-mask"></div>
+    
 
     <footer>
     </footer>

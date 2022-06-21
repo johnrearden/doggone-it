@@ -41,7 +41,7 @@ function init() {
 
     let level = levels[0];
     let dog = new Dog(FIELD_WIDTH / 2, 
-                      FIELD_HEIGHT / 2,
+                      FIELD_HEIGHT / 4,
                       level.obstacles);
     let herd = new Herd(level);
     let gameRunner = new GameRunner(sprites, background, dog, herd, level);
@@ -71,8 +71,17 @@ function init() {
         }
     });
 
+    /**
+     * Prevents a touch (mobile only) on the gameCanvas from scrolling
+     * the entire view
+     */
     gameCanvas.addEventListener('touchmove', event => {
         event.preventDefault();
+    });
+
+    document.getElementById("go").addEventListener('click', event => {
+        gameRunner.dimmerMaskOn(false);
+        gameRunner.onGoButtonClicked();
     });
 
     document.getElementById("next-level").addEventListener('click', event => {

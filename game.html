@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A game where you play a sheepdog herding sheep">
+    <meta name="keywords" content="game, arcade, sheepdog, sheep, herding">
+    <meta name="author" content="John Rearden">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geostar+Fill&family=Kdam+Thmor+Pro&family=Zen+Dots&display=swap" rel="stylesheet">
+    
+    <title>DOGGONE IT</title>
+</head>
+
+<body>
+    <header>
+    </header>
+
+    <div id="game-ui">
+
+        <div id="displays">
+
+            <div id="progress-display">
+                <span id="sheep-remaining-text">Sheep&ThickSpace;</span>
+                <span id="sheep-remaining">0</span>
+            </div>
+
+            <div id="main-display">
+                <canvas id="game-area"></canvas>
+                <img src="assets/images/backgrounds/replay.png" 
+                     id="replay-banner"
+                     alt="replay banner">
+                <span id="replay-time">1x</span>
+                <div id="end-of-level-display">
+                    <div id="end-level-message">Dummy end-level message</div>
+                    <div id="level-over-buttons">
+                        <button id="action-replay">Action Replay</button>
+                        <button id="try-again">Try Again</button>
+                        <button id="next-level">Next Level</button>
+                        <button id="go">ready!</button>
+                    </div>
+                    <div id="game-complete-button">
+                        <button id="begin-again">Begin Again</button>
+                    </div>
+                </div>
+                <div id="action-replay-display">
+                    <div>
+                        <button id="to-start"><i class="fa-solid fa-backward-fast replay-button"></i></button>
+                        <button id="rewind"><i class="fa-solid fa-backward replay-button"></i></button>
+                        <button id="play"><i class="fa-solid fa-play replay-button"></i></button>
+                        <button id="pause"><i class="fa-solid fa-pause replay-button"></i></button>
+                        <button id="fast-forward"><i class="fa-solid fa-forward replay-button"></i></button>
+                        <button id="finish"><i class="fa-solid fa-check replay-button"></i></button>
+                    </div>
+                    <input type="range" id="replay-slider" 
+                           min="0" max="100" value="0">
+                </div>
+            </div>
+
+            <div id="time-display">
+                <progress id="time-remaining" max="100" value="100"></progress>
+            </div>
+        </div>
+    </div>
+
+    <div id="dimmer-mask"></div>
+
+    <footer>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/f2f8e80db6.js" crossorigin="anonymous"></script>
+    <script type="module" src="assets/js/index.js"></script>
+</body>
+
+</html>

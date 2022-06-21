@@ -13,7 +13,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.dog = dog;
     this.herd = herd;
     this.frameCount = 0;
-    this.running = true;
+    this.running = false;
     this.levelTimeLimit = level.time * 1000;
     this.timeRemaining = level.time * 1000;
     this.lastStartTime = new Date().getTime();
@@ -21,10 +21,12 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.actionReplay = null;
     this.snapshots = [];
 
+    show(["go"]);
+
+
     // Calibrate the time remaining display to this level's time limit.
     document.getElementById("time-remaining").max = this.levelTimeLimit;
     document.getElementById("time-remaining").value = this.levelTimeLimit;
-
 
     // This is the callback passed to window.requestAnimationFrame, 
     // and needs to be explicitly bound to the GameRunner object, 
@@ -32,11 +34,12 @@ export function GameRunner(sprites, background, dog, herd, level) {
     // requestAnimationFrame() scope.
     this.updateGame = (function () {
         if (++this.frameCount % 1 === 0) {
+            this.drawBackground();
             // If an action replay exists, update it.
             if (this.actionReplay) {
                 this.actionReplay.update();
             } else if (this.running) {
-                this.drawBackground();
+                
                 this.dog.update();
                 this.herd.update(this.dog);
 
@@ -46,7 +49,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        hide(["next-level"]);
+                        hide(["next-level", "go"]);
                         show(["end-of-level-display",
                             "game-complete-button",
                             "end-level-message",
@@ -58,6 +61,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                         show(["end-of-level-display",
                             "end-level-message",
                             "next-level"]);
+                            hide(["go"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }
@@ -75,7 +79,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     this.dimmerMaskOn(true);
                     show(["end-of-level-display",
                         "action-replay"]);
-                    hide(["next-level"]);
+                    hide(["next-level", "go"]);
                     showMessage("Out of time!");
                 }
 
@@ -102,15 +106,20 @@ export function GameRunner(sprites, background, dog, herd, level) {
                     this.snapshots.push(snapshot);
                 }
 
-                // Finally, draw the frame
-                drawFrame(this.dog, this.herd, this.frameCount, this.sprites);
+                
             }
+            // Finally, draw the frame
+            drawFrame(this.dog, this.herd, this.frameCount, this.sprites);
 
         }
 
         // Request the next frame, passing the updageGame function as the callback.
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
+
+    this.onGoButtonClicked = function() {
+        this.startGameAgain();
+    };
 
     /**
      * Starts the current level again. 

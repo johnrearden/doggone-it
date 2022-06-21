@@ -33,9 +33,44 @@ header {
     text-align: center;
 }
 
+/* LOGO */
+
+#holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+#logo {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#logo img {
+    width: 100%;
+    max-width: 1200px;
+    object-fit: contain;
+}
+
+#introduction {
+    text-align: center;
+    color: white;
+    margin: 0 10px 30px 10px;
+
+}
+
+#button-panel {
+    text-align: center;
+}
+
+#button-panel button {
+    font-size: clamp(16px, 4vw, 35px);
+}
+
 #dimmer-mask {
     pointer-events: none;
-    opacity: 0;
+    opacity: 0.4;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -89,10 +124,24 @@ header {
     color: #facc20;
     font-size: 3rem;
     z-index: 5;
+}
+
+#next-level {
+    font-size: 1.5rem;
+    display: none;
+}
+
+#go {
+    font-size: 2rem;
+}
+
+#action-replay, #try-again {
+    font-size: 1rem;
     display: none;
 }
 
 #end-level-message {
+    display: none;
     text-align: center;
 }
 
@@ -101,7 +150,7 @@ header {
 }
 
 #begin-again {
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 #controls {
@@ -160,16 +209,6 @@ header {
     font-weight: bolder;
 }
 
-#action-replay, #try-again {
-    font-size: 1.2rem;
-}
-
-#next-level {
-    font-size: 1.6rem;
-}
-
-
-
 #play {
     display: none;
 }
@@ -204,7 +243,6 @@ header {
     background-color: transparent;
     display: none;
 }
-
 
 footer {
     position: absolute;
