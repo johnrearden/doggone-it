@@ -14,7 +14,7 @@ function init() {
     gameCanvas.width = FIELD_WIDTH;
     gameCanvas.height = FIELD_HEIGHT;
 
-    let sprites = {
+    let graphics = {
         dog: {
             urls: [
                 'dog_south_left', 'dog_south_right', 'dog_south_center',
@@ -32,6 +32,9 @@ function init() {
                 'sheep_east_left', 'sheep_east_right', 'sheep_east_center'
             ],
             images: []
+        },
+        background: {
+            urls: ['level1.png', 'level2.png', 'level3.png']
         }
     };
     let background = {
@@ -44,9 +47,7 @@ function init() {
                       FIELD_HEIGHT / 4,
                       level.obstacles);
     let herd = new Herd(level);
-    let gameRunner = new GameRunner(sprites, background, dog, herd, level);
-
-    loadAllImages(sprites, background);
+    let gameRunner = new GameRunner(graphics, background, dog, herd, level);
 
     gameCanvas.addEventListener('pointerdown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
@@ -125,43 +126,38 @@ function init() {
     });
 
     document.getElementById("finish").addEventListener('click', event => {
-        console.log("finishReplay button clicked");
         gameRunner.finishReplay();
     });
 
-    window.requestAnimationFrame(gameRunner.updateGame);
+    loadAllImages(graphics, background).then(() => {
+        window.requestAnimationFrame(gameRunner.updateGame);
+    });
 }
 
 async function loadAllImages(sprites, background) {
     let promiseArray = [];
 
-    // Load 12 dog images.
+    // Create promises for loading of sheep images
     for (let url of sprites.dog.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
-            img.onload = function () {
-                // Here the image will be scaled if the canvas
-                // size differs from the game model size
-                resolve();
-            };
             img.src = `assets/images/dog_images/${url}.png`;
             sprites.dog.images.push(img);
+            img.addEventListener('load', () => {
+                resolve();
+            });
         }));
     }
-    await Promise.all(promiseArray);
 
-    // Load 12 sheep images.
-    promiseArray = [];
+    // Create promises for loading of sheep images
     for (let url of sprites.sheep.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
-            img.onload = function () {
-                // Here the image will be scaled if the canvas
-                // size differs from the game model size
-                resolve();
-            };
             img.src = `assets/images/sheep_images/${url}.png`;
             sprites.sheep.images.push(img);
+            img.addEventListener('load', () => {
+                resolve();
+            });
         }));
     }
     await Promise.all(promiseArray);
