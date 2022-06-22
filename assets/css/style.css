@@ -153,6 +153,15 @@ li {
     }
 }
 
+/* GAME.HTML */
+#instructions-link {
+    background-color: #facc20;
+    color:#333333;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
 #button-panel {
     text-align: center;
 }
