@@ -71,6 +71,44 @@
                 <progress id="time-remaining" max="100" value="100"></progress>
             </div>
         </div>
+
+        <div class="modal">
+            <div id="instructions-holder">
+                <h1>Instructions</h1>
+                <p>
+                    You're a dog! The sheep are scared of you, so they'll run 
+                    directly away from you as long as there's nothing in their way.
+                    You must chase them out of the exit at the top of the screen, before
+                    your time runs out!
+                </p>
+                
+                <div id="columns">
+                    <div id="video-holder">
+                        <video id="instruction-video" 
+                            controls loop="true" muted="true">
+                        <source src="assets/videos/instructions-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag
+                        </video>
+                    </div>
+                    
+                        <div id="movement-instructions">
+                        <h2>You can move in 2 ways:</h2>
+                        <ol>
+                            <li>Tap/click on the screen to tell your dog where to go</li>
+                            <li>Drag your finger/mouse to lay out a path for him</li>
+                        </ol>
+                        
+                        </div>
+                </div>
+                
+                
+                <a href="game.html">
+                    <button id="start-game">
+                        OK, let's play!&ensp;
+                        <i class="fa-solid fa-thumbs-up"></i></button>    
+                </a>
+            </div>
+        </div>
     </div>
 
     <div id="dimmer-mask"></div>
