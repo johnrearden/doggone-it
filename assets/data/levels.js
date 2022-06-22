@@ -1,8 +1,8 @@
 export const levels = [
     {
         "id": 0,
-        "sheep": 10,
-        "time": 3,
+        "sheep": 15,
+        "time": 50,
         "level_url": "level1.png",
         "obstacles": [
             {
@@ -15,8 +15,8 @@ export const levels = [
     },
     {
         "id": 1,
-        "sheep": 15,
-        "time": 35,
+        "sheep": 20,
+        "time": 40,
         "level_url": "level2.png",
         "obstacles": [
             {
@@ -47,7 +47,7 @@ export const levels = [
     },
     {
         "id": 2,
-        "sheep": 20,
+        "sheep": 30,
         "time": 30,
         "level_url": "level3.png",
         "obstacles": [
