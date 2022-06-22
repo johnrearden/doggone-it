@@ -98,6 +98,10 @@ li {
     width: clamp(150px, 50vw, 400px);
 }
 
+#instruction-video {
+   
+}
+
 
 @media screen and (max-width: 768px) {
     p {
