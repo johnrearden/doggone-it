@@ -49,7 +49,9 @@ export function GameRunner(graphics, dog, herd, level) {
                         hide(["next-level", 
                               "go",
                               "try-again"]);
-                        show(["end-of-level-display",
+                        show([
+                            "end-of-level-display",
+                            "end-level-message",
                             "game-complete-button",
                             "end-level-message",
                         ]);
@@ -57,10 +59,12 @@ export function GameRunner(graphics, dog, herd, level) {
                     } else {
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        show(["end-of-level-display",
+                        show([
+                            "end-of-level-display",
                             "end-level-message",
                             "next-level",
-                            "try-again"]);
+                            "try-again",
+                            "action-replay"]);
                             hide(["go"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
@@ -78,6 +82,7 @@ export function GameRunner(graphics, dog, herd, level) {
                     this.running = false;
                     this.dimmerMaskOn(true);
                     show(["end-of-level-display",
+                        "end-level-message",
                         "action-replay",
                         "try-again"]);
                     hide(["next-level", "go"]);
