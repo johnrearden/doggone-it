@@ -23,7 +23,6 @@ export class Herd {
      * @param {Number} canvasHeight 
      */
     constructor(level) {
-        console.log('yo');
         this.numSheep = level.sheep;
         this.centerX = 0;
         this.centerY = 0;

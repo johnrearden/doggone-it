@@ -32,7 +32,6 @@ export class Dog {
                                           ob.y + ob.height);
             this.obstacleArray.push(rectangle);
         }
-        console.log(this.obstacleArray);
     }
 
     /**

@@ -22,9 +22,6 @@ export function GameRunner(graphics, dog, herd, level) {
 
     show(["go"]);
 
-    console.log(dog);
-
-
     // Calibrate the time remaining display to this level's time limit.
     document.getElementById("time-remaining").max = this.levelTimeLimit;
     document.getElementById("time-remaining").value = this.levelTimeLimit;
