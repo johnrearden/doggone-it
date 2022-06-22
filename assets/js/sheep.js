@@ -24,7 +24,7 @@ export class Sheep {
     constructor(xPos, yPos, id, isLamb) {
         this.xPos = xPos;
         this.yPos = yPos;
-        this.direction = 0;
+        this.direction = -Math.PI + Math.random() * Math.PI;
         this.velocity = 0;
         this.anxiety = 1;
         this.id = id;
