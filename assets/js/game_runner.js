@@ -46,7 +46,9 @@ export function GameRunner(graphics, dog, herd, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        hide(["next-level", "go"]);
+                        hide(["next-level", 
+                              "go",
+                              "try-again"]);
                         show(["end-of-level-display",
                             "game-complete-button",
                             "end-level-message",
