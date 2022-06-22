@@ -109,8 +109,10 @@ export function GameRunner(graphics, dog, herd, level) {
 
                 
             }
-            // Finally, draw the frame
-            drawFrame(this.dog, this.herd, this.frameCount, this.graphics);
+            // Finally, if this is not an action replay, draw the frame
+            if (!this.actionReplay) {
+                drawFrame(this.dog, this.herd, this.frameCount, this.graphics);
+            }
 
         }
 
@@ -274,30 +276,40 @@ export function GameRunner(graphics, dog, herd, level) {
     };
 
     /**
-     * Passes the pointer events through to the dog.
+     * Passes the pointer events through to the dog, as long as the game 
+     * is running, and not an action replay.
      * @param {Number} x The position of the pointer on the x-axis
      * @param {Number} y The position of the pointer on the y-axis
      */
     this.onPointerDown = function (x, y) {
-        this.dog.onPointerDown(x, y);
+        if (!this.actionReplay) {
+            this.dog.onPointerDown(x, y);
+        }
+        
     };
 
     /**
-     * Passes the pointer events through to the dog.
+     * Passes the pointer events through to the dog, as long as the game 
+     * is running, and not an action replay.
      * @param {Number} x The position of the pointer on the x-axis
      * @param {Number} y The position of the pointer on the y-axis
      */
     this.onPointerUp = function (x, y) {
-        this.dog.onPointerUp(x, y);
+        if (!this.actionReplay) {
+            this.dog.onPointerUp(x, y);
+        }
     };
 
     /**
-     Passes the pointer events through to the dog.
+     Passes the pointer events through to the dog, as long as the game 
+     * is running, and not an action replay.
      * @param {Number} x The position of the pointer on the x-axis
      * @param {Number} y The position of the pointer on the y-axis
      */
     this.onPointerMove = function (x, y) {
-        this.dog.onPointerMove(x, y);
+        if (!this.actionReplay) {
+            this.dog.onPointerMove(x, y);
+        }
     };
     /**
      * Utility method to partially mask the game ui while a choice of 
