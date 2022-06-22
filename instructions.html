@@ -31,21 +31,30 @@
             You must chase them out of the exit at the top of the screen, before
             your time runs out!
         </p>
-        <h2>You can move in 2 ways:</h2>
-        <ol>
-            <li>Tap/click on the screen to tell your dog where to go</li>
-            <li>Drag your finger/mouse to lay out a path for him</li>
-        </ol>
-        <h3>Watch the video below for a demonstration <i class="fa-solid fa-circle-arrow-down"></i></h3>
-        <video width="218" height="272" 
-               id="instruction-video" 
-               controls loop="true" muted="true">
-            <source src="assets/videos/instructions-video.mp4" type="video/mp4">
-            Your browser does not support the video tag
-        </video>
+        
+        <div id="columns">
+            <div id="video-holder">
+                <video id="instruction-video" 
+                    controls loop="true" muted="true">
+                <source src="assets/videos/instructions-video.mp4" type="video/mp4">
+                Your browser does not support the video tag
+             </video>
+            </div>
+            
+             <div id="movement-instructions">
+                <h2>You can move in 2 ways:</h2>
+                <ol>
+                    <li>Tap/click on the screen to tell your dog where to go</li>
+                    <li>Drag your finger/mouse to lay out a path for him</li>
+                </ol>
+                
+             </div>
+        </div>
+        
+        
         <a href="game.html">
             <button id="start-game">
-                I'm ready!&ensp;
+                OK, I'm ready to play!&ensp;
                 <i class="fa-solid fa-thumbs-up"></i></button>    
         </a>
     </div>
