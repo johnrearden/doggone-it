@@ -82,6 +82,19 @@ function init() {
         gameRunner.onGoButtonClicked();
     });
 
+    let array = document.getElementsByClassName("instructions-button");
+    for (let button of array) {
+        button.addEventListener('click', () => {
+            document.getElementsByClassName("modal")[0].style.display = "initial";
+            gameRunner.stop();
+        });
+    }
+    
+    document.getElementById("close-instructions-button").addEventListener('click', () => {
+        document.getElementsByClassName("modal")[0].style.display = "none";   
+        gameRunner.start();     
+    });
+
     document.getElementById("next-level").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startNextLevel();

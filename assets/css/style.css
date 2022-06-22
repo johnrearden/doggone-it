@@ -85,7 +85,7 @@ li {
 /* INSTRUCTIONS MODAL */
 
 .modal {
-    /* display: none; */
+    display: none;
     background-image: linear-gradient(#24631b, #174211);
     position: fixed;
     z-index: 10;
@@ -95,8 +95,8 @@ li {
     height: 100%;
     overflow: auto;
 }
+
 #instructions-holder {
-    /* max-height: 80vh; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -106,7 +106,6 @@ li {
 }
 
 #instructions-logo {
-    /* width: clamp(150px, 25vw, 400px); */
     max-height: 10vh;
 }
 
@@ -130,7 +129,7 @@ li {
     margin-right: 20px;
 }
 
-#start-game {
+#close-instructions-button {
     font-size: 1.5rem;
     margin-top: 10px;
 }
