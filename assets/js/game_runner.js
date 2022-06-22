@@ -6,10 +6,9 @@ import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constant
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
 import { show, hide, showMessage } from './utilities.js';
 
-export function GameRunner(sprites, background, dog, herd, level) {
-    this.sprites = sprites;
+export function GameRunner(graphics, dog, herd, level) {
+    this.graphics = graphics;
     this.level = level;
-    this.background = background;
     this.dog = dog;
     this.herd = herd;
     this.frameCount = 0;
@@ -22,6 +21,8 @@ export function GameRunner(sprites, background, dog, herd, level) {
     this.snapshots = [];
 
     show(["go"]);
+
+    console.log(dog);
 
 
     // Calibrate the time remaining display to this level's time limit.
@@ -39,7 +40,6 @@ export function GameRunner(sprites, background, dog, herd, level) {
             if (this.actionReplay) {
                 this.actionReplay.update();
             } else if (this.running) {
-                
                 this.dog.update();
                 this.herd.update(this.dog);
 
@@ -111,7 +111,7 @@ export function GameRunner(sprites, background, dog, herd, level) {
                 
             }
             // Finally, draw the frame
-            drawFrame(this.dog, this.herd, this.frameCount, this.sprites);
+            drawFrame(this.dog, this.herd, this.frameCount, this.graphics);
 
         }
 
@@ -166,10 +166,13 @@ export function GameRunner(sprites, background, dog, herd, level) {
 
     // Clear the contents of the game canvas by drawing over it.
     this.drawBackground = function () {
-        if (background.image) {
+        let image = this.graphics.backgrounds.images[this.level.id];
+        if (image) {
             let gameCanvas = document.getElementById('game-area');
             let context = gameCanvas.getContext('2d');
-            context.drawImage(this.background.image, 0, 0);
+            context.drawImage(image, 0, 0);
+        } else {
+            console.log(`background === ${this.background}`);
         }
     };
 

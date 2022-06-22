@@ -33,13 +33,10 @@ function init() {
             ],
             images: []
         },
-        background: {
-            urls: ['level1.png', 'level2.png', 'level3.png']
+        backgrounds: {
+            urls: ['level1', 'level2', 'level3'],
+            images: [],
         }
-    };
-    let background = {
-        url: 'assets/images/backgrounds/level1.png',
-        image: null
     };
 
     let level = levels[0];
@@ -47,7 +44,7 @@ function init() {
                       FIELD_HEIGHT / 4,
                       level.obstacles);
     let herd = new Herd(level);
-    let gameRunner = new GameRunner(graphics, background, dog, herd, level);
+    let gameRunner = new GameRunner(graphics, dog, herd, level);
 
     gameCanvas.addEventListener('pointerdown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
@@ -129,20 +126,20 @@ function init() {
         gameRunner.finishReplay();
     });
 
-    loadAllImages(graphics, background).then(() => {
+    loadAllImages(graphics).then(() => {
         window.requestAnimationFrame(gameRunner.updateGame);
     });
 }
 
-async function loadAllImages(sprites, background) {
+async function loadAllImages(graphics) {
     let promiseArray = [];
 
     // Create promises for loading of sheep images
-    for (let url of sprites.dog.urls) {
+    for (let url of graphics.dog.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
             img.src = `assets/images/dog_images/${url}.png`;
-            sprites.dog.images.push(img);
+            graphics.dog.images.push(img);
             img.addEventListener('load', () => {
                 resolve();
             });
@@ -150,19 +147,29 @@ async function loadAllImages(sprites, background) {
     }
 
     // Create promises for loading of sheep images
-    for (let url of sprites.sheep.urls) {
+    for (let url of graphics.sheep.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
             img.src = `assets/images/sheep_images/${url}.png`;
-            sprites.sheep.images.push(img);
+            graphics.sheep.images.push(img);
             img.addEventListener('load', () => {
                 resolve();
             });
         }));
     }
-    await Promise.all(promiseArray);
 
-    // Load background image.
-    background.image = new Image();
-    background.image.src = background.url;
+    // Create promises for loading of level background images
+    for (let url of graphics.backgrounds.urls) {
+        promiseArray.push(new Promise(resolve => {
+            const img = new Image();
+            img.src = `assets/images/backgrounds/${url}.png`;
+            graphics.backgrounds.images.push(img);
+            img.addEventListener('load', () => {
+                resolve();
+            });
+        }));
+    }
+
+    // Wait for all promises to resolve
+    await Promise.all(promiseArray);
 }
