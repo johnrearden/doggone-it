@@ -204,8 +204,8 @@ export function GameRunner(graphics, dog, herd, level) {
             "replay-time"]);
         this.actionReplay = new ActionReplay(
             this.snapshots,
-            this.sprites,
-            this.background);
+            this.graphics,
+            this.level);
     };
 
     /**

@@ -16,10 +16,10 @@ export const ReplaySpeed = {
  * A class that represents an action replay of the level just played.
  */
 export class ActionReplay {
-    constructor(snapshots, sprites, background) {
+    constructor(snapshots, graphics, level) {
         this.snapshots = snapshots;
-        this.sprites = sprites;
-        this.background = background;
+        this.graphics = graphics;
+        this.level = level;
 
         this.snapshotIndex = 0;
         this.frameCount = 0;
@@ -101,7 +101,7 @@ export class ActionReplay {
             let [index, adjustedAngle] = getIndexAndAdjustedAngle(
                 quadrant,
                 snapshot.dog.direction);
-            let correctSprite = this.sprites.dog.images[index];
+            let correctSprite = this.graphics.dog.images[index];
             
             // Draw the dog.
             drawSprite(
@@ -119,7 +119,7 @@ export class ActionReplay {
                 // Pick the correct directional sprite from South, West, North, East
                 let quadrant = getQuadrant(sheep.direction);
                 let [index, adjustedAngle] = getIndexAndAdjustedAngle(quadrant, sheep.direction);
-                let correctSprite = this.sprites.sheep.images[index];
+                let correctSprite = this.graphics.sheep.images[index];
                 let scale = sheep.isLamb ? 0.7 : 1.0;
 
                 // Draw this sheep
@@ -139,10 +139,8 @@ export class ActionReplay {
      * Draws the background image onto the canvas in order to clear it
      */
     drawBackground() {
-        if (this.background.image) {
-            let gameCanvas = document.getElementById('game-area');
+        let gameCanvas = document.getElementById('game-area');
             let context = gameCanvas.getContext('2d');
-            context.drawImage(this.background.image, 0, 0);
+            context.drawImage(this.graphics.backgrounds.images[this.level.id], 0, 0);
         }
-    }
 }
