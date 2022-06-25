@@ -63,7 +63,6 @@ export function GameRunner(graphics, dog, herd, level) {
                             "end-of-level-display",
                             "end-level-message",
                             "next-level",
-                            "try-again",
                             "action-replay"]);
                             hide(["go"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
