@@ -54,7 +54,7 @@ export class Sheep {
         // Check if the sheep is too close to any corner, and if so, give it a 
         // velocity in the opposite direction
         let xCornerVel, yCornerVel;
-        [xCornerVel, yCornerVel] = this.getVelocityAwayFromCorners();
+        [xCornerVel, yCornerVel] = this.getVelocityAwayFromSides();
         console.log(`x, y corner vel = ${xCornerVel},${yCornerVel}`);
 
         // Sum the velocities and update the sheeps position
@@ -155,49 +155,49 @@ export class Sheep {
     }
 
     /**
-     * Checks to see if the sheep is too close to any of the four corners, and 
-     * if it is, calculates a velocity for it directly away from the corner and
-     * inversely proportional to the distance to that corner. This prevents the 
-     * sheep from getting stuck in a corner while running from the dog.
-     * @returns x and y components of a velocity away from a corner, or [0,0]
-     * if no corner is too close
+     * Checks if this sheep is too close to the side of the game area, and if so, 
+     * gives it a velocity away from that side. This helps to prevent the sheep from
+     * becoming trapped in the corners.
+     * @returns an array containing an x- and y-component of velocity
      */
-
-    getVelocityAwayFromCorners() {
-        // First check if we are within range of any of the four corners
-        let corners = [[0, 0], 
-                       [FIELD_WIDTH, 0],
-                       [0, FIELD_HEIGHT],
-                       [FIELD_WIDTH, FIELD_HEIGHT]];
-        for (let corner of corners) {
-            // Get the distance from each corner in turn
-            let dist = getDistanceToPoint(this.xPos, this.yPos, corner[0], corner[1]);
-            if (dist < CORNER_REPULSION_DISTANCE) {
-                console.log(`sheep ${this.id} is too close to ${corner}`);
-                // The sheep is too close to this particular corner
-                let directionToCorner = getDirectionToPoint(this.xPos, 
-                                                            this.yPos,
-                                                            corner[0],
-                                                            corner[1]);
-                // Get the direction to move away in by reversing the direction 
-                // to the corner
-                let directionAway = ensureCorrectRange(directionToCorner + Math.PI);
-                console.log(`directionAway = ${directionAway}`);
-                
-                // Let the velocity be inversely proportional to the distance to the corner
-                let velocityCoeff = CORNER_REPULSION_DISTANCE / dist ;
-                
-                let velocityAway = 4 * SHEEP_MAX_VELOCITY_AWAY_FROM_DOG * velocityCoeff;
-                console.log(`velCoeff is ${velocityCoeff}, velAway is ${velocityAway}`);
-
-                // Return the velocity away from the corner split into x and y components
-                return [velocityAway * Math.cos(directionAway), 
-                        velocityAway * Math.sin(directionAway)];
+    getVelocityAwayFromSides() {
+        // The direction vector will be multiplied by the velocity to produce
+        // the x and y components
+        let direction = [0, 0];
+        let dist;
+        if (this.xPos < CORNER_REPULSION_DISTANCE) {
+            direction = [1, 0];
+            dist = this.xPos;
+        } else if (this.xPos > FIELD_WIDTH - CORNER_REPULSION_DISTANCE) {
+            direction = [-1, 0];
+            dist = FIELD_WIDTH - this.xPos;
+        } else if (this.yPos < CORNER_REPULSION_DISTANCE) {
+            // The sheep is at the top of the game area - we must not prevent
+            // it from leaving through the exit. Only create a velocity away from 
+            // the top side if the sheep is not in front of the exit
+            if (this.xPos < 165 || this.xPos > 235) {
+                direction = [0, 1];
+                dist = CORNER_REPULSION_DISTANCE;
             }
+        } else if (this.yPos > FIELD_HEIGHT - CORNER_REPULSION_DISTANCE) {
+            direction = [0, -1];
+            dist = FIELD_HEIGHT - this.yPos;
         }
-        // We have fallen through the for loop, which means no corner is too close to
-        // this sheep. Return a zero value for each component
-        return [0, 0];
+        
+        // Let's make the velocity inversely proportional to the distance from the wall
+        let multiplier;
+        if (dist > 0) {
+            multiplier = CORNER_REPULSION_DISTANCE / dist;
+        } else {
+            multiplier = 1;
+        }
+        let velocity = SHEEP_BASE_VELOCITY_AWAY_FROM_DOG * multiplier;
+
+        // Use the direction vector assigned in the if statements above to calculate the
+        // correct x- and y- components for the velocity
+        let xComponent = direction[0] * velocity;
+        let yComponent = direction[1] * velocity;
+        return [xComponent, yComponent];
     }
 
     /**
