@@ -187,7 +187,7 @@ export function GameRunner(graphics, dog, herd, level) {
      */
     this.start = function () {
         this.running = true;
-        this.startTime = new Date().getTime();
+        this.lastStartTime = new Date().getTime();
     };
 
     /**
