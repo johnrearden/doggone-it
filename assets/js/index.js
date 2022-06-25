@@ -92,7 +92,10 @@ function init() {
     
     document.getElementById("close-instructions-button").addEventListener('click', () => {
         document.getElementsByClassName("modal")[0].style.display = "none";   
-        gameRunner.start();     
+        if (!gameRunner.awaitingGameStart) {
+            gameRunner.start();     
+        }
+        
     });
 
     document.getElementById("next-level").addEventListener('click', event => {

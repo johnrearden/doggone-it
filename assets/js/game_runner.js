@@ -13,6 +13,7 @@ export function GameRunner(graphics, dog, herd, level) {
     this.herd = herd;
     this.frameCount = 0;
     this.running = false;
+    this.awaitingGameStart = true;
     this.levelTimeLimit = level.time * 1000;
     this.timeRemaining = level.time * 1000;
     this.lastStartTime = new Date().getTime();
@@ -146,6 +147,7 @@ export function GameRunner(graphics, dog, herd, level) {
      * Begins the game again at level 0 (shown to the player as 1)
      */
     this.startGameAgain = function () {
+        this.awaitingGameStart = false;
         this.startLevel(0);
     };
 
