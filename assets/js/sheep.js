@@ -55,7 +55,6 @@ export class Sheep {
         // velocity in the opposite direction
         let xCornerVel, yCornerVel;
         [xCornerVel, yCornerVel] = this.getVelocityAwayFromSides();
-        console.log(`x, y corner vel = ${xCornerVel},${yCornerVel}`);
 
         // Sum the velocities and update the sheeps position
         let combinedXVel = xHerdVel + xDogVel + xCornerVel;
