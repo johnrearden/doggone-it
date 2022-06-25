@@ -1,7 +1,7 @@
 export const levels = [
     {
         "id": 0,
-        "sheep": 15,
+        "sheep": 1,
         "time": 50,
         "level_url": "level1.png",
         "obstacles": [

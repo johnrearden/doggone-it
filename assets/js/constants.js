@@ -25,6 +25,14 @@ export const SHEEP_OUTER_REACTION_LIMIT = 150;
 
 
 /**
+ * Represents the distance within which the sheep are repelled by
+ * corners. Without this, they have a tendency to get herded into
+ * the corners and get stuck.
+ */
+export const CORNER_REPULSION_DISTANCE = 100;
+
+
+/**
  * Represents the distance closer than which a sheep is no longer
  * attracted to the herd.
  */

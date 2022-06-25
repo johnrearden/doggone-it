@@ -4,7 +4,8 @@ import {
     SHEEP_VELOCITY_TOWARDS_HERD,
     FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH,
     SHEEP_MAX_VELOCITY_AWAY_FROM_DOG,
-    SHEEP_MIN_DISTANCE_FROM_HERD
+    SHEEP_MIN_DISTANCE_FROM_HERD,
+    CORNER_REPULSION_DISTANCE
 } from "./constants.js";
 import {
     ensureCorrectRange, getDirectionToPoint,
@@ -50,9 +51,15 @@ export class Sheep {
         let xDogVel, yDogVel;
         [xDogVel, yDogVel] = this.getVelocityAwayFromDog(dog);
 
+        // Check if the sheep is too close to any corner, and if so, give it a 
+        // velocity in the opposite direction
+        let xCornerVel, yCornerVel;
+        [xCornerVel, yCornerVel] = this.getVelocityAwayFromCorners();
+        console.log(`x, y corner vel = ${xCornerVel},${yCornerVel}`);
+
         // Sum the velocities and update the sheeps position
-        let combinedXVel = xHerdVel + xDogVel;
-        let combinedYVel = yHerdVel + yDogVel;
+        let combinedXVel = xHerdVel + xDogVel + xCornerVel;
+        let combinedYVel = yHerdVel + yDogVel + yCornerVel;
         if (Math.abs(combinedXVel) <= 1 && Math.abs(combinedYVel) <= 1) {
             this.moving = false;
             this.direction = Math.atan2(combinedYVel, combinedXVel);
@@ -145,6 +152,52 @@ export class Sheep {
             yVel = Math.sin(angle) * velocity;
         }
         return [xVel, yVel];
+    }
+
+    /**
+     * Checks to see if the sheep is too close to any of the four corners, and 
+     * if it is, calculates a velocity for it directly away from the corner and
+     * inversely proportional to the distance to that corner. This prevents the 
+     * sheep from getting stuck in a corner while running from the dog.
+     * @returns x and y components of a velocity away from a corner, or [0,0]
+     * if no corner is too close
+     */
+
+    getVelocityAwayFromCorners() {
+        // First check if we are within range of any of the four corners
+        let corners = [[0, 0], 
+                       [FIELD_WIDTH, 0],
+                       [0, FIELD_HEIGHT],
+                       [FIELD_WIDTH, FIELD_HEIGHT]];
+        for (let corner of corners) {
+            // Get the distance from each corner in turn
+            let dist = getDistanceToPoint(this.xPos, this.yPos, corner[0], corner[1]);
+            if (dist < CORNER_REPULSION_DISTANCE) {
+                console.log(`sheep ${this.id} is too close to ${corner}`);
+                // The sheep is too close to this particular corner
+                let directionToCorner = getDirectionToPoint(this.xPos, 
+                                                            this.yPos,
+                                                            corner[0],
+                                                            corner[1]);
+                // Get the direction to move away in by reversing the direction 
+                // to the corner
+                let directionAway = ensureCorrectRange(directionToCorner + Math.PI);
+                console.log(`directionAway = ${directionAway}`);
+                
+                // Let the velocity be inversely proportional to the distance to the corner
+                let velocityCoeff = CORNER_REPULSION_DISTANCE / dist ;
+                
+                let velocityAway = 4 * SHEEP_MAX_VELOCITY_AWAY_FROM_DOG * velocityCoeff;
+                console.log(`velCoeff is ${velocityCoeff}, velAway is ${velocityAway}`);
+
+                // Return the velocity away from the corner split into x and y components
+                return [velocityAway * Math.cos(directionAway), 
+                        velocityAway * Math.sin(directionAway)];
+            }
+        }
+        // We have fallen through the for loop, which means no corner is too close to
+        // this sheep. Return a zero value for each component
+        return [0, 0];
     }
 
     /**
