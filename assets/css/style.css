@@ -93,6 +93,20 @@ li {
 }
 
 
+/* PROGRESS DISPLAY */
+#progress-display {
+    position: relative;
+}
+#instructions-top-button {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
 /* INSTRUCTIONS MODAL */
 
 .modal {
@@ -184,14 +198,6 @@ li {
     width: 100%;
     height: 100%;
     text-align: center;
-}
-
-#instructions-link {
-    background-color: #facc20;
-    color:#333333;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
 }
 
 #button-panel {
@@ -316,13 +322,6 @@ li {
 #time-remaining[value]::-moz-progress-bar {
     border-radius: 20px;
     background: var(--color);
-}
-
-#bark-button {
-    width: 50%;
-    margin-bottom: 10px;
-    font-size: 2rem;
-    font-weight: bolder;
 }
 
 #play {
