@@ -5,7 +5,10 @@ import {
 
 import {
     DOG_UNIT_MOVE,
-    DOG_SLOWDOWN_RANGE
+    DOG_SLOWDOWN_RANGE,
+    FIELD_BORDER,
+    FIELD_WIDTH,
+    FIELD_HEIGHT
 } from "./constants.js";
 
 export class Dog {
@@ -110,18 +113,8 @@ export class Dog {
      * @param {Number} y 
      */
     onPointerMove(x, y) {
-        if (this.pointerDown) {
-            // Check if the point is within any of the obstacles
-            let pointIsValid = true;
-            for (let ob of this.obstacleArray) {
-                if (rectContainsPoint(ob, new Point(x, y))) {
-                    pointIsValid = false;
-                    break;
-                }
-            }
-            if (pointIsValid) {
-                this.wayPoints.push([x, y]);
-            }
+        if (this.pointerDown && this.checkWaypointIsValid(x, y, this.obstacleArray)) {
+            this.wayPoints.push([x, y]);
         }
     }
 
@@ -134,16 +127,9 @@ export class Dog {
      */
     onPointerUp(x, y) {
         this.pointerDown = false;
-        let pointIsValid = true;
-            for (let ob of this.obstacleArray) {
-                if (rectContainsPoint(ob, new Point(x, y))) {
-                    pointIsValid = false;
-                    break;
-                }
-            }
-            if (pointIsValid) {
-                this.wayPoints.push([x, y]);
-            } 
+        if (this.checkWaypointIsValid(x, y, this.obstacleArray)) {
+            this.wayPoints.push([x, y]);
+        } 
     }
 
     /**
@@ -211,5 +197,32 @@ export class Dog {
             }
         }
         return [xVel, yVel];
+    }
+
+    /**
+     * Checks that a potential waypoint does not overlap with any of the obstacles
+     * in this level, and also that it falls within the borders of the game area,
+     * including the fences.
+     * @param {*} x 
+     * @param {*} y 
+     * @param {*} obstacleArray 
+     * @returns true if waypoint is valid, false otherwise
+     */
+    checkWaypointIsValid(x, y, obstacleArray) {
+        // Check if the point is within any of the obstacles
+        for (let ob of obstacleArray) {
+            if (rectContainsPoint(ob, new Point(x, y))) {
+                return false;
+            }
+        }
+
+        // Check that the point is within the fences on the game area
+        if (x < FIELD_BORDER || x > FIELD_WIDTH - FIELD_BORDER || 
+            y < FIELD_BORDER || y > FIELD_HEIGHT - FIELD_BORDER) {
+                return false;
+        }
+
+        // Point is valid - return true
+        return true;
     }
 }
