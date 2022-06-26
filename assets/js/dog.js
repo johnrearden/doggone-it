@@ -20,7 +20,6 @@ export class Dog {
         this.xDest = xPos;
         this.yDest = yPos;
         this.direction = 0;
-        this.barking = false;
         this.moving = false;
         this.pointerDown = false;
         this.wayPoints = [];
@@ -39,14 +38,6 @@ export class Dog {
      */
     update() {
         this.moveToDest();
-    }
-
-    /**
-     * Sets a flag indicating whether the dog is barking or not.
-     * @param {Boolean} bool 
-     */
-    shouldBark(bool) {
-        this.barking = bool;
     }
 
     /**
