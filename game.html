@@ -17,13 +17,14 @@
 </head>
 
 <body>
-    <header>
-    </header>
 
+    <!-- This div functions as a container for the page -->
     <div id="game-ui">
 
+        <!-- This div holds the various different output elements for the game -->
         <div id="displays">
 
+            <!-- A text output of the number of sheep still to exit -->
             <div id="progress-display">
                 <span id="sheep-remaining-text">Sheep&ThickSpace;</span>
                 <span id="sheep-remaining">0</span>
@@ -35,6 +36,10 @@
                 
             </div>
 
+            <!-- The main gameplay area, the canvas element, is overlaid with 
+                 button which are only diplayed at the end of a level, and some
+                 action replay graphical elements only shown during replays.
+                 Display of these hidden elements controlled by script -->
             <div id="main-display">
                 <canvas id="game-area"></canvas>
                 <img src="assets/images/backgrounds/replay.png" 
@@ -54,6 +59,9 @@
                         <button id="begin-again">Begin Again</button>
                     </div>
                 </div>
+
+                <!-- These are the controls for the action replay, which are not
+                     displayed during ordinary gameplay -->
                 <div id="action-replay-display">
                     <div>
                         <button id="to-start"><i class="fa-solid fa-backward-fast replay-button"></i></button>
@@ -68,11 +76,14 @@
                 </div>
             </div>
 
+            <!-- A time display implemented as a progress bar which runs backwards-->
             <div id="time-display">
                 <progress id="time-remaining" max="100" value="100"></progress>
             </div>
         </div>
 
+        <!-- This div contains a modal instructions display, consisting of some
+             textural instructions and a video of the game being played -->
         <div class="modal">
             <div id="instructions-holder">
                 <h1>Instructions</h1>
@@ -111,10 +122,11 @@
         </div>
     </div>
 
+    <!-- This div is a semi-opaque mask (full size of screen) which sits above the 
+         canvas on which the game is displayed, and below the controls displayed 
+         both before the game starts and at the end of each level. It's purpose is 
+         to foreground the buttons the player must use to proceed. -->
     <div id="dimmer-mask"></div>
-
-    <footer>
-    </footer>
 
     <script src="https://kit.fontawesome.com/f2f8e80db6.js" crossorigin="anonymous"></script>
     <script type="module" src="assets/js/index.js"></script>

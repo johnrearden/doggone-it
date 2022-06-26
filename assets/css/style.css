@@ -167,6 +167,17 @@ li {
 }
 
 /* GAME.HTML */
+
+/* Page container which center aligns its children and prevents the game area
+   from growing to the point where it overflows the vertical space */
+#game-ui {
+    margin: 0 auto;
+    max-width: 450px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
 #instructions-link {
     background-color: #facc20;
     color:#333333;
@@ -196,13 +207,7 @@ li {
     transition: opacity 1s ease;
 }
 
-#game-ui {
-    margin: 0 auto;
-    max-width: 450px;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-}
+
 
 #displays {
     margin: 0 auto;
