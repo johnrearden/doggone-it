@@ -29,7 +29,8 @@
                 <span id="sheep-remaining-text">Sheep&ThickSpace;</span>
                 <span id="sheep-remaining">0</span>
                 <div id="instructions-link">
-                    <button class="instructions-button">
+                    <button class="instructions-button"
+                            aria-label="Show me instructions for the game">
                         <i class="fa-solid fa-info"></i>
                     </button>
                 </div>
@@ -63,12 +64,24 @@
                      displayed during ordinary gameplay -->
                 <div id="action-replay-display">
                     <div>
-                        <button id="to-start"><i class="fa-solid fa-backward-fast replay-button"></i></button>
-                        <button id="rewind"><i class="fa-solid fa-backward replay-button"></i></button>
-                        <button id="play"><i class="fa-solid fa-play replay-button"></i></button>
-                        <button id="pause"><i class="fa-solid fa-pause replay-button"></i></button>
-                        <button id="fast-forward"><i class="fa-solid fa-forward replay-button"></i></button>
-                        <button id="finish">Done&nbsp;<i class="fa-solid fa-check replay-button"></i></button>
+                        <button id="to-start" aria-label="Jump back to start of replay">
+                            <i class="fa-solid fa-backward-fast replay-button"></i>
+                        </button>
+                        <button id="rewind" aria-label="Change replay direciton to rewind">
+                            <i class="fa-solid fa-backward replay-button"></i>
+                        </button>
+                        <button id="play" aria-label="Run the replay forward at normal speed">
+                            <i class="fa-solid fa-play replay-button"></i>
+                        </button>
+                        <button id="pause" aria-label="Pause the replay">
+                            <i class="fa-solid fa-pause replay-button"></i>
+                        </button>
+                        <button id="fast-forward" aria-lavel="Run the replay forward at double speed">
+                            <i class="fa-solid fa-forward replay-button"></i>
+                        </button>
+                        <button id="finish" aria-label="Close the replay and go back to the game">
+                            Done&nbsp;<i class="fa-solid fa-check replay-button"></i>
+                        </button>
                     </div>
                     <input type="range" id="replay-slider" 
                            min="0" max="100" value="0">
@@ -84,7 +97,7 @@
         <!-- This div contains a modal instructions display, consisting of some
              textural instructions and a video of the game being played -->
         <div class="modal">
-            <div id="instructions-holder">
+            <section id="instructions-holder">
                 <h1>Instructions</h1>
                 <p>
                     You're a dog! The sheep are scared of you, so they'll run 
@@ -116,7 +129,7 @@
                     <i class="fa-solid fa-thumbs-up"></i>
                 </button>    
                 
-            </div>
+            </section>
         </div>
     </div>
 
