@@ -21,7 +21,7 @@ export function GameRunner(graphics, dog, herd, level) {
     this.actionReplay = null;
     this.snapshots = [];
 
-    show(["go"]);
+    show(["go-button"]);
 
     // Calibrate the time remaining display to this level's time limit.
     document.getElementById("time-remaining").max = this.levelTimeLimit;
@@ -47,9 +47,9 @@ export function GameRunner(graphics, dog, herd, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        hide(["next-level", 
-                              "go",
-                              "try-again"]);
+                        hide(["next-level-button", 
+                              "go-button",
+                              "try-again-button"]);
                         show([
                             "end-of-level-display",
                             "end-level-message",
@@ -63,9 +63,9 @@ export function GameRunner(graphics, dog, herd, level) {
                         show([
                             "end-of-level-display",
                             "end-level-message",
-                            "next-level",
-                            "action-replay"]);
-                            hide(["go"]);
+                            "next-level-button",
+                            "action-replay-button"]);
+                            hide(["go-button"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }
@@ -83,9 +83,9 @@ export function GameRunner(graphics, dog, herd, level) {
                     this.dimmerMaskOn(true);
                     show(["end-of-level-display",
                         "end-level-message",
-                        "action-replay",
-                        "try-again"]);
-                    hide(["next-level", "go"]);
+                        "action-replay-button",
+                        "try-again-button"]);
+                    hide(["next-level-button", "go-button"]);
                     showMessage("Out of time!");
                 }
 
@@ -225,7 +225,7 @@ export function GameRunner(graphics, dog, herd, level) {
         this.actionReplay = null;
         hide(["action-replay-display",
             "end-level-message",
-            "action-replay",
+            "action-replay-button",
             "replay-time",
             "replay-banner"]);
         show(["end-of-level-display"]);

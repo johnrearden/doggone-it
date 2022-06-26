@@ -77,7 +77,7 @@ function init() {
         event.preventDefault();
     });
 
-    document.getElementById("go").addEventListener('click', event => {
+    document.getElementById("go-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.onGoButtonClicked();
     });
@@ -98,22 +98,22 @@ function init() {
         
     });
 
-    document.getElementById("next-level").addEventListener('click', event => {
+    document.getElementById("next-level-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startNextLevel();
     });
 
-    document.getElementById("try-again").addEventListener('click', event => {
+    document.getElementById("try-again-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.repeatCurrentLevel();
     });
 
-    document.getElementById("action-replay").addEventListener('click', event => {
+    document.getElementById("action-replay-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startActionReplay();
     });
 
-    document.getElementById("begin-again").addEventListener('click', event => {
+    document.getElementById("begin-again-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startGameAgain();
     });
