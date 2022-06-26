@@ -9,11 +9,31 @@ document.addEventListener('DOMContentLoaded', function () {
     init();
 });
 
+/**
+ * Executes the startup tasks - 
+ *  1) Create a graphics object to hold the graphics urls and images
+ *  2) Create the main game objects - gameRunner, dog and herd
+ *  3) Add event listeners to the canvas for click and drag events
+ *  4) Add event listeners to the end-of-level buttons
+ *  5) Add event listeners to the action-replay control buttons
+ *  6) Load the images asynchronously
+ *  7) Call window.requestAnimationFrame() to begin drawing the game
+ */
 function init() {
     let gameCanvas = document.getElementById('game-area');
     gameCanvas.width = FIELD_WIDTH;
     gameCanvas.height = FIELD_HEIGHT;
 
+    /* 
+        The graphics used by the game consist of 2 characters (dog and sheep)
+        and a unique background for each level. Each character has four possible 
+        directions in which it can face, and three animation frames for each
+        direction:
+            1) left leg forward
+            2) right leg forward
+            3) legs together,
+        making 12 sprites in total.
+    */
     let graphics = {
         dog: {
             urls: [
@@ -39,6 +59,8 @@ function init() {
         }
     };
 
+
+    // Create the main game objects
     let level = levels[0];
     let dog = new Dog(FIELD_WIDTH / 2, 
                       FIELD_HEIGHT / 4,
@@ -46,6 +68,9 @@ function init() {
     let herd = new Herd(level);
     let gameRunner = new GameRunner(graphics, dog, herd, level);
 
+
+    // Add event listeners to the game canvas, to enable the player to 
+    // control the dog
     gameCanvas.addEventListener('pointerdown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
         let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
@@ -69,14 +94,17 @@ function init() {
         }
     });
 
-    /**
-     * Prevents a touch (mobile only) on the gameCanvas from scrolling
-     * the entire view
-     */
+    
+    //  Prevents a touch (mobile only) on the gameCanvas from scrolling
+    //  the entire view
     gameCanvas.addEventListener('touchmove', event => {
         event.preventDefault();
     });
 
+
+    // Add event listeners to the buttons displayed at the start of the game, 
+    // and at the end of each level. The event listener is just added to the DOM
+    // here, and the event handling is delegated to the gameRunner object
     document.getElementById("go-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.onGoButtonClicked();
@@ -95,7 +123,6 @@ function init() {
         if (!gameRunner.awaitingGameStart) {
             gameRunner.start();     
         }
-        
     });
 
     document.getElementById("next-level-button").addEventListener('click', event => {
@@ -118,6 +145,9 @@ function init() {
         gameRunner.startGameAgain();
     });
 
+
+    // Add event listeners to the buttons used to control the action replay. Event
+    // handling here is delegated to the gameRunner object
     document.getElementById("to-start").addEventListener('click', event => {
         gameRunner.toStart();
     });
@@ -142,11 +172,16 @@ function init() {
         gameRunner.finishReplay();
     });
 
+    // Finally, call the async function loadAllImages, and when the images
+    // have all loaded successfully, make the first call to request an 
+    // animation frame and begin the game drawing loop.
     loadAllImages(graphics).then(() => {
         window.requestAnimationFrame(gameRunner.updateGame);
     });
 }
 
+// This async function creates a Promise per image, and adds it to an array.
+// Promise.all() is invoked to await resolution of all the promises
 async function loadAllImages(graphics) {
     let promiseArray = [];
 
