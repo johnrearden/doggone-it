@@ -1,3 +1,5 @@
+/* GLOBAL STYLES FOR ELEMENTS */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +15,7 @@ body {
     position: relative;
 }
 
+/* Prevents the player selecting any ui element that is not a button */
 :not(button) {
     user-select: none;
 }
@@ -28,6 +31,7 @@ button {
     border: none;
 }
 
+/* Reverse the colors on hover */
 button:hover {
     background-color: #333333;
     color: #facc20;
@@ -60,6 +64,7 @@ li {
     padding-left: 0;
 }
 
+
 /* LOGO */
 
 #holder {
@@ -68,6 +73,7 @@ li {
     justify-content: center;
     height: 100%;
 }
+
 #logo {
     text-align: center;
     width: 100%;
@@ -85,6 +91,7 @@ li {
     color: white;
     margin: 0 10px 30px 10px;
 }
+
 
 /* INSTRUCTIONS MODAL */
 
@@ -113,6 +120,7 @@ li {
     max-height: 10vh;
 }
 
+/* Places the gameplay video and movement instructions side by side */
 #columns {
     max-width: 100%;
     margin: 0 10px;
@@ -195,9 +203,10 @@ li {
     margin: 0 5px;
 }
 
+/* Dims the gameplay area while end of level controls are displayed */
 #dimmer-mask {
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.5;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -206,8 +215,6 @@ li {
     background-color: black;
     transition: opacity 1s ease;
 }
-
-
 
 #displays {
     margin: 0 auto;
@@ -222,8 +229,8 @@ li {
     position: relative;
 }
 
+/* The main game canvas, where the game characters (dog and sheep) are displayed */
 #game-area {
-    position: absolute;
     left: 0;
     top: 0;
     width: 95%;
@@ -247,26 +254,19 @@ li {
     z-index: 5;
 }
 
-#next-level {
-    display: none;
-}
-
-#action-replay, #try-again {
-    display: none;
-}
-
 #end-level-message {
     display: none;
     text-align: center;
     text-shadow: 0 0 100px #917513;
 }
 
+/* These buttons are hidden at page load, and set to display by javascript when needed */
+#action-replay-button, 
+#try-again-button, 
+#begin-again-button, 
+#next-level-button, 
 #game-complete-button {
     display: none;
-}
-
-#begin-again {
-    font-size: 1rem;
 }
 
 #controls {
