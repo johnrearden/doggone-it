@@ -94,7 +94,6 @@ function init() {
         }
     });
 
-    
     //  Prevents a touch (mobile only) on the gameCanvas from scrolling
     //  the entire view
     gameCanvas.addEventListener('touchmove', event => {
@@ -110,6 +109,9 @@ function init() {
         gameRunner.onGoButtonClicked();
     });
 
+    // There are two different buttons to launch the instructions - one at the
+    // top of the screen and one in the end-of-level display, only shown 
+    // between levels
     let array = document.getElementsByClassName("instructions-button");
     for (let button of array) {
         button.addEventListener('click', () => {
