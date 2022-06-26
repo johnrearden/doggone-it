@@ -115,7 +115,7 @@ function init() {
     let array = document.getElementsByClassName("instructions-button");
     for (let button of array) {
         button.addEventListener('click', () => {
-            document.getElementsByClassName("modal")[0].style.display = "initial";
+            document.getElementById("instructions-modal").style.display = "initial";
             gameRunner.stop();
         });
     }
@@ -125,6 +125,14 @@ function init() {
         if (!gameRunner.awaitingGameStart) {
             gameRunner.start();     
         }
+    });
+
+    document.getElementById("settings-top-button").addEventListener('click', () => {
+        document.getElementById("settings-modal").style.display = "initial";
+    });
+
+    document.getElementById("close-settings-button").addEventListener('click', () => {
+        document.getElementById("settings-modal").style.display = "none";
     });
 
     document.getElementById("next-level-button").addEventListener('click', event => {

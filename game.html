@@ -33,6 +33,10 @@
                         aria-label="Show me instructions for the game">
                     <i class="fa-solid fa-info"></i>
                 </button>
+                <button id="settings-top-button"
+                        aria-label="Show me the settings options">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
                 
                 
             </div>
@@ -96,7 +100,7 @@
 
         <!-- This div contains a modal instructions display, consisting of some
              textural instructions and a video of the game being played -->
-        <div class="modal">
+        <div id="instructions-modal" class="modal">
             <section id="instructions-holder">
                 <h1>Instructions</h1>
                 <p>
@@ -129,6 +133,31 @@
                     <i class="fa-solid fa-thumbs-up"></i>
                 </button>    
                 
+            </section>
+        </div>
+
+        <!-- This div holds a set of sliders for experimenting with some of the
+             main game variables -->
+        <div id="settings-modal" class="modal">
+            <section id="settings">
+                <h1>Settings</h1>
+                <p>
+                    Try adjusting the sliders to change the game settings. Experiment
+                    with making the game easier or harder! Hover over a slider to see
+                    how that variable affects the game. Changes will take effect at
+                    the start of the next level.
+                </p>
+                <div class="slider-container">
+                    <input id="dog-speed" class="settings-slider" type="range" 
+                           min="0.5" max="2" step="0.01" value="1">
+                    <input id="herd-tightness" class="settings-slider" type="range" 
+                           min="0.5" max="3" step="0.01" value="1">
+                    <input id="dog-scariness" class="settings-slider" type="range" 
+                           min="0.5" max="3" step="0.01" value="1">
+                    <input id="time-allowed" class="settings-slider" type="range" 
+                           min="0.7" max="2" step="0.01" value="1">
+                </div>
+                <button id="close-settings-button">X</button>
             </section>
         </div>
     </div>
