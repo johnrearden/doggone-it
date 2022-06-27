@@ -31,6 +31,8 @@ export class Sheep {
         this.id = id;
         this.moving = false;
         this.isLamb = isLamb;
+        this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD;
+        this.setHerdClosenessEventListener();
     }
 
     /**
@@ -94,7 +96,7 @@ export class Sheep {
      */
     getVelocityTowardHerd(herdXCenter, herdYCenter) {
         let distToHerd = getDistanceToPoint(this.xPos, this.yPos, herdXCenter, herdYCenter);
-        if (distToHerd > SHEEP_MIN_DISTANCE_FROM_HERD) {
+        if (distToHerd > this.minDistanceFromHerd) {
             let directionToHerdCenter = getDirectionToPoint(
                 this.xPos,
                 this.yPos,
@@ -244,4 +246,20 @@ export class Sheep {
         }
         return [xVel, yVel];
     }
+
+    /**
+     * Attaches an event (change) listener to the herd-closeness slider in settings, 
+     * to enable the player to experiment with different values for the
+     * minDistanceFromHerd variable
+     */
+    setHerdClosenessEventListener() {
+        let slider = document.getElementById("herd-closeness");
+        slider.addEventListener('change', () => {
+            // The default is divided by the slider value, as it makes more
+            // intuitive sense for increasing closeness to be the right-hand
+            // end of the slider
+            this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
+        });
+    }
 }
+

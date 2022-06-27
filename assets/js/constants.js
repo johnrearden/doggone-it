@@ -2,7 +2,7 @@
  * Represents the base speed (when least anxious) a sheep will travel
  * at in the direction of the center of its neighbours.
  */
-export const SHEEP_VELOCITY_TOWARDS_HERD = 0.5;
+export const SHEEP_VELOCITY_TOWARDS_HERD = 1.5;
 
 
 /**
@@ -36,7 +36,7 @@ export const CORNER_REPULSION_DISTANCE = 50;
  * Represents the distance closer than which a sheep is no longer
  * attracted to the herd.
  */
-export const SHEEP_MIN_DISTANCE_FROM_HERD = 150;
+export const SHEEP_MIN_DISTANCE_FROM_HERD = 120;
 
 
 /**
