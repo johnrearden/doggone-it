@@ -4,7 +4,7 @@ import { levels } from '../data/levels.js';
 import { drawFrame } from './frame_drawer.js';
 import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constants.js';
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
-import { show, hide, showMessage } from './utilities.js';
+import { show, hide, showMessage, rectContainsPoint } from './utilities.js';
 
 export function GameRunner(graphics, dog, herd, level) {
     this.graphics = graphics;
@@ -162,8 +162,9 @@ export function GameRunner(graphics, dog, herd, level) {
             this.level.obstacles);
         this.herd = new Herd(this.level);
         this.frameCount = 0;
-        this.levelTimeLimit = this.level.time * 1000;
-        this.timeRemaining = this.level.time * 1000;
+        let timeAllowedSlider = document.getElementById("time-allowed");
+        this.levelTimeLimit = this.level.time * 1000 * timeAllowedSlider.value;
+        this.timeRemaining = this.level.time * 1000 * timeAllowedSlider.value;
         this.lastStartTime = new Date().getTime();
 
         this.running = true;
