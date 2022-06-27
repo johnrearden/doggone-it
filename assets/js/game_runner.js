@@ -53,8 +53,6 @@ export function GameRunner(graphics, dog, herd, level) {
                         show([
                             "end-of-level-display",
                             "end-level-message",
-                            "game-complete-button",
-                            "end-level-message",
                         ]);
                         showMessage("You beat the game!");
                     } else {
