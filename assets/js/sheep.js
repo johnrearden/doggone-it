@@ -32,7 +32,9 @@ export class Sheep {
         this.moving = false;
         this.isLamb = isLamb;
         this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD;
+        this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT;
         this.setHerdClosenessEventListener();
+        this.setDogScarinessEventListener();
     }
 
     /**
@@ -121,7 +123,7 @@ export class Sheep {
      * @returns an array containing the x and y velocity components.
      */
     getVelocityAwayFromDog(dog) {
-        let reactionRange = SHEEP_OUTER_REACTION_LIMIT;
+        let reactionRange = this.outerReactionLimit;
         let xVel = 0;
         let yVel = 0;
 
@@ -137,7 +139,7 @@ export class Sheep {
             let dist = Math.sqrt(dogXDistSq + dogYDistSq);
 
             // The sheep moves away at a speed proportional to the dogs closeness.
-            let multiplier = SHEEP_OUTER_REACTION_LIMIT / dist;
+            let multiplier = this.outerReactionLimit / dist;
             let velocity = SHEEP_BASE_VELOCITY_AWAY_FROM_DOG * multiplier;
             if (velocity > SHEEP_MAX_VELOCITY_AWAY_FROM_DOG) {
                 velocity = SHEEP_MAX_VELOCITY_AWAY_FROM_DOG;
@@ -259,6 +261,18 @@ export class Sheep {
             // intuitive sense for increasing closeness to be the right-hand
             // end of the slider
             this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
+        });
+    }
+
+    /**
+     * Attaches an event (change) listener to the dog-scariness slider in settings, 
+     * to enable the player to experiment with different values for the 
+     * outerReactionLimit variable
+     */
+    setDogScarinessEventListener() {
+        let slider = document.getElementById("dog-scariness");
+        slider.addEventListener('change', () => {
+            this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
         });
     }
 }
