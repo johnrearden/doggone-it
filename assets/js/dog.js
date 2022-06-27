@@ -76,7 +76,7 @@ export class Dog {
 
         // Reduce the dogs speed as he nears his final wayPoint. 
         let distToDestination = getDistanceToPoint(this.xPos, this.yPos, this.xDest, this.yDest);
-        let distToTravel = DOG_UNIT_MOVE;
+        let distToTravel = this.unitMove;
         if (distToDestination < DOG_SLOWDOWN_RANGE && this.wayPoints.length === 1) {
             distToTravel *= distToDestination / DOG_SLOWDOWN_RANGE;
         }
@@ -156,7 +156,7 @@ export class Dog {
      */
     arrivedAtNextWaypoint() {
         let distToNextWaypoint = getDistanceToPoint(this.xDest, this.yDest, this.xPos, this.yPos);
-        return distToNextWaypoint <= DOG_UNIT_MOVE * 2;
+        return distToNextWaypoint <= this.unitMove * 2;
     }
 
     /**
