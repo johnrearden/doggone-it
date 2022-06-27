@@ -230,6 +230,11 @@ export class Dog {
         return true;
     }
 
+    /**
+     * Attaches an event (change) listener to the dog-speed slider in settings, 
+     * to enable the player to experiment with different values for the 
+     * unitMove variable
+     */
     setSliderEventListener() {
         let slider = document.getElementById("dog-speed");
         slider.addEventListener('change', () => {
