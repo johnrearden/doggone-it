@@ -23,6 +23,7 @@ export class Dog {
         this.xDest = xPos;
         this.yDest = yPos;
         this.direction = 0;
+        this.unitMove = DOG_UNIT_MOVE;
         this.moving = false;
         this.pointerDown = false;
         this.wayPoints = [];
@@ -34,6 +35,9 @@ export class Dog {
                                           ob.y + ob.height);
             this.obstacleArray.push(rectangle);
         }
+        // A new dog is created for each level, so the listener for the 
+        // dog speed slider in settings must be attached in the constructor
+        this.setSliderEventListener();
     }
 
     /**
@@ -178,7 +182,7 @@ export class Dog {
      * @param {Number} yVel The y velocity calculated for the current move
      * @returns the x and y velocities adjusted to avoid entering an obstacle
      */
-     checkMoveForObstacles(xVel, yVel, obstacles) {
+     checkMoveForObstacles(xVel, yVel) {
         let futureX = this.xPos + xVel;
         let futureY = this.yPos + yVel;
         for (let obstacle of this.obstacleArray) {
@@ -224,5 +228,13 @@ export class Dog {
 
         // Point is valid - return true
         return true;
+    }
+
+    setSliderEventListener() {
+        let slider = document.getElementById("dog-speed");
+        slider.addEventListener('change', () => {
+            this.unitMove = DOG_UNIT_MOVE * slider.value;
+            console.log(`slider.value === ${slider.value}, unitMove === ${this.unitMove}`);
+        });
     }
 }
