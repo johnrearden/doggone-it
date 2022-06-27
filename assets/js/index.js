@@ -129,10 +129,14 @@ function init() {
 
     document.getElementById("settings-top-button").addEventListener('click', () => {
         document.getElementById("settings-modal").style.display = "initial";
+        gameRunner.stop();
     });
 
     document.getElementById("close-settings-button").addEventListener('click', () => {
         document.getElementById("settings-modal").style.display = "none";
+        if (!gameRunner.awaitingGameStart) {
+            gameRunner.start();     
+        }
     });
 
     document.getElementById("next-level-button").addEventListener('click', event => {
