@@ -62,11 +62,11 @@ function init() {
 
     // Create the main game objects
     let level = levels[0];
-    let dog = new Dog(FIELD_WIDTH / 2, 
-                      FIELD_HEIGHT / 4,
-                      level.obstacles);
-    let herd = new Herd(level);
-    let gameRunner = new GameRunner(graphics, dog, herd, level);
+    // let dog = new Dog(FIELD_WIDTH / 2, 
+    //                   FIELD_HEIGHT / 4,
+    //                   level.obstacles);
+    // let herd = new Herd(level);
+    let gameRunner = new GameRunner(graphics, level);
 
 
     // Add event listeners to the game canvas, to enable the player to 

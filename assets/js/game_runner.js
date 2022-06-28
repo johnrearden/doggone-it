@@ -6,13 +6,15 @@ import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constant
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
 import { show, hide, showMessage, rectContainsPoint } from './utilities.js';
 
-export function GameRunner(graphics, dog, herd, level) {
+export function GameRunner(graphics, level) {
     this.graphics = graphics;
     this.level = level;
-    this.dog = dog;
-    this.herd = herd;
     this.frameCount = 0;
     this.running = false;
+    this.dog = new Dog(FIELD_WIDTH / 2, 
+                      FIELD_HEIGHT / 4,
+                      level.obstacles);
+    this.herd = new Herd(level);
     this.awaitingGameStart = true;
     this.levelTimeLimit = level.time * 1000;
     this.timeRemaining = level.time * 1000;
