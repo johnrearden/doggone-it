@@ -7,7 +7,7 @@
  * @param {Number} angleTo in radians
  * @returns the difference between the parameters in radians
  */
-export const getAngularDifference = (angleTo, angleFrom) => {
+export function getAngularDifference (angleTo, angleFrom) {
     let difference = angleTo - angleFrom;
     if (difference > Math.PI) {
         difference -= 2 * Math.PI;
@@ -16,7 +16,7 @@ export const getAngularDifference = (angleTo, angleFrom) => {
         difference += 2 * Math.PI;
     }
     return difference;
-};
+}
 
 /**
  * Calculates the direction a game object should travel in to reach
@@ -28,9 +28,9 @@ export const getAngularDifference = (angleTo, angleFrom) => {
  * @param {Number} yTo 
  * @returns A direction (angle) such that -Math.PI <= angle <= Math.PI
  */
-export const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
+export function getDirectionToPoint (xFrom, yFrom, xTo, yTo) {
     return Math.atan2(yTo - yFrom, xTo - xFrom);
-};
+}
 
 /**
  * Calculates the distance between 2 points.
@@ -40,11 +40,11 @@ export const getDirectionToPoint = (xFrom, yFrom, xTo, yTo) => {
  * @param {Number} y2 
  * @returns The distance between (x1, y1) and (x2, y2)
  */
-export const getDistanceToPoint = (x1, y1, x2, y2) => {
+export function getDistanceToPoint (x1, y1, x2, y2) {
     let xDistSq = Math.pow(x2 - x1, 2);
     let yDistSq = Math.pow(y2 - y1, 2);
     return Math.sqrt(xDistSq + yDistSq);
-};
+}
 
 export const Quadrant = {
     EAST: {
@@ -69,7 +69,7 @@ export const Quadrant = {
     }
 };
 
-export const getQuadrant = (angle) => {
+export function getQuadrant (angle) {
     if (angle >= Quadrant.EAST.min && angle < Quadrant.EAST.max) {
         return Quadrant.EAST;
     } else if (angle >= Quadrant.SOUTH.min && angle < Quadrant.SOUTH.max) {
@@ -79,7 +79,7 @@ export const getQuadrant = (angle) => {
     } else {
         return Quadrant.WEST;
     }
-};
+}
 
 /**
  * Returns a value between -Math.PI and Math.PI, by recursively adding or subtracting
@@ -87,7 +87,7 @@ export const getQuadrant = (angle) => {
  * @param {Number} angle 
  * @returns 
  */
-export const ensureCorrectRange = (angle) => {
+export function ensureCorrectRange (angle) {
     if (angle > Math.PI) {
         return ensureCorrectRange(angle - Math.PI * 2);
     } else if (angle < -Math.PI) {
@@ -95,7 +95,7 @@ export const ensureCorrectRange = (angle) => {
     } else {
         return angle;
     }
-};
+}
 
 /**
  * Tests if the point supplied is within the rectangle supplied.
@@ -103,7 +103,7 @@ export const ensureCorrectRange = (angle) => {
  * @param {Point} point 
  * @returns true if the point is contained within the rectangle
  */
-export const rectContainsPoint = (rect, point) => {
+export function rectContainsPoint (rect, point) {
     let isContained = true;
     if (point.x > rect.right || point.x < rect.left) {
         isContained = false;
@@ -112,7 +112,7 @@ export const rectContainsPoint = (rect, point) => {
         isContained = false;
     }
     return isContained;
-};
+}
 
 /**
  * A class representing a point
@@ -140,27 +140,27 @@ export class Rectangle {
      * Utility method to display an array of HTML elements.
      * @param {Array} array of HTML id attributes 
      */
-export const show = function (array) {
+export function show (array) {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "initial";
     }
-};
+}
 
 /**
  * Utility method to display an array of HTML elements.
  * @param {Array} array of HTML id attributes 
  */
-export const hide = function (array) {
+export function hide (array) {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "none";
     }
-};
+}
 
 /**
  * Utility method to show a string to the player
  * @param {String} message to be displayed
  */
-export const showMessage = function (message) {
+export function showMessage (message) {
     let displayText = document.getElementById("end-level-message");
     displayText.innerText = message;
-};
+}
