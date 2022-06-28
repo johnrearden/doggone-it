@@ -116,11 +116,11 @@ li {
 }
 
 #instructions-top-button {
-    right: 30px;
+    left: 50px;
 }
 
 #settings-top-button {
-   right: 70px;
+   right: 50px;
 }
 
 
@@ -225,7 +225,7 @@ li {
 
 #sheep-remaining, #sheep-remaining-text {
     font-weight: bolder;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 #time-display {
