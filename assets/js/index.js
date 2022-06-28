@@ -59,15 +59,9 @@ function init() {
         }
     };
 
-
     // Create the main game objects
     let level = levels[0];
-    // let dog = new Dog(FIELD_WIDTH / 2, 
-    //                   FIELD_HEIGHT / 4,
-    //                   level.obstacles);
-    // let herd = new Herd(level);
     let gameRunner = new GameRunner(graphics, level);
-
 
     // Add event listeners to the game canvas, to enable the player to 
     // control the dog
@@ -99,7 +93,6 @@ function init() {
     gameCanvas.addEventListener('touchmove', event => {
         event.preventDefault();
     });
-
 
     // Add event listeners to the buttons displayed at the start of the game, 
     // and at the end of each level. The event listener is just added to the DOM
