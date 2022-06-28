@@ -162,6 +162,15 @@ https://www.youtube.com/watch?v=_iH-34i6kYE
 
 Sheep image for logo from dagadu, purchased from colorbox
 
+Tortoise icon:
+https://www.flaticon.com/free-icons/tortoise
+
+Hare icon: 
+https://www.flaticon.com/free-icons/rabbit
+
+Sheep icon:
+https://www.flaticon.com/free-icons/lamb
+
 ## Code:
 CSS aspect-ratio property:
 https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ 
