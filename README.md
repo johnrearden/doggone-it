@@ -4,14 +4,30 @@
 
 [View the live project here](https://johnrearden.github.io/doggone-it/)
 
-![screenshots of project]()
+![screenshots of project](assets/images/documentation_images/responsiveness.png)
 
 ---
 
 # Features
 
+- ### Landing page
+    As can be seen in the screenshots above, this is the first view the visitor has of the site, and consists of a colourful
+    logo with a cartoon sheep resting on the title of the site, a brief description
+    of the game, and a start button.
 - ### Main Game Page
-    This page contains the game display and controls. The visitor controls their sheepdog by tapping/clicking where they want him to go, and pressing the bark button if they want him to scare the sheep. The sheep run away from the dog, especially if he is barking, and the aim of the game is to force the sheep out the gate.
+    This page contains the game display and controls. The visitor controls their sheepdog by tapping/clicking where they want him to go, or by dragging their mouse/finger to record a path for him. The sheep run away from the dog, and the aim of the game is to force the sheep out the exit gate at the top of the screen.
+    At the top of the screen there is a display which tells the player how many sheep are left in the game area, flanked by 2 buttons, which open the instructions and settings modals respectively. At the bottom of the screen there is a progress slider which runs backwards to indicate the time left for the level.
+
+    ![screenshot of gameplay](assets/images/documentation_images/gameplay_screenshot.png)
+
+- ### Instructions display
+    This is a modal display, hidden on page load and made visible when the instructions button is clicked on the main game page. At the top there is a heading, with the close button for the modal next to it in the conventional top-right position. Below this is a paragraph outlining the object of the game in general terms. Below this again is a video of one of the levels being played, and next to it a description of the controls for the game.
+
+    ![screenshot of instructions](assets/images/documentation_images/instructions_screenshot.png)
+- ### Settings display
+    This is another modal display, hidden on page load as with the instructions display. Below the 'Settings' title (and the conventional close button), there are four sliders, bookended on each side by an explanatory icon and with a text label above them. They allow the player to modify the speed the dog moves at, how close the herd clings together, how frightening they find the dog, and the time available for the level. The slider values are ratios, which are multiplied by the default values for these game characteristics each time the slider position is changed.
+
+    ![screenshot of settings display](assets/images/documentation_images/settings_screenshot.png)
 
 - ### Possible extra features
     - The player can lay out a path for the dog by dragging their finger/mouse pointer across the game area.
