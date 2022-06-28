@@ -29,7 +29,6 @@ export class Herd {
         this.xArray = [];
         this.yArray = [];
         this.allSheepGone = false;
-        this.id = count++;
         this.obstacles = level.obstacles;
 
         for (let i = 0; i < this.numSheep; i++) {

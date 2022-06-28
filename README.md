@@ -2,7 +2,7 @@
 
 ### A website that lets visitors play a simple sheep herding game.
 
-[View the live project here]()
+[View the live project here](https://johnrearden.github.io/doggone-it/)
 
 ![screenshots of project]()
 
@@ -193,7 +193,7 @@ https://www.flaticon.com/free-icons/rabbit
 Sheep icon:
 https://www.flaticon.com/free-icons/lamb
 
-## Code Credit:
+## Code Credits:
 CSS aspect-ratio property:
 https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ 
 
