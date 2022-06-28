@@ -390,6 +390,7 @@ li {
 #settings-modal {
     text-align: center;
     padding-top: 50px;
+    background-color: aqua;
 }
 
 #settings {
@@ -402,14 +403,30 @@ li {
 }
 
 .slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: repeat(1fr);
+    
+}
+
+.slider-container img {
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    object-fit: contain;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.settings-element {
+    box-sizing: border-box;
+    border: 1px solid blue;
 }
 
 .settings-slider {
-    margin: 15px 10px;
-    width: 70%;
+    width: 100%;
     background-color: silver;
     color:#facc20;
 }
