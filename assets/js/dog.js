@@ -35,9 +35,7 @@ export class Dog {
                                           ob.y + ob.height);
             this.obstacleArray.push(rectangle);
         }
-        // A new dog is created for each level, so the listener for the 
-        // dog speed slider in settings must be attached in the constructor
-        this.setSliderEventListener();
+        
     }
 
     /**
@@ -239,7 +237,6 @@ export class Dog {
         let slider = document.getElementById("dog-speed");
         slider.addEventListener('change', () => {
             this.unitMove = DOG_UNIT_MOVE * slider.value;
-            console.log(`slider.value === ${slider.value}, unitMove === ${this.unitMove}`);
         });
     }
 }

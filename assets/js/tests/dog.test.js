@@ -5,7 +5,7 @@ describe("Testing the Dog class and its methods", () => {
 
     let dog;
     beforeEach(() => {
-        dog = new Dog(100, 100);
+        dog = new Dog(100, 100, []);
     }); 
 
     describe("Test the Dog() constructor", () => {
@@ -13,9 +13,9 @@ describe("Testing the Dog class and its methods", () => {
             expect(dog).toBeDefined();
         });
         test("constructor should return an object with correct initial position", () => {
-            expect(dog.xPos).toBe(100) && expect(dog.yPos.toBe(100));
+            expect(dog.xPos).toBe(100) && expect(dog.yPos).toBe(100);
         });
-    })
+    });
 
     describe("test the onPointerDown() function", () => {
         test("method should set pointerDown flag to true if parameter is false", () => {
@@ -66,6 +66,6 @@ describe("Testing the Dog class and its methods", () => {
             dog.direction = Math.PI / 2;
             dog.turnTowardsDestination();
             expect(dog.direction).toBeLessThan(Math.PI / 2);            
-        })
-    })
+        });
+    });
 });
