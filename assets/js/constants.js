@@ -1,5 +1,5 @@
 /**
- * Represents the base speed (when least anxious) a sheep will travel
+ * Represents the base speed a sheep will travel
  * at in the direction of the center of its neighbours.
  */
 export const SHEEP_VELOCITY_TOWARDS_HERD = 1.5;

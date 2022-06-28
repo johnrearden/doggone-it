@@ -27,7 +27,6 @@ export class Sheep {
         this.yPos = yPos;
         this.direction = -Math.PI + Math.random() * Math.PI;
         this.velocity = 0;
-        this.anxiety = 1;
         this.id = id;
         this.moving = false;
         this.isLamb = isLamb;
@@ -104,7 +103,7 @@ export class Sheep {
                 herdXCenter,
                 herdYCenter);
 
-            let velocity = this.anxiety * SHEEP_VELOCITY_TOWARDS_HERD;
+            let velocity = SHEEP_VELOCITY_TOWARDS_HERD;
             return [velocity * Math.cos(directionToHerdCenter),
             velocity * Math.sin(directionToHerdCenter)];
         } else {
