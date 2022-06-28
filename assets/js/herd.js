@@ -6,8 +6,6 @@ import {FIELD_WIDTH,
         SHEEP_OUTER_REACTION_LIMIT} from './constants.js';   
 import { Point, Rectangle, rectContainsPoint } from './utilities.js';
 
-var count = 0;
-
 export class Herd {
     /**
      * Represents a collection of sheep. It stores its members in two arrays, 

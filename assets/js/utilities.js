@@ -140,7 +140,7 @@ export class Rectangle {
      * Utility method to display an array of HTML elements.
      * @param {Array} array of HTML id attributes 
      */
- export const show = function (array) {
+export const show = function (array) {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "initial";
     }

@@ -4,7 +4,7 @@ import { levels } from '../data/levels.js';
 import { drawFrame } from './frame_drawer.js';
 import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constants.js';
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
-import { show, hide, showMessage, rectContainsPoint } from './utilities.js';
+import { show, hide, showMessage} from './utilities.js';
 
 export function GameRunner(graphics, level) {
     this.graphics = graphics;
@@ -166,12 +166,15 @@ export function GameRunner(graphics, level) {
             this.level.obstacles);
 
         // A new dog is created for each level, so the listener for the 
-        // dog speed slider in settings must be attached in the constructor
+        // dog speed slider in settings must be attached each time
         this.dog.setSliderEventListener();
 
+        // As with the dog, a new herd is created for each level, and 
+        // needs its own event listeners
         this.herd = new Herd(this.level);
         this.herd.setHerdClosenessEventListener();
         this.herd.setDogScarinessEventListener();
+
         this.frameCount = 0;
         let timeAllowedSlider = document.getElementById("time-allowed");
         this.levelTimeLimit = this.level.time * 1000 * timeAllowedSlider.value;
@@ -188,9 +191,7 @@ export function GameRunner(graphics, level) {
             let gameCanvas = document.getElementById('game-area');
             let context = gameCanvas.getContext('2d');
             context.drawImage(image, 0, 0);
-        } else {
-            console.log(`background === ${this.background}`);
-        }
+        } 
     };
 
     /**
@@ -266,7 +267,6 @@ export function GameRunner(graphics, level) {
             show(["pause"]);
             hide(["play"]);
         }
-
     };
 
     /**

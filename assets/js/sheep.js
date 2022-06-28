@@ -5,7 +5,7 @@ import {
     FIELD_BORDER, FIELD_HEIGHT, FIELD_WIDTH,
     SHEEP_MAX_VELOCITY_AWAY_FROM_DOG,
     SHEEP_MIN_DISTANCE_FROM_HERD,
-    CORNER_REPULSION_DISTANCE
+    SIDE_REPULSION_DISTANCE
 } from "./constants.js";
 import {
     ensureCorrectRange, getDirectionToPoint,
@@ -53,15 +53,16 @@ export class Sheep {
         let xDogVel, yDogVel;
         [xDogVel, yDogVel] = this.getVelocityAwayFromDog(dog);
 
-        // Check if the sheep is too close to any corner, and if so, give it a 
+        // Check if the sheep is too close to any side, and if so, give it a 
         // velocity in the opposite direction
-        let xCornerVel, yCornerVel;
-        [xCornerVel, yCornerVel] = this.getVelocityAwayFromSides();
+        let xSideVel, ySideVel;
+        [xSideVel, ySideVel] = this.getVelocityAwayFromSides();
 
         // Sum the velocities and update the sheeps position
-        let combinedXVel = xHerdVel + xDogVel + xCornerVel;
-        let combinedYVel = yHerdVel + yDogVel + yCornerVel;
+        let combinedXVel = xHerdVel + xDogVel + xSideVel;
+        let combinedYVel = yHerdVel + yDogVel + ySideVel;
         if (Math.abs(combinedXVel) <= 1 && Math.abs(combinedYVel) <= 1) {
+            // Don't move the sheep if the net movement calculated is very small
             this.moving = false;
             this.direction = Math.atan2(combinedYVel, combinedXVel);
             combinedXVel = 0;
@@ -162,21 +163,21 @@ export class Sheep {
         // the x and y components
         let direction = [0, 0];
         let dist;
-        if (this.xPos < CORNER_REPULSION_DISTANCE) {
+        if (this.xPos < SIDE_REPULSION_DISTANCE) {
             direction = [1, 0];
             dist = this.xPos;
-        } else if (this.xPos > FIELD_WIDTH - CORNER_REPULSION_DISTANCE) {
+        } else if (this.xPos > FIELD_WIDTH - SIDE_REPULSION_DISTANCE) {
             direction = [-1, 0];
             dist = FIELD_WIDTH - this.xPos;
-        } else if (this.yPos < CORNER_REPULSION_DISTANCE) {
+        } else if (this.yPos < SIDE_REPULSION_DISTANCE) {
             // The sheep is at the top of the game area - we must not prevent
             // it from leaving through the exit. Only create a velocity away from 
             // the top side if the sheep is not in front of the exit
             if (this.xPos < 165 || this.xPos > 235) {
                 direction = [0, 1];
-                dist = CORNER_REPULSION_DISTANCE;
+                dist = SIDE_REPULSION_DISTANCE;
             }
-        } else if (this.yPos > FIELD_HEIGHT - CORNER_REPULSION_DISTANCE) {
+        } else if (this.yPos > FIELD_HEIGHT - SIDE_REPULSION_DISTANCE) {
             direction = [0, -1];
             dist = FIELD_HEIGHT - this.yPos;
         }
@@ -184,7 +185,7 @@ export class Sheep {
         // Let's make the velocity inversely proportional to the distance from the wall
         let multiplier;
         if (dist > 0) {
-            multiplier = CORNER_REPULSION_DISTANCE / dist;
+            multiplier = SIDE_REPULSION_DISTANCE / dist;
         } else {
             multiplier = 1;
         }
@@ -246,7 +247,5 @@ export class Sheep {
         }
         return [xVel, yVel];
     }
-
-    
 }
 

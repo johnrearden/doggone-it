@@ -29,7 +29,7 @@ export const SHEEP_OUTER_REACTION_LIMIT = 150;
  * corners. Without this, they have a tendency to get herded into
  * the corners and get stuck.
  */
-export const CORNER_REPULSION_DISTANCE = 50;
+export const SIDE_REPULSION_DISTANCE = 50;
 
 
 /**

@@ -1,6 +1,6 @@
 import {
     getDistanceToPoint,
-    getDirectionToPoint, getAngularDifference, Rectangle, rectContainsPoint, Point
+    getDirectionToPoint, Rectangle, rectContainsPoint, Point
 } from "./utilities.js";
 
 import {
@@ -89,7 +89,6 @@ export class Dog {
             yVel,
             this.obstacles);
         
-
         // Finally, update the dogs position.
         this.xPos += xVel;
         this.yPos += yVel;
@@ -147,7 +146,6 @@ export class Dog {
             this.yDest);
         this.direction = correctDirection;
     }
-
 
     /**
      * @returns true if distance is less than an effective threshold, false otherwise.

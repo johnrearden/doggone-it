@@ -1,5 +1,13 @@
 import { getQuadrant, Quadrant } from "./utilities.js";
 
+/**
+ * Draws a single frame of the game.
+ * 
+ * @param {Dog} dog 
+ * @param {Herd} herd 
+ * @param {Integer} frameCount 
+ * @param {Object} sprites 
+ */
 export const drawFrame = (dog, herd, frameCount, sprites) => {
     let gameCanvas = document.getElementById('game-area');
     let context;

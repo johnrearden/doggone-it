@@ -23,7 +23,7 @@ export class ActionReplay {
 
         this.snapshotIndex = 0;
         this.frameCount = 0;
-        this.replaySpeed = ReplaySpeed.NORMAL;
+        this.replaySpeed = ReplaySpeed.FAST_FORWARD;
 
         this.drawBackground();
         this.drawReplayFrame(snapshots[0]);
