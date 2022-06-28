@@ -45,12 +45,12 @@ describe("Testing the Dog class and its methods", () => {
     describe("test the onPointerUp function", () => {
         test("Method should set pointerDown flag to false", () => {
             dog.pointerDown = true;
-            dog.onPointerUp(1, 1);
+            dog.onPointerUp(100, 100);
             expect(dog.pointerDown).toBe(false);
         });
         test("Method should add parameters passed to the destination array", () => {
-            dog.onPointerUp(1, 1);
-            expect(dog.wayPoints[dog.wayPoints.length - 1]).toStrictEqual([1, 1]);
+            dog.onPointerUp(100, 100);
+            expect(dog.wayPoints[dog.wayPoints.length - 1]).toStrictEqual([100, 100]);
         });
     });
 

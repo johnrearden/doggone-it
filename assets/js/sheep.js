@@ -33,8 +33,7 @@ export class Sheep {
         this.isLamb = isLamb;
         this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD;
         this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT;
-        this.setHerdClosenessEventListener();
-        this.setDogScarinessEventListener();
+        
     }
 
     /**

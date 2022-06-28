@@ -40,6 +40,8 @@ export class Herd {
                 possibleSpawnPoints[i][1], 
                 i,
                 isLamb);
+            newSheep.setHerdClosenessEventListener();
+            newSheep.setDogScarinessEventListener();
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
