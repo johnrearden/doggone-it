@@ -77,7 +77,6 @@ export class Herd {
         if (this.xArray.length === 0) {
             this.allSheepGone = true;
         }
-        document.getElementById("sheep-remaining").innerText = this.xArray.length;
     }
 
     /**

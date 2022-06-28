@@ -7,8 +7,8 @@ describe("Test the herd class", () => {
         let herd;
         let testNumber;
         beforeEach(() => {
-            testNumber = 10;
-            herd = new Herd(testNumber);
+            testNumber = levels[0].sheep;
+            herd = new Herd(levels[0]);
             console.log(`typeof herd === ${typeof herd}`);
         });
         it("should not return undefined", () => {
@@ -23,7 +23,7 @@ describe("Test the herd class", () => {
     describe("Test the removeDepartedSheep function", () => {
         let herd;
         beforeEach(() => {
-            herd = new Herd(10);
+            herd = new Herd(levels[0]);
             
         });
         it("should leave length of xArray and yArray unchanged if all sheep are inside game area", () => {
@@ -51,6 +51,7 @@ describe("Test the herd class", () => {
         let herd;
         beforeEach(() => {
             herd = new Herd(levels[0]);
+            herd.xArray.length = 3;
         });
         it("should return 2 for average xPosition of [1, 2, 3]", () => {
             herd.xArray[0].xPos = 1;
@@ -64,6 +65,7 @@ describe("Test the herd class", () => {
         let herd;
         beforeEach(() => {
             herd = new Herd(levels[0]);
+            herd.yArray.length = 3;
         });
         it("should return 2 for average yPosition of [1, 2, 3]", () => {
             herd.yArray[0].yPos = 1;
@@ -76,7 +78,7 @@ describe("Test the herd class", () => {
     describe("Test the sortPositionArrays function", () => {
         let herd;
         beforeEach(() => {
-            herd = new Herd(10);
+            herd = new Herd(levels[0]);
         });
         it("should sort the xArray by increasing value of x", () => {
             herd.sortPositionArrays();

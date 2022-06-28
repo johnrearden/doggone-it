@@ -40,6 +40,7 @@ export function GameRunner(graphics, dog, herd, level) {
             } else if (this.running) {
                 this.dog.update();
                 this.herd.update(this.dog);
+                document.getElementById("sheep-remaining").innerText = this.herd.xArray.length;
 
                 // Check for level complete
                 if (this.herd.allSheepGone) {
