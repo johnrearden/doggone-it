@@ -66,7 +66,8 @@ export function GameRunner(graphics, level) {
                             "end-level-message",
                             "next-level-button",
                             "action-replay-button"]);
-                            hide(["go-button"]);
+                            hide(["go-button",
+                                  "try-again-button"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }

@@ -72,13 +72,16 @@
     - Font Awesome was used throughout to add icons to enhance UX.
 3. [GIMP](https://www.gimp.org/)
     - GNU Image Manipulation Program was used as an open source alternative to Photoshop to scale and alter all of the images on the site.
-4. [Balsamiq](https://balsamiq.cloud/)
+4. [SimpleScreenRecorder](https://www.maartenbaert.be/simplescreenrecorder/)
+    - This linux screen recorder was used to record the gameplay for the instructions 
+    screen video.
+5. [Balsamiq](https://balsamiq.cloud/)
     - All wireframes were designed using Balsamiq.
-5. [Git](https://git-scm.com/)
+6. [Git](https://git-scm.com/)
     - Version control was implemented using Git through the Github terminal.
-6. [Github](https://github.com/)
+7. [Github](https://github.com/)
     - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web.
-7. [Visual Studio Code](https://code.visualstudio.com/)
+8. [Visual Studio Code](https://code.visualstudio.com/)
     - VS Code was used temporarily after I had run out of Gitpod hours. The project was cloned to my local environment and changes pushed up to Github from there.
 
 
@@ -111,6 +114,22 @@
 ## Manual Testing
 Feature | Expected | Action | Result
 --------|----------|--------|-------
+Start Game button | Links to game.html | Clicked on button | game.html opened successfully
+Ready button | Starts game at level 1 | Clicked on button | Game begins on correct level
+Instructions button (text) | Opens instructions modal | Clicked on button | Modal opens successfully
+Instuctions button (icon) | Opens instructions modal | Clicked on button | Modal opens successfully
+Settings button (icon) | Opens settings modal | Clicked on button | Modal opens successfully
+Instructions close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (no time lost)
+Settings close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (no time lost)
+Out of time display | Should show Out of Time message, Action Replay button, Try Again button and Instructions (text) button| Ended level with remaining sheep and time run out | Correct message and all 3 correct buttons appear
+Action Replay button| Should launch replay of level just finished | Clicked on button | Replay launched successfully
+Try Again button | Should allow player to replay failed level | Clicked on button | Same uncompleted level begins again
+Level Complete Display | Should show Level Complete message and 3 buttons : Action Replay, Next Level and Instructions | Finished level successfully | Correct message and 3 buttons displayed
+Next Level button | Should begin the next level | Clicked on button | Next level begins successfully
+Dog destination set by click | The dog should move to the last clicked point on the game canvas | Clicked on multiple points | The dog proceeds to each one correctly
+Dog path set by dragging | The dog should follow the path of the pointer after it is dragged across the canvas | Dragged pointer in multiple paths | Dog follows paths consistently
+
+
 
 ---
 
