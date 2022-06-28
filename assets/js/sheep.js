@@ -248,31 +248,6 @@ export class Sheep {
         return [xVel, yVel];
     }
 
-    /**
-     * Attaches an event (change) listener to the herd-closeness slider in settings, 
-     * to enable the player to experiment with different values for the
-     * minDistanceFromHerd variable
-     */
-    setHerdClosenessEventListener() {
-        let slider = document.getElementById("herd-closeness");
-        slider.addEventListener('change', () => {
-            // The default is divided by the slider value, as it makes more
-            // intuitive sense for increasing closeness to be the right-hand
-            // end of the slider
-            this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
-        });
-    }
-
-    /**
-     * Attaches an event (change) listener to the dog-scariness slider in settings, 
-     * to enable the player to experiment with different values for the 
-     * outerReactionLimit variable
-     */
-    setDogScarinessEventListener() {
-        let slider = document.getElementById("dog-scariness");
-        slider.addEventListener('change', () => {
-            this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
-        });
-    }
+    
 }
 

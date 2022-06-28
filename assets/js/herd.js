@@ -1,7 +1,9 @@
 import {Sheep } from './sheep.js';
 import {FIELD_WIDTH,
         FIELD_BORDER,
-        FIELD_HEIGHT} from './constants.js';   
+        FIELD_HEIGHT,
+        SHEEP_MIN_DISTANCE_FROM_HERD,
+        SHEEP_OUTER_REACTION_LIMIT} from './constants.js';   
 import { Point, Rectangle, rectContainsPoint } from './utilities.js';
 
 var count = 0;
@@ -40,8 +42,6 @@ export class Herd {
                 possibleSpawnPoints[i][1], 
                 i,
                 isLamb);
-            newSheep.setHerdClosenessEventListener();
-            newSheep.setDogScarinessEventListener();
             this.xArray.push(newSheep);
             this.yArray.push(newSheep);
         }
@@ -157,5 +157,36 @@ export class Herd {
             }
         }
         return true;
+    }
+
+    /**
+     * Attaches an event (change) listener to the herd-closeness slider in settings, 
+     * to enable the player to experiment with different values for the
+     * minDistanceFromHerd variable
+     */
+     setHerdClosenessEventListener() {
+        let slider = document.getElementById("herd-closeness");
+        slider.addEventListener('change', () => {
+            // The default is divided by the slider value, as it makes more
+            // intuitive sense for increasing closeness to be the right-hand
+            // end of the slider
+            for (let sheep of this.xArray) {
+                sheep.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
+            }
+        });
+    }
+
+    /**
+     * Attaches an event (change) listener to the dog-scariness slider in settings, 
+     * to enable the player to experiment with different values for the 
+     * outerReactionLimit variable
+     */
+    setDogScarinessEventListener() {
+        let slider = document.getElementById("dog-scariness");
+        slider.addEventListener('change', () => {
+            for (let sheep of this.xArray) {
+                sheep.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
+            }
+        });
     }
 }

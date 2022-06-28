@@ -1,4 +1,5 @@
 import { Herd } from '../herd.js';
+import { levels } from '../../data/levels.js';
 
 describe("Test the herd class", () => {
 
@@ -49,7 +50,7 @@ describe("Test the herd class", () => {
     describe("Test the calculateAverageXPosition function", () => {
         let herd;
         beforeEach(() => {
-            herd = new Herd(3);
+            herd = new Herd(levels[0]);
         });
         it("should return 2 for average xPosition of [1, 2, 3]", () => {
             herd.xArray[0].xPos = 1;
@@ -62,7 +63,7 @@ describe("Test the herd class", () => {
     describe("Test the calculateAverageYPosition function", () => {
         let herd;
         beforeEach(() => {
-            herd = new Herd(3);
+            herd = new Herd(levels[0]);
         });
         it("should return 2 for average yPosition of [1, 2, 3]", () => {
             herd.yArray[0].yPos = 1;

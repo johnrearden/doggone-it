@@ -163,9 +163,11 @@ export function GameRunner(graphics, dog, herd, level) {
 
         // A new dog is created for each level, so the listener for the 
         // dog speed slider in settings must be attached in the constructor
-        this.dogsetSliderEventListener();
-        
+        this.dog.setSliderEventListener();
+
         this.herd = new Herd(this.level);
+        this.herd.setHerdClosenessEventListener();
+        this.herd.setDogScarinessEventListener();
         this.frameCount = 0;
         let timeAllowedSlider = document.getElementById("time-allowed");
         this.levelTimeLimit = this.level.time * 1000 * timeAllowedSlider.value;
