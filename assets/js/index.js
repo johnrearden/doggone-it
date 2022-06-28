@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
  *  6) Load the images asynchronously
  *  7) Call window.requestAnimationFrame() to begin drawing the game
  */
-const init = () => {
+function init () {
     let gameCanvas = document.getElementById('game-area');
     gameCanvas.width = FIELD_WIDTH;
     gameCanvas.height = FIELD_HEIGHT;
@@ -185,11 +185,11 @@ const init = () => {
     loadAllImages(graphics).then(() => {
         window.requestAnimationFrame(gameRunner.updateGame);
     });
-};
+}
 
 // This async function creates a Promise per image, and adds it to an array.
 // Promise.all() is invoked to await resolution of all the promises
-const loadAllImages = async(graphics) => {
+async function loadAllImages (graphics) {
     let promiseArray = [];
 
     // Create promises for loading of sheep images
@@ -230,4 +230,4 @@ const loadAllImages = async(graphics) => {
 
     // Wait for all promises to resolve
     await Promise.all(promiseArray);
-};
+}
