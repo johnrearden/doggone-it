@@ -132,8 +132,6 @@ li {
 }
 
 
-
-
 /* GAME.HTML */
 
 /* Page container which center aligns its children and prevents the game area
@@ -150,9 +148,20 @@ li {
     text-align: center;
 }
 
-#button-panel button {
+#button-panel a {
     font-size: clamp(16px, 4vw, 35px);
     margin: 0 5px;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #ffffff33;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+#button-panel a:hover {
+    color: #174211;
+    background-color: #ffffff66;
 }
 
 /* Dims the gameplay area while end of level controls are displayed */
