@@ -64,6 +64,7 @@
 - HTML
 - CSS
 - JavaScript
+    - ES6
 
 ## Libraries and Programs Used
 1. [Google Fonts](https://fonts.google.com/) 
@@ -83,7 +84,9 @@
     - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web.
 8. [Visual Studio Code](https://code.visualstudio.com/)
     - VS Code was used temporarily after I had run out of Gitpod hours. The project was cloned to my local environment and changes pushed up to Github from there.
-
+# How to Setup
+    - This project needs to be run on a server. 
+    - To run 
 
 # Testing
 
@@ -190,7 +193,7 @@ https://www.flaticon.com/free-icons/rabbit
 Sheep icon:
 https://www.flaticon.com/free-icons/lamb
 
-## Code:
+## Code Credit:
 CSS aspect-ratio property:
 https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/ 
 
