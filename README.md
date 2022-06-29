@@ -29,14 +29,9 @@
 
     ![screenshot of settings display](assets/images/documentation_images/settings_screenshot.png)
 
-- ### Possible extra features
-    - The player can lay out a path for the dog by dragging their finger/mouse pointer across the game area.
-    - The player can watch a replay of the last game and move forwards and backwards through the replay at different speeds.
+- ### Possible future features
     - Dynamic hazards can be added to the game to frighten the sheep, such as bees maybe?
-    
-
-
-- ### Features left to implement
+    - Sound effects and music could be added to enhance the player experience
 
 ---
 
@@ -61,10 +56,18 @@
 - ### Design
 
     - Colour Scheme
+        - The site uses the following colour scheme :
+        ![Site colour scheme](assets/images/documentation_images/color_palette.png)
+        - Paragraph text within the site is white, and all buttons use the gold color. The background on the main landing and game pages, and on the modal displays is a vertical gradient between the 2 shades of dark green. These colours were chosen to ensure a bright and bold impression on the visitor, with high contrast to help with text readability. This is complemented by the multi-colour logo on the landing page, which suggests a fun, exciting user experience rather than anything functional or serious.
+        ![Site logo](assets/images/game_logo.png)
 
     - Typography
+        - The main font used on the site is Kdam Thmor Pro, which is sourced from Google Fonts. I chose this font to mimic the typical fonts used in retro-style computer games, which usually have a blocky and square appearance. Having experimented with more pixelated examples of this genre, I decided to go with a smoother font, and sacrifice some of the retro authenticity for readability.
+        - The font used for the site logo on the landing page is Riffic Free Bold, which is a free subset of a larger font family by InkyType. It was sourced from dafont.com. I used this font as I wanted a cartoon feel for the logo. It was downloaded as a .ttf file and imported it into GIMP, where it was used in the creation of the site logo. As it is not used to render any of the HTML content and only appears in the logo .png file, it is not imported into the project proper.
+
 
     - Imagery
+        - The main characters in the game, the dog and the sheep, are basic 3 frame animations, which are oriented in four different directons (North, South, East and West), making 12 sprites in all for each character. The backgrounds for each level were created in GIMP and imported into the project.
 
 - ### Wireframes
 
@@ -109,10 +112,15 @@
 ## Testing User Stories from UX section
 
 - #### First Time Visitor Goals
- 
+    - A first time visitor is able to play the game with a minimum of effort. One click allows them to navigate from the landing page to the game page, and then the game itself can be started at will with one more click on the READY! button.
+    - The controls are simple and intuitive - the player can either tap/click on the game area to set a destination for the dog, or drag on the game area to lay out a path for the dog. Both of these control mechanisms harness common user actions across all types of applications, and so do not require the player to learn anything new to play the game. The instructions page provides both a video of normal gameplay and a text description of the two control methods, and can be navigated to with a press of the instructions button, which uses a conventional 'i' icon to denote information available.
 
 - #### Returning Visitor Goals
+    - A returning visitor is challenged by increasing difficulty (in the form of more sheep and obstacles and less time) as they progress through the three levels in the game.
+    - A returning visitor is also presented with the option to watch an action replay at the end of each level, which can be run backwards, forwards and at 2 different speeds to enable them to observe their own actions and learn from their mistakes.
 
+- #### Frequent Visitor Goals
+        - A frequent visitor is also able to click/tap the settings button (decorated with a standard gear icon) and alter 4 different game settings. This enables them to 'mod' their own version of the game, experimenting with changes that can make it easier or more difficult.
 ---
 
 ## Validator Testing
@@ -192,13 +200,17 @@ You can make a copy of the original repository to view and/or make changes witho
 - Press Enter. Your clone will be created.
 # Credits
 ## Images:
-Farm tileset:
-Buch @ http://blog-buch.rhcloud.com
 
 How to make a cartoon text - OCELOTHE
 https://www.youtube.com/watch?v=_iH-34i6kYE
 
-Sheep image for logo from dagadu, purchased from colorbox
+Sheep image for logo from dagadu, purchased from colorbox.
+
+Sheep sprites by whtdragom
+https://rpgtileset.com/sprite/sheep-sprite-for-rpg-maker-mv/
+
+Dog sprites by Ramona Emor, sourced from Pinterest
+https://www.pinterest.com/pin/374572894012956347/
 
 Tortoise icon:
 https://www.flaticon.com/free-icons/tortoise
@@ -208,6 +220,13 @@ https://www.flaticon.com/free-icons/rabbit
 
 Sheep icon:
 https://www.flaticon.com/free-icons/lamb
+
+All other icons from [Font Awesome](https://fontawesome.com/icons)
+
+## Fonts: 
+Riffic Free Bold, by InkyType
+https://www.dafont.com/riffic.font
+
 
 ## Code Credits:
 CSS aspect-ratio property:
