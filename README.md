@@ -83,7 +83,7 @@
 - HTML
 - CSS
 - JavaScript
-    - ES6
+    - ECMAScript 2015 (ES6) was used in the project as I wanted to separate out the objects used in the game into separate modules to facilitate testing and possible future reuse.
 
 ## Libraries and Programs Used
 1. [Google Fonts](https://fonts.google.com/) 
@@ -126,8 +126,15 @@
 ## Validator Testing
 
 - HTML Validation
+    - No errors or warnings on index.html or game.html on Nu Html Checker
 
 - CSS Validation
+    - No errors found using the W3C CSS Validation Service
+
+    - ![CSS approval icon](assets/images/documentation_images/css-validation-icon.png)
+
+- JShint Validation
+
     
 - Lighthouse report
 
@@ -152,6 +159,7 @@ Out of time display | Should show Out of Time message, Action Replay button, Try
 Action Replay button| Should launch replay of level just finished | Clicked on button | Replay launched successfully
 Try Again button | Should allow player to replay failed level | Clicked on button | Same uncompleted level begins again
 Level Complete Display | Should show Level Complete message and 3 buttons : Action Replay, Next Level and Instructions | Finished level successfully | Correct message and 3 buttons displayed
+Game complete display | Should show game complete message ('You beat the game!'), action-replay button and instructions button | Finished game successfully | Message and correct 2 buttons displayed
 Next Level button | Should begin the next level | Clicked on button | Next level begins successfully
 Dog destination set by click | The dog should move to the last clicked point on the game canvas | Clicked on multiple points | The dog proceeds to each one correctly
 Dog path set by dragging | The dog should follow the path of the pointer after it is dragged across the canvas | Dragged pointer in multiple paths | Dog follows paths consistently
