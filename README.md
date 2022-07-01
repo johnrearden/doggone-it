@@ -71,9 +71,9 @@
 
 - ### Wireframes
 
-    - ![Game Page (mobile)](https://share.balsamiq.com/c/tK87Xtckk1UjeB3F6No4Ls.png)
+    - ![Game Page (mobile)](assets/images/documentation_images/layout_mobile.png)
 
-    - ![Game Page (desktop)](https://share.balsamiq.com/c/t1t3d6x7EahsxB5ArbEHde.png)
+    - ![Game Page (desktop)](assets/images/documentation_images/layout_desktop.png)
 
     
 # Technologies Used
@@ -147,7 +147,8 @@
 ## Automated Testing
 
 - Unit tests were written for the project using Jest. A description of the process I undertook to set up my testing environment on my local machine can be found [here](TESTING.md). The tests can be run on GitPod using the following commands :
-    - do it
+    - `$ npm install --save-dev jest`
+    - `$ npm test`
 
 ## Manual Testing
 Feature | Expected | Action | Result
@@ -167,8 +168,6 @@ Game complete display | Should show game complete message ('You beat the game!')
 Next Level button | Should begin the next level | Clicked on button | Next level begins successfully
 Dog destination set by click | The dog should move to the last clicked point on the game canvas | Clicked on multiple points | The dog proceeds to each one correctly
 Dog path set by dragging | The dog should follow the path of the pointer after it is dragged across the canvas | Dragged pointer in multiple paths | Dog follows paths consistently
-
-
 
 ---
 
