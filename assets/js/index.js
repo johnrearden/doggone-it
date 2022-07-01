@@ -107,7 +107,7 @@ function init () {
     // between levels
     let array = document.getElementsByClassName("instructions-button");
     for (let button of array) {
-        button.addEventListener('click', () => {x
+        button.addEventListener('click', () => {
             document.getElementById("instructions-modal").style.display = "initial";
             gameRunner.stop();
         });

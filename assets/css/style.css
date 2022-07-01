@@ -78,6 +78,7 @@ li {
 #logo {
     text-align: center;
     width: 70%;
+    height: auto;
     min-width: 320px;
     margin-bottom: 60px;
 }

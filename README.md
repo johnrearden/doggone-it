@@ -134,9 +134,13 @@
     - ![CSS approval icon](assets/images/documentation_images/css-validation-icon.png)
 
 - JShint Validation
+    - No errors found in project.
+    - 4 warnings regarding outer scoped variables referenced in functions defined within loops in index.js.
 
     
 - Lighthouse report
+    - For index.html   : ![lighthouse report for index.html](assets/images/documentation_images/lighthouse_index.png)
+    - For game.html   :  ![lighthouse report for game.html](assets/images/documentation_images/lighthouse_game.png)
 
 ---
 
