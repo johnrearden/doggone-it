@@ -233,6 +233,12 @@ export class Dog {
      */
     setSliderEventListener() {
         let slider = document.getElementById("dog-speed");
+
+        // As well as attaching the listener, read the current value
+        // and set the unitMove variable accordingly.
+        this.unitMove = DOG_UNIT_MOVE * slider.value;
+
+        // Attach the listener
         slider.addEventListener('change', () => {
             this.unitMove = DOG_UNIT_MOVE * slider.value;
         });

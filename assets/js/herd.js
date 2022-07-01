@@ -162,6 +162,11 @@ export class Herd {
      */
      setHerdClosenessEventListener() {
         let slider = document.getElementById("herd-closeness");
+
+        // Read the current value of the slider and set the variable accordingly
+        sheep.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
+
+        // Attach the listener
         slider.addEventListener('change', () => {
             // The default is divided by the slider value, as it makes more
             // intuitive sense for increasing closeness to be the right-hand
@@ -179,6 +184,11 @@ export class Herd {
      */
     setDogScarinessEventListener() {
         let slider = document.getElementById("dog-scariness");
+
+        // Read the current value of the slider and set the variable accordingly
+        sheep.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
+
+        // Attach the listener
         slider.addEventListener('change', () => {
             for (let sheep of this.xArray) {
                 sheep.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
