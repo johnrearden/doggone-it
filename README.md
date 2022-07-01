@@ -209,6 +209,11 @@ You can make a copy of the original repository to view and/or make changes witho
     `$ git clone https://github.com/johnrearden/doggone-it`
 
 - Press Enter. Your clone will be created.
+
+### Building the project
+- The project is built using webpack, with a transpilation stage run by babel to convert the ES6 modules and promises in the source code back to ES5 compliant syntax.  
+
+
 # Credits
 ## Images:
 
