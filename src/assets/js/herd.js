@@ -164,7 +164,7 @@ export class Herd {
         let slider = document.getElementById("herd-closeness");
 
         // Read the current value of the slider and set the variable accordingly
-        sheep.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
+        this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD / slider.value;
 
         // Attach the listener
         slider.addEventListener('change', () => {
@@ -186,7 +186,7 @@ export class Herd {
         let slider = document.getElementById("dog-scariness");
 
         // Read the current value of the slider and set the variable accordingly
-        sheep.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
+        this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT * slider.value;
 
         // Attach the listener
         slider.addEventListener('change', () => {

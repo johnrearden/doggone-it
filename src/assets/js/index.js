@@ -196,7 +196,7 @@ async function loadAllImages (graphics) {
     for (let url of graphics.dog.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
-            img.src = `assets/images/dog_images/${url}.png`;
+            img.src = `src/assets/images/dog_images/${url}.png`;
             graphics.dog.images.push(img);
             img.addEventListener('load', () => {
                 resolve();
@@ -208,7 +208,7 @@ async function loadAllImages (graphics) {
     for (let url of graphics.sheep.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
-            img.src = `assets/images/sheep_images/${url}.png`;
+            img.src = `src/assets/images/sheep_images/${url}.png`;
             graphics.sheep.images.push(img);
             img.addEventListener('load', () => {
                 resolve();
@@ -220,7 +220,7 @@ async function loadAllImages (graphics) {
     for (let url of graphics.backgrounds.urls) {
         promiseArray.push(new Promise(resolve => {
             const img = new Image();
-            img.src = `assets/images/backgrounds/${url}.png`;
+            img.src = `src/assets/images/backgrounds/${url}.png`;
             graphics.backgrounds.images.push(img);
             img.addEventListener('load', () => {
                 resolve();
