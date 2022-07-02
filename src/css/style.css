@@ -194,6 +194,8 @@ li {
     position: relative;
 }
 
+/* This media query compresses the vertical height of its children on
+   very wide screens (aspect ratio > 16/9) */
 @media screen and (min-aspect-ratio: 16/9) {
     #displays {
         padding-top: 0;
@@ -211,6 +213,11 @@ li {
         font-size: 12px;
         width: 20px;
         height: 20px;
+    }
+
+    #logo {
+        margin-bottom: 0;
+        max-width: 800px;
     }
 }
 
