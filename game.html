@@ -25,7 +25,9 @@
         <!-- This div holds the various different output elements for the game -->
         <div id="displays">
 
-            <!-- A text output of the number of sheep still to exit -->
+            <!-- A text output of the number of sheep still to exit, flanked by
+                 the instructions button on the left, and the settings button
+                 on the right -->
             <div id="progress-display">
                 <button id="instructions-top-button" class="instructions-button"
                         aria-label="Show me instructions for the game">
@@ -40,12 +42,10 @@
                         aria-label="Show me the settings options">
                     <i class="fa-solid fa-gear"></i>
                 </button>
-                
-                
             </div>
 
             <!-- The main gameplay area, the canvas element, is overlaid with 
-                 button which are only diplayed at the end of a level, and some
+                 buttons which are only diplayed at the end of a level, and some
                  action replay graphical elements only shown during replays.
                  Display of these hidden elements controlled by script -->
             <div id="main-display">
@@ -113,6 +113,7 @@
                     your time runs out!
                 </p>
                 
+                <!-- A video of normal gameplay, muted by default, without autoplay-->
                 <div id="columns">
                     <div id="video-holder">
                         <video id="instruction-video" 
@@ -122,6 +123,7 @@
                         </video>
                     </div>
                     
+                    <!-- A sidebar to the video, explaining the game controls -->
                     <div id="movement-instructions">
                         <h2>You can move in 2 ways:</h2>
                         <ol>
@@ -185,8 +187,6 @@
                     <img src="src/images/icons/time_big.png"
                          alt="Image of a large hourglass">
                     
-                    
-                    
                 </div>
                 <button id="close-settings-button">X</button>
             </section>
@@ -196,7 +196,9 @@
     <!-- This div is a semi-opaque mask (full size of screen) which sits above the 
          canvas on which the game is displayed, and below the controls displayed 
          both before the game starts and at the end of each level. It's purpose is 
-         to foreground the buttons the player must use to proceed. -->
+         to foreground the buttons the player must use to proceed, and prevent 
+         the game canvas and its objects from distracting from the text and buttons
+         displayed -->
     <div id="dimmer-mask"></div>
 
     <script src="https://kit.fontawesome.com/f2f8e80db6.js" crossorigin="anonymous"></script>
