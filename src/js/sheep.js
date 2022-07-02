@@ -32,7 +32,6 @@ export class Sheep {
         this.isLamb = isLamb;
         this.minDistanceFromHerd = SHEEP_MIN_DISTANCE_FROM_HERD;
         this.outerReactionLimit = SHEEP_OUTER_REACTION_LIMIT;
-        
     }
 
     /**
@@ -242,7 +241,6 @@ export class Sheep {
                 }
                 // Last resort, keep both unchanged
                 return [0, 0];
-
             }
         }
         return [xVel, yVel];

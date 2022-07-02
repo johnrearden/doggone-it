@@ -64,7 +64,7 @@ function init () {
     let gameRunner = new GameRunner(graphics, level);
 
     // Add event listeners to the game canvas, to enable the player to 
-    // control the dog
+    // control the dog. 
     gameCanvas.addEventListener('pointerdown', (event) => {
         let rect = gameCanvas.getBoundingClientRect();
         let x = (event.clientX - rect.left) / rect.width * FIELD_WIDTH;
@@ -120,6 +120,7 @@ function init () {
         }
     });
 
+    // Add a listener to the settings button to show the settings modal
     document.getElementById("settings-top-button").addEventListener('click', () => {
         document.getElementById("settings-modal").style.display = "initial";
         gameRunner.stop();
@@ -132,6 +133,7 @@ function init () {
         }
     });
 
+    // Add listeners to the end-of-level-display buttons
     document.getElementById("next-level-button").addEventListener('click', event => {
         gameRunner.dimmerMaskOn(false);
         gameRunner.startNextLevel();

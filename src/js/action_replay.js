@@ -82,7 +82,6 @@ export class ActionReplay {
                 replayBanner.style.display = "none";
             }
         }
-
     }
 
     /**

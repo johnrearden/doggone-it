@@ -6,9 +6,26 @@ import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constant
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
 import { show, hide, showMessage } from './utilities.js';
 
+/**
+ * This constructor function returns a GameRunner object, which is responsible
+ * for creating and updating the main game objects - the dog and the herd of 
+ * sheep. It passes events from listeners attached to HTML elements in index.js
+ * through to the objects that require them. It is also responsible for detecting
+ * when the end of a level or the game is reached, and displaying the appropriate 
+ * message and options to the player.
+ * 
+ * @param {Object} graphics 
+ * @param {Level} level 
+ */
 export function GameRunner(graphics, level) {
     this.graphics = graphics;
     this.level = level;
+
+    // The framecount variable can be used by the update method to increase the number
+    // frames per update cycle, and thus slow down the game. As it is very useful
+    // during development, I have left it in with a view to implementing further
+    // features which is made easier by being able to do slow-motion visual
+    // debugging
     this.frameCount = 0;
     this.running = false;
     this.dog = new Dog(FIELD_WIDTH / 2,
@@ -21,6 +38,11 @@ export function GameRunner(graphics, level) {
     this.lastStartTime = new Date().getTime();
 
     this.actionReplay = null;
+
+    // The snapshots array consists of a series of objects which record 
+    // just the information necessary to draw the frame - i.e. the position
+    // and direction of the dog and the sheep in the herd. These are 
+    // replayed one by one to show an action replay of the level
     this.snapshots = [];
 
     show(["go-button"]);
@@ -43,7 +65,8 @@ export function GameRunner(graphics, level) {
                 // Check for level complete
                 if (this.herd.allSheepGone) {
                     if (this.level.id + 1 === levels.length) {
-                        // Player has finished the final level
+                        // Player has finished the final level, and thus
+                        // the game
                         this.running = false;
                         this.dimmerMaskOn(true);
                         hide(["next-level-button",
@@ -55,6 +78,7 @@ export function GameRunner(graphics, level) {
                         ]);
                         showMessage("You beat the game!");
                     } else {
+                        // Player has finished just the current level
                         this.running = false;
                         this.dimmerMaskOn(true);
                         show([
@@ -242,11 +266,15 @@ export function GameRunner(graphics, level) {
         show(["end-of-level-display"]);
     };
 
+    /**
+     * Resets the action replay back to the first frame
+     */
     this.toStart = function () {
         if (this.actionReplay) {
             this.actionReplay.snapshotIndex = 0;
         }
     };
+
     /**
      * Sets the speed of the action replay to -1x
      */

@@ -46,6 +46,12 @@ export function getDistanceToPoint (x1, y1, x2, y2) {
     return Math.sqrt(xDistSq + yDistSq);
 }
 
+/**
+ * The Quadrant object is an Enum, which provides a finite set of named
+ * directions, and the angles that form the boundaries between them. Each 
+ * Quadrant corresponds to an image of a game character facing in one 
+ * of four possible ways.
+ */
 export const Quadrant = {
     EAST: {
         name: "east",
@@ -69,6 +75,12 @@ export const Quadrant = {
     }
 };
 
+/**
+ * Calculate the Quadrant that a supplied angle belongs to
+ * 
+ * @param {Number} angle 
+ * @returns The Quadrant corresponding to the angle supplied
+ */
 export function getQuadrant (angle) {
     if (angle >= Quadrant.EAST.min && angle < Quadrant.EAST.max) {
         return Quadrant.EAST;
@@ -137,9 +149,9 @@ export class Rectangle {
 }
 
 /**
-     * Utility method to display an array of HTML elements.
-     * @param {Array} array of HTML id attributes 
-     */
+ * Utility method to display an array of HTML elements.
+ * @param {Array} array of HTML id attributes 
+ */
 export function show (array) {
     for (let i = 0; i < array.length; i++) {
         document.getElementById(array[i]).style.display = "initial";

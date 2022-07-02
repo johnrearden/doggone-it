@@ -10,8 +10,9 @@ export class Herd {
     /**
      * Represents a collection of sheep. It stores its members in two arrays, 
      * a horizontal and a vertical array. These are maintained in sorted order
-     * by x-position and y-position respectively, in order to facilitate quick
-     * lookup of each sheep's nearest neighbours.
+     * by x-position and y-position respectively. This feature is not used currently,
+     * but is left in place as it would be necessary for one of the suggested future
+     * features - avoiding collisions between sheep.
      * 
      * Testing each sheep's distance from each of its neighbours would be 
      * an algorithm with quadratic complexity. Even though the number of sheep is

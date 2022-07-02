@@ -35,7 +35,6 @@ export class Dog {
                                           ob.y + ob.height);
             this.obstacleArray.push(rectangle);
         }
-        
     }
 
     /**
@@ -148,6 +147,8 @@ export class Dog {
     }
 
     /**
+     * Checks if the dog has arrived at the next waypoint
+     * 
      * @returns true if distance is less than an effective threshold, false otherwise.
      */
     arrivedAtNextWaypoint() {
@@ -156,6 +157,7 @@ export class Dog {
     }
 
     /**
+     * Checks if the dog has a waypoint to head for
      * 
      * @returns true if the destination array has at least one element.
      */

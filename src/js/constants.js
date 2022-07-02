@@ -17,6 +17,7 @@ export const SHEEP_BASE_VELOCITY_AWAY_FROM_DOG = 1;
  */
 export const SHEEP_MAX_VELOCITY_AWAY_FROM_DOG = 6;
 
+
 /**
  * Represents the range inside which the dog needs to be in order
  * for the sheep to react.
