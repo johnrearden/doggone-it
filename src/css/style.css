@@ -322,6 +322,7 @@ li {
 
 /* INSTRUCTIONS MODAL */
 
+/* This modal class is used by both the settings and instructions displays */
 .modal {
     display: none;
     background-image: linear-gradient(#24631b, #174211);
