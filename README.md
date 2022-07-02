@@ -55,6 +55,8 @@
         of the game mechanics and customize them without breaking the gameplay.
 - ### Design
 
+    The site was designed from the beginning with a mobile first approach. This is especially appropriate for a game project, as it is much more likely that a game would be played on a mobile device than on a desktop.
+
     - Colour Scheme
         - The site uses the following colour scheme :
         ![Site colour scheme](src/images/documentation_images/color_palette.png)
@@ -189,6 +191,9 @@ Dog path set by dragging | The dog should follow the path of the pointer after i
 
 # Bugs
 
+## Outstanding bugs
+- There are no outstanding bugs in the project.
+
 ## Bugs found and solutions developed
 - There was a problem with the sprite choice for the sheep. If a sheep's movement toward the herd center was balanced against it's movement away from the dog, it would thrash over and back across the balance point, switching the sprite drawn rapidly.
     - Solution found : In this case, the resultant velocity would be very small, so I set any velocity smaller than a low threshold to zero, and eliminated the thrashing.
@@ -198,7 +203,7 @@ Dog path set by dragging | The dog should follow the path of the pointer after i
 ### GitHub Pages
 The website is deployed on Github Pages. The deployment procedure is as follows :
 - Navigate to the Github repository [www.github.com/johnrearden/doggone-it](https://www.github.com/johnrearden/less-is-more)
-- In the Github repository, navigate to the Settings tag.
+- In the Github repository, navigate to the Settings tag and select Pages
 - From the source section drop-down menu, select the Master branch.
 - The page should be refreshed with a message to indicate successful deployment.
 
@@ -253,6 +258,9 @@ https://www.flaticon.com/free-icons/lamb
 All other icons from [Font Awesome](https://fontawesome.com/icons)
 
 ## Fonts: 
+Kdam Thmor Pro, by Tep Sovichet & Hak Longdey, from Google Fonts
+https://fonts.google.com/?query=Kdam
+
 Riffic Free Bold, by InkyType
 https://www.dafont.com/riffic.font
 
@@ -289,3 +297,5 @@ https://verpex.com/blog/website-tips/how-to-style-a-progress-bar-using-css
 - I would like to thank my tutor, Okwudiri Okoro, for his valuable assistance during the course of this project. 
 
 - I would also like to thank our course facilitator, Kenan Wright, for his help during the weekly stand-up meetings. 
+
+- Special thanks to my family for allowing me to carve 15-20 hours a week out of our busy schedule to work on this course!
