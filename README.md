@@ -184,7 +184,8 @@ Settings sheep closeness slider | Should cause the sheep to huddle closer togeth
 ||| Moved slider to left | Sheep spread further apart
 Settings dog scariness slider | Sliding right should increase the range at which the sheep react to the dog | Moved slider to right | Sheep react when dog is further away
 || Sliding left should decrease the range at which the sheep react to the dog | Moved slider to left | Sheep don't react until the dog gets closer
-
+Settings time allowed slider | Sliding right should increase time allowed for next level | Moved slider to right | Next level time allowed increases
+|| Sliding left should decrease time allowed for next level | Moved slider to left | Next level time allowed decreases
 
 ---
 
