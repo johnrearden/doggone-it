@@ -4,7 +4,7 @@
 
 [View the live project here](https://johnrearden.github.io/doggone-it/)
 
-![screenshots of project](assets/images/documentation_images/responsiveness.png)
+![screenshots of project](src/images/documentation_images/responsiveness.png)
 
 ---
 
@@ -18,16 +18,16 @@
     This page contains the game display and controls. The visitor controls their sheepdog by tapping/clicking where they want him to go, or by dragging their mouse/finger to record a path for him. The sheep run away from the dog, and the aim of the game is to force the sheep out the exit gate at the top of the screen.
     At the top of the screen there is a display which tells the player how many sheep are left in the game area, flanked by 2 buttons, which open the instructions and settings modals respectively. At the bottom of the screen there is a progress slider which runs backwards to indicate the time left for the level.
 
-    ![screenshot of gameplay](assets/images/documentation_images/gameplay_screenshot.png)
+    ![screenshot of gameplay](src/images/documentation_images/gameplay_screenshot.png)
 
 - ### Instructions display
     This is a modal display, hidden on page load and made visible when the instructions button is clicked on the main game page. At the top there is a heading, with the close button for the modal next to it in the conventional top-right position. Below this is a paragraph outlining the object of the game in general terms. Below this again is a video of one of the levels being played, and next to it a description of the controls for the game.
 
-    ![screenshot of instructions](assets/images/documentation_images/instructions_screenshot.png)
+    ![screenshot of instructions](src/images/documentation_images/instructions_screenshot.png)
 - ### Settings display
     This is another modal display, hidden on page load as with the instructions display. Below the 'Settings' title (and the conventional close button), there are four sliders, bookended on each side by an explanatory icon and with a text label above them. They allow the player to modify the speed the dog moves at, how close the herd clings together, how frightening they find the dog, and the time available for the level. The slider values are ratios, which are multiplied by the default values for these game characteristics each time the slider position is changed.
 
-    ![screenshot of settings display](assets/images/documentation_images/settings_screenshot.png)
+    ![screenshot of settings display](src/images/documentation_images/settings_screenshot.png)
 
 - ### Possible future features
     - Dynamic hazards can be added to the game to frighten the sheep, such as bees maybe?
@@ -57,9 +57,9 @@
 
     - Colour Scheme
         - The site uses the following colour scheme :
-        ![Site colour scheme](assets/images/documentation_images/color_palette.png)
+        ![Site colour scheme](src/images/documentation_images/color_palette.png)
         - Paragraph text within the site is white, and all buttons use the gold color. The background on the main landing and game pages, and on the modal displays is a vertical gradient between the 2 shades of dark green. These colours were chosen to ensure a bright and bold impression on the visitor, with high contrast to help with text readability. This is complemented by the multi-colour logo on the landing page, which suggests a fun, exciting user experience rather than anything functional or serious.
-        ![Site logo](assets/images/game_logo.png)
+        ![Site logo](src/images/game_logo.png)
 
     - Typography
         - The main font used on the site is Kdam Thmor Pro, which is sourced from Google Fonts. I chose this font to mimic the typical fonts used in retro-style computer games, which usually have a blocky and square appearance. Having experimented with more pixelated examples of this genre, I decided to go with a smoother font, and sacrifice some of the retro authenticity for readability.
@@ -71,9 +71,9 @@
 
 - ### Wireframes
 
-    - ![Game Page (mobile)](assets/images/documentation_images/layout_mobile.png)
+    - ![Game Page (mobile)](src/images/documentation_images/layout_mobile.png)
 
-    - ![Game Page (desktop)](assets/images/documentation_images/layout_desktop.png)
+    - ![Game Page (desktop)](src/images/documentation_images/layout_desktop.png)
 
     
 # Technologies Used
@@ -83,7 +83,7 @@
 - HTML
 - CSS
 - JavaScript
-    - ECMAScript 2015 (ES6) was used in the project as I wanted to separate out the objects used in the game into separate modules to facilitate testing and possible future reuse.
+    - Features from ECMAScript 2015 (ES6) and ECMAScript 2017 (ES8) were used in the project. ES6 modules were used as I wanted to separate out the objects used in the game into separate modules to facilitate testing and possible future reuse. ES8 async/await functionality was used to wrap image loading in Promises. In order to ensure backwards compatability with browsers which do not fully support more recent versions of Javascript, babel was used to transpile the module code to ES5, which has broader support. This would have been necessary even without this consideration as Jest, the testing framework used in the project, does not play happily with ES6 children as outlined in the [TESTING.md](TESTING.md) section.
 
 ## Libraries and Programs Used
 1. [Google Fonts](https://fonts.google.com/) 
@@ -102,10 +102,15 @@
 7. [Github](https://github.com/)
     - Github was used to store the projects after being pushed from Git and its cloud service [Github Pages](https://pages.github.com/) was used to serve the project on the web.
 8. [Visual Studio Code](https://code.visualstudio.com/)
-    - VS Code was used temporarily after I had run out of Gitpod hours. The project was cloned to my local environment and changes pushed up to Github from there.
-# How to Setup
-    - This project needs to be run on a server. 
-    - To run 
+    - VS Code was used locally as the main IDE environment, primarily because it was easier to set up a development environment locally than in GitPod (I wasn't sure how to persist the Jest installation across different GitPod sessions)
+9. [NPM and Node.js](https://www.npmjs.com/)
+    - NPM and Node.js were used to install jest, babel and webpack (see next 3 items)
+10. [Jest](https://jestjs.io/)
+    - The Jest framework was used to run unit tests on some of the central modules used in the project
+10. [babel](https://babeljs.io/)
+    - Babel was used to transpile the source code (containing ES6 and ES8 elements) to more broadly supported ES5 code
+11. [webpack](https://webpack.js.org/)
+    - Webpack was used to build the project using the babel transpiled code.
 
 # Testing
 
@@ -120,7 +125,7 @@
     - A returning visitor is also presented with the option to watch an action replay at the end of each level, which can be run backwards, forwards and at 2 different speeds to enable them to observe their own actions and learn from their mistakes.
 
 - #### Frequent Visitor Goals
-        - A frequent visitor is also able to click/tap the settings button (decorated with a standard gear icon) and alter 4 different game settings. This enables them to 'mod' their own version of the game, experimenting with changes that can make it easier or more difficult.
+    - A frequent visitor is also able to click/tap the settings button (decorated with a standard gear icon) and alter 4 different game settings. This enables them to 'mod' their own version of the game, experimenting with changes that can make it easier or more difficult.
 ---
 
 ## Validator Testing
@@ -131,7 +136,7 @@
 - CSS Validation
     - No errors found using the W3C CSS Validation Service
 
-    - ![CSS approval icon](assets/images/documentation_images/css-validation-icon.png)
+    - ![CSS approval icon](src/images/documentation_images/css-validation-icon.png)
 
 - JShint Validation
     - No errors found in project.
@@ -139,8 +144,8 @@
 
     
 - Lighthouse report
-    - For index.html   : ![lighthouse report for index.html](assets/images/documentation_images/lighthouse_index.png)
-    - For game.html   :  ![lighthouse report for game.html](assets/images/documentation_images/lighthouse_game.png)
+    - For index.html   : ![lighthouse report for index.html](src/images/documentation_images/lighthouse_index.png)
+    - For game.html   :  ![lighthouse report for game.html](src/images/documentation_images/lighthouse_game.png)
 
 ---
 
@@ -175,7 +180,11 @@ Dog path set by dragging | The dog should follow the path of the pointer after i
 
 
 
-### Comments on device testing:
+### Device testing:
+- The project was tested on the following devices : 
+    - iPhone 12
+    - Samsung S8
+    - Lenovo laptop (1366 x 768)
 
 # Bugs
 
@@ -210,8 +219,11 @@ You can make a copy of the original repository to view and/or make changes witho
 
 - Press Enter. Your clone will be created.
 
-### Building the project
-- The project is built using webpack, with a transpilation stage run by babel to convert the ES6 modules and promises in the source code back to ES5 compliant syntax.  
+### Building the project locally
+- The project is built using webpack, with a transpilation stage run by babel to convert the ES6 modules and promises in the source code back to ES5 compliant syntax. To build the project in your local environment, complete the following steps.
+- With npm and node.js already installed : 
+    - `npm install webpack webpack-cli`
+    - `npm run build`
 
 
 # Credits
