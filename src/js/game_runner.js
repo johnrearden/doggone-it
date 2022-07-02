@@ -4,16 +4,16 @@ import { levels } from '../data/levels.js';
 import { drawFrame } from './frame_drawer.js';
 import { FIELD_HEIGHT, FIELD_WIDTH, REPLAY_SNAPSHOT_FREQUENCY } from './constants.js';
 import { ActionReplay, ReplaySpeed } from './action_replay.js';
-import { show, hide, showMessage} from './utilities.js';
+import { show, hide, showMessage } from './utilities.js';
 
 export function GameRunner(graphics, level) {
     this.graphics = graphics;
     this.level = level;
     this.frameCount = 0;
     this.running = false;
-    this.dog = new Dog(FIELD_WIDTH / 2, 
-                      FIELD_HEIGHT / 4,
-                      level.obstacles);
+    this.dog = new Dog(FIELD_WIDTH / 2,
+        FIELD_HEIGHT / 4,
+        level.obstacles);
     this.herd = new Herd(level);
     this.awaitingGameStart = true;
     this.levelTimeLimit = level.time * 1000;
@@ -24,10 +24,6 @@ export function GameRunner(graphics, level) {
     this.snapshots = [];
 
     show(["go-button"]);
-
-    // Calibrate the time remaining display to this level's time limit.
-    document.getElementById("time-remaining").max = this.levelTimeLimit;
-    document.getElementById("time-remaining").value = this.levelTimeLimit;
 
     // This is the callback passed to window.requestAnimationFrame, 
     // and needs to be explicitly bound to the GameRunner object, 
@@ -50,9 +46,9 @@ export function GameRunner(graphics, level) {
                         // Player has finished the final level
                         this.running = false;
                         this.dimmerMaskOn(true);
-                        hide(["next-level-button", 
-                              "go-button",
-                              "try-again-button"]);
+                        hide(["next-level-button",
+                            "go-button",
+                            "try-again-button"]);
                         show([
                             "end-of-level-display",
                             "end-level-message",
@@ -66,8 +62,8 @@ export function GameRunner(graphics, level) {
                             "end-level-message",
                             "next-level-button",
                             "action-replay-button"]);
-                            hide(["go-button",
-                                  "try-again-button"]);
+                        hide(["go-button",
+                            "try-again-button"]);
                         showMessage(`LEVEL ${this.level.id + 1} COMPLETE!`);
                     }
                 }
@@ -114,7 +110,7 @@ export function GameRunner(graphics, level) {
                     this.snapshots.push(snapshot);
                 }
 
-                
+
             }
             // Finally, if this is not an action replay, draw the frame
             if (!this.actionReplay) {
@@ -127,7 +123,7 @@ export function GameRunner(graphics, level) {
         window.requestAnimationFrame(this.updateGame);
     }).bind(this);
 
-    this.onGoButtonClicked = function() {
+    this.onGoButtonClicked = function () {
         this.startGameAgain();
     };
 
@@ -179,6 +175,10 @@ export function GameRunner(graphics, level) {
         let timeAllowedSlider = document.getElementById("time-allowed");
         this.levelTimeLimit = this.level.time * 1000 * timeAllowedSlider.value;
         this.timeRemaining = this.level.time * 1000 * timeAllowedSlider.value;
+
+        // Calibrate the time remaining display to this level's time limit.
+        document.getElementById("time-remaining").max = this.levelTimeLimit;
+        document.getElementById("time-remaining").value = this.levelTimeLimit;
         this.lastStartTime = new Date().getTime();
 
         this.running = true;
@@ -191,7 +191,7 @@ export function GameRunner(graphics, level) {
             let gameCanvas = document.getElementById('game-area');
             let context = gameCanvas.getContext('2d');
             context.drawImage(image, 0, 0);
-        } 
+        }
     };
 
     /**
@@ -301,7 +301,7 @@ export function GameRunner(graphics, level) {
         if (!this.actionReplay) {
             this.dog.onPointerDown(x, y);
         }
-        
+
     };
 
     /**

@@ -177,6 +177,14 @@ Game complete display | Should show game complete message ('You beat the game!')
 Next Level button | Should begin the next level | Clicked on button | Next level begins successfully
 Dog destination set by click | The dog should move to the last clicked point on the game canvas | Clicked on multiple points | The dog proceeds to each one correctly
 Dog path set by dragging | The dog should follow the path of the pointer after it is dragged across the canvas | Dragged pointer in multiple paths | Dog follows paths consistently
+Instructions video | Video should be muted by default, and should not autoplay | Opened instructions modal | No sound on video and does not autoplay
+Settings dog speed slider | Slider should increase speed when slid to right, decrease when slid to left | Moved slider to right | Dog speed increases
+||| Moved slider to left | Dog speed decreases
+Settings sheep closeness slider | Should cause the sheep to huddle closer together when slid right, further apart when slid left | Moved slider to right | Sheep huddle closer
+||| Moved slider to left | Sheep spread further apart
+Settings dog scariness slider | Sliding right should increase the range at which the sheep react to the dog | Moved slider to right | Sheep react when dog is further away
+|| Sliding left should decrease the range at which the sheep react to the dog | Moved slider to left | Sheep don't react until the dog gets closer
+
 
 ---
 
