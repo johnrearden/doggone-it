@@ -167,8 +167,8 @@ Ready button | Starts game at level 1 | Clicked on button | Game begins on corre
 Instructions button (text) | Opens instructions modal | Clicked on button | Modal opens successfully
 Instuctions button (icon) | Opens instructions modal | Clicked on button | Modal opens successfully
 Settings button (icon) | Opens settings modal | Clicked on button | Modal opens successfully
-Instructions close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (no time lost)
-Settings close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (no time lost)
+Instructions close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (game paused while modal is active)
+Settings close button | Returns player to previous screen | Clicked on button | Successful return to previous screens both at start of game and during gameplay (game paused while modal is active)
 Out of time display | Should show Out of Time message, Action Replay button, Try Again button and Instructions (text) button| Ended level with remaining sheep and time run out | Correct message and all 3 correct buttons appear
 Action Replay button| Should launch replay of level just finished | Clicked on button | Replay launched successfully
 Try Again button | Should allow player to replay failed level | Clicked on button | Same uncompleted level begins again
@@ -190,8 +190,6 @@ Settings time allowed slider | Sliding right should increase time allowed for ne
 ---
 
 ## Further Testing
-
-
 
 ### Device testing:
 - The project was tested on the following physical devices : 
@@ -300,6 +298,10 @@ https://stackoverflow.com/a/26591826
 
 How to style a progress bar
 https://verpex.com/blog/website-tips/how-to-style-a-progress-bar-using-css
+
+Setting up an ES6 Project Using Babel and webpack
+https://www.sitepoint.com/es6-babel-webpack/
+
 
 
 ---
