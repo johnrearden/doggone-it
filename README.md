@@ -83,7 +83,7 @@
 - HTML
 - CSS
 - JavaScript
-    - Features from ECMAScript 2015 (ES6) and ECMAScript 2017 (ES8) were used in the project. ES6 modules were used as I wanted to separate out the objects used in the game into separate modules to facilitate testing and possible future reuse. ES8 async/await functionality was used to wrap image loading in Promises. In order to ensure backwards compatability with browsers which do not fully support more recent versions of Javascript, babel was used to transpile the module code to ES5, which has broader support. This would have been necessary even without this consideration as Jest, the testing framework used in the project, does not play happily with ES6 children as outlined in the [TESTING.md](TESTING.md) section.
+    - Features from ECMAScript 2015 (ES6) and ECMAScript 2017 (ES8) were used in the project. ES6 modules were used as I wanted to separate out the objects used in the game into separate modules to facilitate testing and possible future reuse. ES8 async/await functionality was used to wrap image loading in Promises. In order to ensure backwards compatability with browsers which do not fully support more recent versions of Javascript, babel was used to transpile the module code to ES5, which has broader support. This would have been necessary even without this consideration as Jest, the testing framework used in the project, does not play happily with ES6 as outlined in the [TESTING.md](TESTING.md) section.
 
 ## Libraries and Programs Used
 1. [Google Fonts](https://fonts.google.com/) 
