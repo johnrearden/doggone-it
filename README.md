@@ -8,7 +8,11 @@
 
 ---
 
-# Project Rationale
+# Purpose of Project
+
+The purpose of this project is to create a game which will 
+- demonstrate an understanding of Javascript and its use in interacting with the DOM
+- entertain the visitor with a simple game with a well-defined objective
 
 # Features
 
@@ -115,6 +119,9 @@
     - Babel was used to transpile the source code (containing ES6 and ES8 elements) to more broadly supported ES5 code
 11. [webpack](https://webpack.js.org/)
     - Webpack was used to build the project using the babel transpiled code.
+12. [JShint](https://jshint.com/) 
+    - JShint was installed as an extension to VSCode to validate the 
+    javascript in this project
 
 # Testing
 
