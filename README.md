@@ -8,6 +8,8 @@
 
 ---
 
+# Project Rationale
+
 # Features
 
 - ### Landing page
@@ -21,7 +23,7 @@
     ![screenshot of gameplay](src/images/documentation_images/gameplay_screenshot.png)
 
 - ### Instructions display
-    This is a modal display, hidden on page load and made visible when the instructions button is clicked on the main game page. At the top there is a heading, with the close button for the modal next to it in the conventional top-right position. Below this is a paragraph outlining the object of the game in general terms. Below this again is a video of one of the levels being played, and next to it a description of the controls for the game.
+    This is a modal display, hidden on page load and made visible when the instructions button is clicked on the main game page. At the top there is a heading, with the close button for the modal next to it in the conventional top-right position. Below this is a paragraph outlining the object of the game in general terms. Below this again is a video of one of the levels being played, and next to it a description of the controls for the game. The video is muted by default, and does not autoplay.
 
     ![screenshot of instructions](src/images/documentation_images/instructions_screenshot.png)
 - ### Settings display
