@@ -184,7 +184,7 @@ Dog path set by dragging | The dog should follow the path of the pointer after i
 - The project was tested on the following devices : 
     - iPhone 12
     - Samsung S8
-    - Lenovo laptop (1366 x 768)
+    - Lenovo laptop (1366 x 768) : The vertical viewport width was very limited as the browser tab and address bars being visible resulted in an effective viewport aspect ratio of only 587 of the available 768 pixels. To mitigate this wide aspect ratio, I added a media query for wide form screens which compresses the vertical height of the main game view
 
 # Bugs
 
