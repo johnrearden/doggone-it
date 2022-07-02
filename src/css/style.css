@@ -194,33 +194,6 @@ li {
     position: relative;
 }
 
-/* This media query compresses the vertical height of its children on
-   very wide screens (aspect ratio > 16/9) */
-@media screen and (min-aspect-ratio: 16/9) {
-    #displays {
-        padding-top: 0;
-    }
-
-    #sheep-remaining, #sheep-remaining-text {
-        font-size: 1rem;
-    }
-
-    #progress-display {
-        margin-bottom: 2px;
-    }
-    
-    #progress-display button {
-        font-size: 12px;
-        width: 20px;
-        height: 20px;
-    }
-
-    #logo {
-        margin-bottom: 0;
-        max-width: 800px;
-    }
-}
-
 /* The main game canvas, where the game characters (dog and sheep) are displayed */
 #game-area {
     left: 0;
@@ -231,6 +204,18 @@ li {
     background-color: green;
     box-sizing: border-box;
     position: relative;
+}
+
+/* This media query compresses the height of the game area canvas on mobile 
+   devices with unusually short screen height */
+@media screen and (max-height: 640px) {
+    #displays {
+        padding-top: 10px;
+    }
+
+    #game-area {
+        width: 90%;
+    }
 }
 
 /* End of level display styling */
