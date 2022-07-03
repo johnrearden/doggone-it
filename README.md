@@ -20,6 +20,9 @@ The purpose of this project is to create a game which will
     As can be seen in the screenshots above, this is the first view the visitor has of the site, and consists of a colourful
     logo with a cartoon sheep resting on the title of the site, a brief description
     of the game, and a start button.
+
+    ![screenshot of gameplay](src/images/documentation_images/landing_page.png)
+
 - ### Main Game Page
     This page contains the game display and controls. The visitor controls their sheepdog by tapping/clicking where they want him to go, or by dragging their mouse/finger to record a path for him. The sheep run away from the dog, and the aim of the game is to force the sheep out the exit gate at the top of the screen.
     At the top of the screen there is a display which tells the player how many sheep are left in the game area, flanked by 2 buttons, which open the instructions and settings modals respectively. At the bottom of the screen there is a progress slider which runs backwards to indicate the time left for the level.
