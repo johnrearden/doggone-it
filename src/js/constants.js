@@ -69,7 +69,7 @@ export const FIELD_HEIGHT = 500;
  * The border around the edge of the field beyond which the 
  * game characters cannot go.
  */
-export const FIELD_BORDER = 30;
+export const FIELD_BORDER = 20;
 
 
 /**
