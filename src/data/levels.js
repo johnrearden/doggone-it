@@ -20,28 +20,28 @@ export const levels = [
         "level_url": "level2.png",
         "obstacles": [
             {
-                "x": 96,
-                "y": 21,
-                "width": 65, 
-                "height": 80
-            },
-            {
-                "x": 240,
-                "y": 22,
-                "width": 64, 
-                "height": 79
-            },
-            {
-                "x": 124,
-                "y": 262,
+                "x": 8,
+                "y": 118,
                 "width": 67, 
-                "height": 78
+                "height": 85
             },
             {
-                "x": 280,
-                "y": 360,
+                "x": 325,
+                "y": 88,
                 "width": 67, 
-                "height": 82
+                "height": 84
+            },
+            {
+                "x": 102,
+                "y": 303,
+                "width": 67, 
+                "height": 84
+            },
+            {
+                "x": 267,
+                "y": 211,
+                "width": 69, 
+                "height": 85
             },
         ]
     },
