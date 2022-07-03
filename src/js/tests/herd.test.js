@@ -9,7 +9,6 @@ describe("Test the herd class", () => {
         beforeEach(() => {
             testNumber = levels[0].sheep;
             herd = new Herd(levels[0]);
-            console.log(`typeof herd === ${typeof herd}`);
         });
         it("should not return undefined", () => {
             expect(herd).toBeDefined();
@@ -18,7 +17,7 @@ describe("Test the herd class", () => {
             expect(herd.xArray.length).toBe(testNumber);
             expect(herd.yArray.length).toBe(testNumber);
         });
-    })
+    });
 
     describe("Test the removeDepartedSheep function", () => {
         let herd;

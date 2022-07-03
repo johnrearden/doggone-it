@@ -13,7 +13,7 @@ describe("getDistanceToPoint", () => {
   });
   it("returns 0 when given same point twice", () => {
     expect(getDistanceToPoint(2, 2, 2, 2)).toBe(0);
-  })
+  });
 });
 
 describe("getAngularDifference", () => {
@@ -37,7 +37,7 @@ describe("getAngularDifference", () => {
       expect(returnValue).toBeGreaterThanOrEqual(-Math.PI);
       expect(returnValue).toBeLessThanOrEqual(Math.PI);
     }
-  })
+  });
 });
 
 describe("getDirectionToPoint", () => {
@@ -64,7 +64,7 @@ describe("ensureCorrectRange", () => {
   });
   it("does not throw Error for a negative parameter", () => {
     expect(() => ensureCorrectRange(-1)).not.toThrow();
-  })
+  });
   it("returns the parameter itself if it is already within range", () => {
     expect(ensureCorrectRange(0)).toBe(0);
   });
@@ -77,5 +77,5 @@ describe("ensureCorrectRange", () => {
     for (let angle of angles) {
       expect(Math.tan(ensureCorrectRange(angle))).toBeCloseTo(Math.tan(angle));
     }
-  })
+  });
 });
