@@ -1,5 +1,4 @@
 import {Dog} from '../dog.js';
-import { getAngularDifference } from '../utilities.js';
 
 describe("Testing the Dog class and its methods", () => {
 
@@ -13,7 +12,8 @@ describe("Testing the Dog class and its methods", () => {
             expect(dog).toBeDefined();
         });
         test("constructor should return an object with correct initial position", () => {
-            expect(dog.xPos).toBe(100) && expect(dog.yPos).toBe(100);
+            expect(dog.xPos).toBe(100);
+            expect(dog.yPos).toBe(100);
         });
     });
 

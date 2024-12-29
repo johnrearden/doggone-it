@@ -6,17 +6,17 @@ describe("Test the Sheep class", () => {
     describe("Test the Sheep() constructor", () => {
         let sheep;
         beforeEach(() => {
-            sheep = new Sheep(10, 10, 0);
+            sheep = new Sheep(10, 10, 0, false);
         });
         it("should not return undefined", () => {
-            expect(new Sheep(10, 10, 0)).toBeDefined();
+            expect(new Sheep(10, 10, 0, false)).toBeDefined();
         });
     });
 
     describe("Test the getVelocityAwayFromDog function", () => {
         let sheep, dog;
         beforeEach(() => {
-            sheep = new Sheep(100, 100, 0);
+            sheep = new Sheep(100, 100, 0, false);
         });
         it("Should return x and y velocities in the opposite direction to the dog", () => {
             dog = new Dog(150, 50, []);
