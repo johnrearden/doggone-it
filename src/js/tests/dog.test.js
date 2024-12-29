@@ -1,4 +1,4 @@
-import {Dog} from '../dog.js';
+import {Dog} from '../dog';
 
 describe("Testing the Dog class and its methods", () => {
 

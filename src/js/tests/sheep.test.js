@@ -1,6 +1,6 @@
 import { SHEEP_MAX_VELOCITY_AWAY_FROM_DOG } from '../constants';
-import { Dog } from '../dog.js';
-import {Sheep} from '../sheep.js';
+import { Dog } from '../dog';
+import {Sheep} from '../sheep';
 
 describe("Test the Sheep class", () => {
     describe("Test the Sheep() constructor", () => {

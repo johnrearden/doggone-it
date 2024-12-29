@@ -1,5 +1,5 @@
-import { Herd } from '../herd.js';
-import { levels } from '../../data/levels.js';
+import { Herd } from '../herd';
+import { levels } from '../../data/levels';
 
 describe("Test the herd class", () => {
 

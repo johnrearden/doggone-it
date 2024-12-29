@@ -1,4 +1,9 @@
-import {ensureCorrectRange, getDistanceToPoint, getAngularDifference, getDirectionToPoint} from '../utilities.js';
+import {
+  ensureCorrectRange,
+  getDistanceToPoint,
+  getAngularDifference,
+  getDirectionToPoint
+} from '../utilities';
 
 
 describe("getDistanceToPoint", () => {
