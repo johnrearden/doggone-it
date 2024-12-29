@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "target": "esnext",
+        "outDir": "./dist",
+        "lib": ["DOM", "ESNext"],
+    },
+    "include": ["src/**/*.ts", "src/**/*.js"],
+}
